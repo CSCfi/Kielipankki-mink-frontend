@@ -40,8 +40,8 @@ export default defineConfig(async ({ mode }) => {
     base: process.env.BASE,
     server: {
       // Remap hostname and enable HTTPS, in order for authentication to work.
-      // Map this hostname to 127.0.0.1 in /etc/hosts.
-      host: "minkdev.spraakbanken.gu.se",
+      // Map spraakbanken.gu.se to 127.0.0.1 in /etc/hosts if using sb_auth.
+      host: "127.0.0.1",
       https: await getHttpsOptions(),
     },
     test: {
