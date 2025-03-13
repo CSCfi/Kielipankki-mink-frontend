@@ -3,7 +3,7 @@
   "version": "1.9.1",
   "license": "MIT",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0",
     "build": "yarn run typecheck && vite build",
     "serve": "vite preview",
     "validate": "yarn run typecheck && yarn run lint && yarn run format",
