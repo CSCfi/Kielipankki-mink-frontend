@@ -45,6 +45,6 @@ if (import.meta.env.DEV) {
   <div
     class="container py-20 flex justify-center items-center text-sm opacity-70"
   >
-    {{ $t("contact") }}: sb-info@svenska.gu.se
+    {{ $t("contact") }}: kielipankki@csc.fi
   </div>
 </template>

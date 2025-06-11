@@ -248,10 +248,10 @@ admin.page.subtitle: Administration
 admin.goto: Shortcuts
 admin.resources.help: In this administrative listing, you need to load detailed information manually, because loading everything takes a long time.
 accessdenied: Access denied
-accessdenied.contact: If you have questions, or you want to report a bug, please contact sb-info{'@'}svenska.gu.se. Thank you!
+accessdenied.contact: If you have questions, or you want to report a bug, please contact kielipankki{'@'}csc.fi. Thank you!
 notfound: Page not found
 notfound.description: Something went wrong, and there is nothing to see at this address.
-notfound.contact: If you have questions, or you want to report a bug, please contact sb-info{'@'}svenska.gu.se. Thank you!
+notfound.contact: If you have questions, or you want to report a bug, please contact kielipankki{'@'}csc.fi. Thank you!
 config.invalid.yaml: Syntax error
 config.invalid.schema: Schema error
 
@@ -262,7 +262,7 @@ api.code.missing_login_credentials: No login credentials provided
 api.code.not_admin: Admin status could not be confirmed
 api.code.missing_corpus_id: No corpus id provided
 api.code.jwt_expired: The provided JWT has expired
-api.code.something_went_wrong: Something went wrong. If the problem persists, please contact sb-info{'@'}svenska.gu.se and report your issue.
+api.code.something_went_wrong: Something went wrong. If the problem persists, please contact kielipankki{'@'}csc.fi and report your issue.
 api.code.admin_on: Admin mode enabled. Please be careful!
 api.code.admin_off: Admin mode disabled
 api.code.failed_listing_sources: Failed to list source files for the corpus "{corpus_id}"
