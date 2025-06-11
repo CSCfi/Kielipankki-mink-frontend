@@ -36,15 +36,11 @@ const isHome = computed(() => route.path == "/");
         <SpinIndicator v-if="isAuthenticating" />
         <div class="self-stretch flex flex-col justify-end items-end">
           <div class="w-56">
-            <a href="https://spraakbanken.gu.se/">
+            <a href="https://www.kielipankki.fi/">
               <picture>
-                <source
-                  media="(prefers-color-scheme: dark)"
-                  :srcset="logoSbxLight"
-                />
                 <img
-                  src="@/assets/sprakbankentext.svg"
-                  alt="Språkbanken Text"
+                  src="@/assets/kp_logo.png"
+                  alt="Kielipankki"
                 />
               </picture>
             </a>
@@ -84,10 +80,10 @@ const isHome = computed(() => route.path == "/");
         </div>
 
         <div class="-my-4">
-          <a href="https://gu.se/">
+          <a href="https://www.kielipankki.fi/">
             <img
-              src="@/assets/gu_logo_sv.png"
-              alt="Göteborgs universitet"
+              src="@/assets/Possu-korp.png"
+              alt="Kielipankki"
               :class="[large ? 'h-32' : 'h-24']"
             />
           </a>
