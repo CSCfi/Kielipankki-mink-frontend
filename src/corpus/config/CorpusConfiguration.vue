@@ -267,7 +267,7 @@ async function submit(fields: Form) {
             :options="languageOptions"
             validation="required"
             :help="$t('corpus.language.help')"
-            @input="(lang: string) => selectedLanguage = lang"
+            @input="(value) => selectedLanguage = value as string"
           />
 
           <FormKit
