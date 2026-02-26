@@ -37,6 +37,10 @@ library.help.corpora.none: >-
   Mink erbjuder automatisk språkvetenskaplig analys av din data. Börja med att skapa en korpus: använd knappen "@:{'new_corpus'}" eller dra textfiler till uppladdningsrutan nedan.
 library.help.metadata: Ett metadataobjekt har information som beskriver en godtycklig resurs. Mink bearbetar ingen data för dessa objekt, men de kan exporteras till en datakatalog.
 corpus.create.help: Korpusen kommer bara att vara synlig för dig. Du kan alltid uppdatera de här uppgifterna senare.
+corpus.language: Språk
+corpus.language.help: Välj språk för din textkorpus. Detta avgör vilka analysalternativ som är tillgängliga.
+corpus.language.locked: Språk kan inte ändras efter att annoteringar har körts.
+corpus.annotation_not_available: Inte tillgänglig för {language}
 corpus.delete: Radera korpus
 corpus.state.unknown: Okänt
 corpus.state.empty: Inga filer
@@ -353,3 +357,8 @@ api.code.input_changed: Det finns ändringar i korpusen "{corpus_id}" sedan den 
 api.code.input_not_changed: Det finns inga ändringar i korpusen "{corpus_id}" sedan den senaste körningen
 api.code.corpus_not_run: Det gick inte att kolla ändringar i korpusen "{corpus_id}", eftersom det inte ännu har gjorts någon körning
 api.code.failed_checking_changes: Det gick inte att kolla ändringar i korpusen
+
+# Språknamn (ISO 639-3-koder)
+languages.swe: Svenska
+languages.fin: Finska
+languages.eng: Engelska
