@@ -105,6 +105,11 @@ export default function useMinkBackend() {
 
   const disableAdminMode = () => spin(api.adminModeOff(), "admin-mode");
 
+  const loadLanguages = () => spin(api.getSparvLanguages(), "languages");
+
+  const loadLanguageExports = (language: string) =>
+    spin(api.getSparvExports(language), `languages/${language}/exports`);
+
   return {
     loadCorpusIds,
     createCorpus,
@@ -132,5 +137,7 @@ export default function useMinkBackend() {
     checkAdminMode,
     enableAdminMode,
     disableAdminMode,
+    loadLanguages,
+    loadLanguageExports,
   };
 }
