@@ -38,7 +38,6 @@ library.help.metadata: A metadata record holds information describing an arbitra
 corpus.create.help: The corpus will be accessible by you only. You can always change these values later.
 corpus.language: Language
 corpus.language.help: Select the language of your text corpus. This determines which analysis options are available.
-corpus.language.locked: Language cannot be changed after annotations have been run.
 corpus.annotation_not_available: Not available for {language}
 corpus.delete: Delete corpus
 corpus.state.unknown: Unknown
@@ -356,8 +355,3 @@ api.code.input_changed: There have been changes to the corpus "{corpus_id}" sinc
 api.code.input_not_changed: There are no changes to the corpus "{corpus_id}" since the last run
 api.code.corpus_not_run: No changes to the corpus "{corpus_id}" could be identified, as it has not yet been run
 api.code.failed_checking_changes: Failed to check changes for the corpus "{corpus_id}"
-
-# Language names (ISO 639-3 codes)
-languages.swe: Swedish
-languages.fin: Finnish
-languages.eng: English

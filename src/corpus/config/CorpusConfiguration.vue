@@ -59,13 +59,15 @@ type Form = {
 const configOptions = computed(getParsedConfig);
 
 // Language selection
-const availableLanguages = ref<string[]>(["swe"]); // Default fallback
+const availableLanguages = ref<Array<{ name: string; code: string }>>([
+  { name: "Swedish", code: "swe" }
+]); // Default fallback
 const selectedLanguage = ref<string>("swe");
 
 const languageOptions = computed<FormKitOptionsList>(() =>
   availableLanguages.value.map((lang) => ({
-    value: lang,
-    label: t(`languages.${lang}`),
+    value: lang.code,
+    label: lang.name,
   })),
 );
 
@@ -90,6 +92,12 @@ const availableAnnotations = computed((): AnnotationMetadata[] => {
 function isAnnotationSupported(annotation: AnnotationMetadata): boolean {
   return annotation.supportedLanguages.includes(selectedLanguage.value);
 }
+
+// Get the display name for the currently selected language
+const selectedLanguageName = computed(() => {
+  const lang = availableLanguages.value.find(l => l.code === selectedLanguage.value);
+  return lang ? lang.name : selectedLanguage.value.toUpperCase();
+});
 
 const formatOptions = computed<FormKitOptionsList>(() =>
   FORMATS_EXT.map((ext) => ({
@@ -382,7 +390,7 @@ async function submit(fields: Form) {
                 v-if="!isAnnotationSupported(annotation)"
                 class="text-amber-600 text-sm ml-6 -mt-2 mb-2"
               >
-                {{ $t("corpus.annotation_not_available", { language: $t(`languages.${selectedLanguage}`) }) }}
+                {{ $t("corpus.annotation_not_available", { language: selectedLanguageName }) }}
               </div>
             </div>
           </LayoutSection>
