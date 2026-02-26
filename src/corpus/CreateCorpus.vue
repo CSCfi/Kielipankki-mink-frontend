@@ -39,13 +39,15 @@ const formatOptions = computed(() =>
 );
 
 // Language selection
-const availableLanguages = ref<string[]>(["swe"]); // Default fallback
+const availableLanguages = ref<Array<{ name: string; code: string }>>([
+  { name: "Swedish", code: "swe" }
+]); // Default fallback
 
 const languageOptions = computed(() =>
   availableLanguages.value.reduce(
     (options, lang) => ({
       ...options,
-      [lang]: t(`languages.${lang}`),
+      [lang.code]: lang.name,
     }),
     {},
   ),

@@ -1,17 +1,33 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import useLocale from "@/i18n/locale.composable";
 import useConfig from "@/corpus/config/config.composable";
 import useCorpusIdParam from "@/corpus/corpusIdParam.composable";
+import useMinkBackend from "@/api/backend.composable";
 import { ANNOTATION_REGISTRY } from "@/api/annotationMetadata";
 import PendingContent from "@/spin/PendingContent.vue";
 import TerminalOutput from "@/components/TerminalOutput.vue";
 
 const corpusId = useCorpusIdParam();
 const { configOptions } = useConfig(corpusId);
+const { loadLanguages } = useMinkBackend();
 const { th } = useLocale();
 const { t } = useI18n();
+
+const availableLanguages = ref<Array<{ name: string; code: string }>>([]);
+
+// Load available languages on mount
+onMounted(async () => {
+  try {
+    const languages = await loadLanguages();
+    if (languages && languages.length > 0) {
+      availableLanguages.value = languages;
+    }
+  } catch (error) {
+    console.error("Failed to load available languages:", error);
+  }
+});
 
 const annotationsSummary = computed(() => {
   const annotations = configOptions.value?.annotations || {};
@@ -26,6 +42,14 @@ const annotationsSummary = computed(() => {
 
   if (!selected.length) return "—";
   return selected.map((key) => t(`annotations.${key}`)).join(", ");
+});
+
+const languageDisplay = computed(() => {
+  const langCode = configOptions.value?.language;
+  if (!langCode) return "—";
+
+  const lang = availableLanguages.value.find(l => l.code === langCode);
+  return lang ? lang.name : langCode.toUpperCase();
 });
 </script>
 
@@ -63,10 +87,7 @@ const annotationsSummary = computed(() => {
       </tr>
       <tr>
         <th>{{ $t("corpus.language") }}</th>
-        <td v-if="configOptions?.language">
-          {{ $t(`languages.${configOptions.language}`) }}
-        </td>
-        <td v-else>—</td>
+        <td>{{ languageDisplay }}</td>
       </tr>
       <tr>
         <th>{{ $t("fileFormat") }}</th>

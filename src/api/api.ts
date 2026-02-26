@@ -281,9 +281,9 @@ class MinkApi {
   /** Get available Sparv languages */
   async getSparvLanguages() {
     const response = await this.axios.get<
-      MinkResponse<{ languages: string[] }>
+      MinkResponse<{ languages: Array<{ name: string; code: string }> }>
     >("sparv-languages");
-    return response.data.languages || ["swe"];
+    return response.data.languages || [];
   }
 
   /** Get available exports for a specific language */
