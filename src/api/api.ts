@@ -278,6 +278,23 @@ class MinkApi {
     return response.data;
   }
 
+  /** Get available Sparv languages */
+  async getSparvLanguages() {
+    const response = await this.axios.get<
+      MinkResponse<{ languages: string[] }>
+    >("sparv-languages");
+    return response.data.languages || ["swe"];
+  }
+
+  /** Get available exports for a specific language */
+  async getSparvExports(language: string) {
+    const response = await this.axios.get<MinkResponse<{ exports: string[] }>>(
+      "sparv-exports",
+      { params: { language } },
+    );
+    return response.data.exports || [];
+  }
+
   /** @see https://ws.spraakbanken.gu.se/docs/mink#tag/Admin-Mode/operation/adminmodestatus */
   async adminModeStatus() {
     const response =
