@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { FormKit } from "@formkit/vue";
 import { PhLightbulbFilament } from "@phosphor-icons/vue";
@@ -10,17 +10,20 @@ import PendingContent from "@/spin/PendingContent.vue";
 import { FORMATS_EXT, type FileFormat } from "@/api/corpusConfig";
 import { useAuth } from "@/auth/auth.composable";
 import useCreateCorpus from "@/corpus/createCorpus.composable";
+import useMinkBackend from "@/api/backend.composable";
 import HelpBox from "@/components/HelpBox.vue";
 import FormKitWrapper from "@/components/FormKitWrapper.vue";
 
 const { requireAuthentication } = useAuth();
 const { createFromConfig } = useCreateCorpus();
+const { loadLanguages } = useMinkBackend();
 const { t } = useI18n();
 const { spin } = useSpin();
 
 type Form = {
   name: string;
   description: string;
+  language: string;
   format: FileFormat;
   textAnnotation: string;
 };
@@ -35,12 +38,39 @@ const formatOptions = computed(() =>
   ),
 );
 
+// Language selection
+const availableLanguages = ref<string[]>(["swe"]); // Default fallback
+
+const languageOptions = computed(() =>
+  availableLanguages.value.reduce(
+    (options, lang) => ({
+      ...options,
+      [lang]: t(`languages.${lang}`),
+    }),
+    {},
+  ),
+);
+
 requireAuthentication();
+
+// Load available languages on mount
+onMounted(async () => {
+  try {
+    const languages = await loadLanguages();
+    if (languages && languages.length > 0) {
+      availableLanguages.value = languages;
+    }
+  } catch (error) {
+    console.error("Failed to load available languages:", error);
+    // Keep default Swedish
+  }
+});
 
 async function submit(fields: Form) {
   const createPromise = createFromConfig(
     fields.name,
     fields.description,
+    fields.language,
     fields.format,
     fields.textAnnotation,
   );
@@ -80,6 +110,17 @@ async function submit(fields: Form) {
             name="description"
             :help="$t('metadata.description.help')"
             input-class="block w-full h-20"
+          />
+
+          <FormKit
+            name="language"
+            :label="$t('corpus.language')"
+            type="select"
+            input-class="w-72"
+            :help="$t('corpus.language.help')"
+            :options="languageOptions"
+            value="swe"
+            validate="required"
           />
 
           <FormKit

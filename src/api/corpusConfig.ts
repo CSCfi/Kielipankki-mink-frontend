@@ -5,12 +5,14 @@ import type {
   ConfigSentenceSegmenter,
   SparvConfig,
 } from "@/api/sparvConfig.types";
+import { getSparvModules, parseAnnotations } from "./annotationMetadata";
 
 export type FileFormat = "txt" | "xml" | "odt" | "docx" | "pdf";
 
 /** Frontend-internal format of a Sparv config. */
 export type ConfigOptions = {
   format: FileFormat;
+  language: string; // ISO 639-3 code (e.g., "swe", "fin", "eng")
   name: ByLang;
   description?: ByLang;
   textAnnotation?: string;
@@ -48,6 +50,7 @@ export const SEGMENTERS: ConfigSentenceSegmenter[] = ["linebreaks"];
 export function makeConfig(id: string, options: ConfigOptions): string {
   const {
     format,
+    language,
     name,
     description,
     textAnnotation,
@@ -62,6 +65,7 @@ export function makeConfig(id: string, options: ConfigOptions): string {
   const config: SparvConfig = {
     metadata: {
       id,
+      language,
       name,
       description,
     },
@@ -83,79 +87,8 @@ export function makeConfig(id: string, options: ConfigOptions): string {
     config.export.source_annotations = ["text", "page:number"];
   }
 
-  // Annotations
-  config.export.annotations = [
-    "<token>:misc.tail as _tail",
-    "<token>:misc.head as _head",
-    "<sentence>:misc.id",
-    "<text>:misc.source",
-    "<text>:misc.id as _id",
-  ];
-
-  if (annotations.lexicalClasses) {
-    config.export.annotations.push(
-      "<token>:lexical_classes.blingbring",
-      "<token>:lexical_classes.swefn",
-      "<text>:lexical_classes.blingbring",
-      "<text>:lexical_classes.swefn",
-    );
-  }
-
-  if (annotations.msd) {
-    config.export.annotations.push(
-      "<token>:stanza.msd",
-      "<token>:stanza.pos",
-      "<token>:stanza.ufeats",
-    );
-  }
-
-  if (annotations.readability) {
-    config.export.annotations.push(
-      "<text>:readability.lix",
-      "<text>:readability.ovix",
-      "<text>:readability.nk",
-    );
-  }
-
-  if (annotations.saldo) {
-    config.export.annotations.push(
-      "<token>:saldo.baseform2 as lemma",
-      "<token>:saldo.lemgram as lex",
-      "<token>:saldo.compwf",
-      "<token>:saldo.complemgram",
-    );
-  }
-
-  if (annotations.sensaldo) {
-    config.export.annotations.push(
-      "<token>:sensaldo.sentiment_score",
-      "<token>:sensaldo.sentiment_label",
-    );
-  }
-
-  // Enable named entity recognition.
-  if (annotations.swener) {
-    config.export.annotations.push(
-      "swener.ne",
-      "swener.ne:swener.name",
-      "swener.ne:swener.ex",
-      "swener.ne:swener.type",
-      "swener.ne:swener.subtype",
-      "<sentence>:geo.geo_context as _geocontext",
-    );
-  }
-
-  if (annotations.syntax) {
-    config.export.annotations.push(
-      "<token>:stanza.dephead_ref as dephead",
-      "<token>:stanza.deprel",
-      "<token>:stanza.ref",
-    );
-  }
-
-  if (annotations.wsd) {
-    config.export.annotations.push("<token>:wsd.sense");
-  }
+  // Annotations - use registry to get Sparv modules
+  config.export.annotations = getSparvModules(annotations);
 
   if (annotations.datetime) {
     // Add annotations on the text level with custom values
@@ -203,6 +136,7 @@ export function emptyConfig(): ConfigOptions {
     name: { swe: "", eng: "" },
     description: { swe: "", eng: "" },
     format: "txt",
+    language: "swe", // Default to Swedish for backward compatibility
     annotations: {
       datetime: undefined,
       lexicalClasses: true,
@@ -250,13 +184,21 @@ export function parseConfig(configYaml: string): ConfigOptions {
   const options = {
     ...emptyConfig(),
     format,
+    language: config.metadata?.language || "swe", // Default to Swedish if not specified
     name,
     description: config.metadata?.description,
     textAnnotation: config.import.text_annotation,
     sentenceSegmenter: config.segment?.sentence_segmenter,
   };
 
-  // Identify annotations
+  // Parse annotations from export modules using registry
+  const parsedAnnotations = parseAnnotations(config.export?.annotations);
+  options.annotations = {
+    ...options.annotations,
+    ...parsedAnnotations,
+  };
+
+  // Handle datetime annotation (special case)
   const datetimeFrom = config.custom_annotations?.find(
     (a) => a.params?.out == "<text>:misc.datefrom",
   )?.params?.value;
@@ -270,28 +212,6 @@ export function parseConfig(configYaml: string): ConfigOptions {
     typeof datetimeTo == "string"
   )
     options.annotations.datetime = { from: datetimeFrom, to: datetimeTo };
-
-  options.annotations.lexicalClasses = config.export?.annotations?.includes(
-    "<token>:lexical_classes.swefn",
-  );
-  options.annotations.msd =
-    config.export?.annotations?.includes("<token>:stanza.msd");
-  options.annotations.readability = config.export?.annotations?.includes(
-    "<text>:readability.lix",
-  );
-  options.annotations.saldo = config.export?.annotations?.includes(
-    "<token>:saldo.baseform2 as lemma",
-  );
-  options.annotations.sensaldo = config.export?.annotations?.includes(
-    "<token>:sensaldo.sentiment_score",
-  );
-  options.annotations.swener =
-    config.export?.annotations?.includes("swener.ne");
-  options.annotations.syntax = config.export?.annotations?.includes(
-    "<token>:stanza.dephead_ref as dephead",
-  );
-  options.annotations.wsd =
-    config.export?.annotations?.includes("<token>:wsd.sense");
 
   return options;
 }

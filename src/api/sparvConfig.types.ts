@@ -14,6 +14,7 @@ export type SparvConfig = {
 
 type ConfigMetadata = {
   id: string;
+  language: string; // ISO 639-3 code (e.g., "swe", "fin", "eng")
   name: ByLang;
   description?: ByLang;
 };

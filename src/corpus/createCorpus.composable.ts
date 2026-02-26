@@ -11,6 +11,7 @@ import {
   type ConfigOptions,
   emptyConfig,
 } from "@/api/corpusConfig";
+import { getDefaultAnnotations } from "@/api/annotationMetadata";
 import type { MinkResponse, ProgressHandler } from "@/api/api.types";
 import useCreateResource from "@/resource/createResource.composable";
 
@@ -85,6 +86,7 @@ export default function useCreateCorpus() {
   async function createFromConfig(
     name: string,
     description: string,
+    language: string,
     format: FileFormat,
     textAnnotation?: string,
   ): Promise<string | undefined> {
@@ -92,8 +94,13 @@ export default function useCreateCorpus() {
       ...emptyConfig(),
       name: { swe: name, eng: name },
       description: { swe: description, eng: description },
+      language,
       format,
       textAnnotation,
+      annotations: {
+        ...emptyConfig().annotations,
+        ...getDefaultAnnotations(language),
+      },
     };
 
     // Create an empty corpus. If it fails, abort.
