@@ -11,12 +11,14 @@ describe("makeConfig", () => {
   test("sets minimal info", () => {
     const yaml = makeConfig("mink-abc123", {
       name: { swe: "Nyheter", eng: "News" },
+      language: "swe",
       format: "txt",
       annotations: {},
     });
     expect(yaml).toContain("id: mink-abc123");
     expect(yaml).toContain("swe: Nyheter");
     expect(yaml).toContain("eng: News");
+    expect(yaml).toContain("language: swe");
     expect(yaml).toContain("importer: text_import:parse");
     expect(yaml).not.toContain("- <token>:saldo.baseform2 as lemma");
   });
@@ -24,6 +26,7 @@ describe("makeConfig", () => {
   test("sets segmenter", () => {
     const yaml = makeConfig("mink-abc123", {
       name: { swe: "Nyheter", eng: "News" },
+      language: "swe",
       format: "txt",
       sentenceSegmenter: "linebreaks",
       annotations: {},
@@ -34,6 +37,7 @@ describe("makeConfig", () => {
   test("sets text_annotation", () => {
     const yaml = makeConfig("mink-abc123", {
       name: { swe: "Nyheter", eng: "News" },
+      language: "swe",
       format: "xml",
       textAnnotation: "article",
       annotations: {},
@@ -45,6 +49,7 @@ describe("makeConfig", () => {
   test("sets pdf annotations", () => {
     const yaml = makeConfig("mink-abc123", {
       name: { swe: "Nyheter", eng: "News" },
+      language: "swe",
       format: "pdf",
       annotations: {},
     });
@@ -55,6 +60,7 @@ describe("makeConfig", () => {
   test("sets timespan info", () => {
     const yaml = makeConfig("mink-abc123", {
       name: { swe: "Nyheter", eng: "News" },
+      language: "swe",
       format: "pdf",
       annotations: {
         datetime: {
@@ -74,6 +80,7 @@ describe("makeConfig", () => {
   test("sets NER info", () => {
     const yaml = makeConfig("mink-abc123", {
       name: { swe: "Nyheter", eng: "News" },
+      language: "swe",
       format: "pdf",
       annotations: {
         swener: true,
@@ -113,6 +120,7 @@ describe("parseConfig", () => {
       metadata: {
         name: { swe: "Nyheter", eng: "News" },
         description: { swe: "Senaste nytt", eng: "Latest news" },
+        language: "swe",
       },
       import: {
         importer: "xml_import:parse",
@@ -130,6 +138,7 @@ describe("parseConfig", () => {
     const config = parseConfig(configYaml);
     const expected: ConfigOptions = {
       format: "xml",
+      language: "swe",
       name: { swe: "Nyheter", eng: "News" },
       description: { swe: "Senaste nytt", eng: "Latest news" },
       textAnnotation: "article",
@@ -157,6 +166,7 @@ describe("validateConfig", () => {
   test("missing text annotation", () => {
     const options: ConfigOptions = {
       name: { swe: "Nyheter", eng: "News" },
+      language: "swe",
       format: "xml",
       annotations: {},
     };
