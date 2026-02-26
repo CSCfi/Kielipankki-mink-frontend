@@ -4,6 +4,7 @@ import { useI18n } from "vue-i18n";
 import useLocale from "@/i18n/locale.composable";
 import useConfig from "@/corpus/config/config.composable";
 import useCorpusIdParam from "@/corpus/corpusIdParam.composable";
+import { ANNOTATION_REGISTRY } from "@/api/annotationMetadata";
 import PendingContent from "@/spin/PendingContent.vue";
 import TerminalOutput from "@/components/TerminalOutput.vue";
 
@@ -15,14 +16,14 @@ const { t } = useI18n();
 const annotationsSummary = computed(() => {
   const annotations = configOptions.value?.annotations || {};
   const selected: string[] = [];
-  if (annotations.lexicalClasses) selected.push("lexical_classes");
-  if (annotations.msd) selected.push("msd");
-  if (annotations.readability) selected.push("readability");
-  if (annotations.saldo) selected.push("saldo");
-  if (annotations.sensaldo) selected.push("sensaldo");
-  if (annotations.swener) selected.push("swener");
-  if (annotations.syntax) selected.push("syntax");
-  if (annotations.wsd) selected.push("wsd");
+
+  // Use annotation registry to check for enabled annotations
+  for (const annotation of ANNOTATION_REGISTRY) {
+    if ((annotations as any)[annotation.id]) {
+      selected.push(annotation.labelKey.replace("annotations.", ""));
+    }
+  }
+
   if (!selected.length) return "—";
   return selected.map((key) => t(`annotations.${key}`)).join(", ");
 });
@@ -59,6 +60,13 @@ const annotationsSummary = computed(() => {
         <td colspan="2">
           <h3 class="text-lg uppercase my-2">{{ $t("analysis") }}</h3>
         </td>
+      </tr>
+      <tr>
+        <th>{{ $t("corpus.language") }}</th>
+        <td v-if="configOptions?.language">
+          {{ $t(`languages.${configOptions.language}`) }}
+        </td>
+        <td v-else>—</td>
       </tr>
       <tr>
         <th>{{ $t("fileFormat") }}</th>

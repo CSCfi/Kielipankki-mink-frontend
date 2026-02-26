@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { FormKitOptionsList } from "@formkit/inputs";
 import type { AxiosError } from "axios";
-import { computed } from "vue";
+import { computed, ref, onMounted, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { FormKit } from "@formkit/vue";
@@ -15,6 +15,11 @@ import {
   emptyConfig,
   parseConfig,
 } from "@/api/corpusConfig";
+import {
+  ANNOTATION_REGISTRY,
+  getAvailableAnnotations,
+  type AnnotationMetadata,
+} from "@/api/annotationMetadata";
 import type { ConfigSentenceSegmenter } from "@/api/sparvConfig.types";
 import HelpBox from "@/components/HelpBox.vue";
 import LayoutSection from "@/components/LayoutSection.vue";
@@ -25,6 +30,7 @@ import useMessenger from "@/message/messenger.composable";
 import PendingContent from "@/spin/PendingContent.vue";
 import useSources from "@/corpus/sources/sources.composable";
 import useConfig from "@/corpus/config/config.composable";
+import useMinkBackend from "@/api/backend.composable";
 import type { ByLang } from "@/util.types";
 import LayoutBox from "@/components/LayoutBox.vue";
 import TerminalOutput from "@/components/TerminalOutput.vue";
@@ -34,27 +40,56 @@ const corpusId = useCorpusIdParam();
 const { config, uploadConfig } = useConfig(corpusId);
 const { alert, alertError } = useMessenger();
 const { extensions } = useSources(corpusId);
+const { loadLanguages } = useMinkBackend();
 const { t } = useI18n();
 
 type Form = {
   name: ByLang;
   description: ByLang;
+  language: string;
   format: FileFormat;
   textAnnotation: string;
   sentenceSegmenter: ConfigSentenceSegmenter;
   datetimeFrom: string;
   datetimeTo: string;
-  lexicalClasses: boolean;
-  msd: boolean;
-  readability: boolean;
-  saldo: boolean;
-  sensaldo: boolean;
-  swener: boolean;
-  syntax: boolean;
-  wsd: boolean;
+  // Dynamic annotation fields based on ANNOTATION_REGISTRY
+  [key: string]: any;
 };
 
 const configOptions = computed(getParsedConfig);
+
+// Language selection
+const availableLanguages = ref<string[]>(["swe"]); // Default fallback
+const selectedLanguage = ref<string>("swe");
+
+const languageOptions = computed<FormKitOptionsList>(() =>
+  availableLanguages.value.map((lang) => ({
+    value: lang,
+    label: t(`languages.${lang}`),
+  })),
+);
+
+// Load available languages on mount
+onMounted(async () => {
+  try {
+    const languages = await loadLanguages();
+    if (languages && languages.length > 0) {
+      availableLanguages.value = languages;
+    }
+  } catch (error) {
+    console.error("Failed to load available languages:", error);
+  }
+});
+
+// Get annotations available for currently selected language
+const availableAnnotations = computed((): AnnotationMetadata[] => {
+  return getAvailableAnnotations(selectedLanguage.value);
+});
+
+// Check if annotation is supported for current language
+function isAnnotationSupported(annotation: AnnotationMetadata): boolean {
+  return annotation.supportedLanguages.includes(selectedLanguage.value);
+}
 
 const formatOptions = computed<FormKitOptionsList>(() =>
   FORMATS_EXT.map((ext) => ({
@@ -97,35 +132,43 @@ function getParsedConfig() {
   }
 }
 
+// Update selectedLanguage when config is loaded
+watch(configOptions, (newConfig) => {
+  if (newConfig?.language) {
+    selectedLanguage.value = newConfig.language;
+  }
+}, { immediate: true });
+
 async function submit(fields: Form) {
   // If there is no previous config file, start from a minimal one.
   const configOld = configOptions.value || emptyConfig();
+
+  // Build annotations object dynamically from registry
+  const annotations: any = {
+    datetime:
+      fields.datetimeFrom && fields.datetimeTo
+        ? {
+            from: fields.datetimeFrom,
+            to: fields.datetimeTo,
+          }
+        : undefined,
+  };
+
+  // Add all annotation flags from registry
+  for (const annotation of ANNOTATION_REGISTRY) {
+    annotations[annotation.id] = fields[annotation.id] || false;
+  }
 
   // Merge new form values with existing config.
   const configNew: ConfigOptions = {
     ...configOld,
     name: fields.name,
     description: fields.description,
+    language: fields.language,
     format: fields.format,
     textAnnotation: fields.textAnnotation,
     sentenceSegmenter: fields.sentenceSegmenter,
-    annotations: {
-      datetime:
-        fields.datetimeFrom && fields.datetimeTo
-          ? {
-              from: fields.datetimeFrom,
-              to: fields.datetimeTo,
-            }
-          : undefined,
-      lexicalClasses: fields.lexicalClasses,
-      msd: fields.msd,
-      readability: fields.readability,
-      saldo: fields.saldo,
-      sensaldo: fields.sensaldo,
-      swener: fields.swener,
-      syntax: fields.syntax,
-      wsd: fields.wsd,
-    },
+    annotations,
   };
 
   try {
@@ -216,6 +259,18 @@ async function submit(fields: Form) {
           </HelpBox>
 
           <FormKit
+            name="language"
+            :label="$t('corpus.language')"
+            :value="configOptions?.language || 'swe'"
+            type="select"
+            input-class="w-72"
+            :options="languageOptions"
+            validation="required"
+            :help="$t('corpus.language.help')"
+            @input="(lang: string) => selectedLanguage = lang"
+          />
+
+          <FormKit
             name="format"
             :label="$t('fileFormat')"
             :value="selectedFormat"
@@ -292,86 +347,44 @@ async function submit(fields: Form) {
               </i18n-t>
             </div>
 
-            <!-- Annotation options in some sort of order of usefulness -->
-
-            <FormKit
-              name="saldo"
-              :label="$t('annotations.saldo')"
-              :value="configOptions?.annotations.saldo"
-              type="checkbox"
-              :help="$t('annotations.saldo.help')"
+            <!-- Dynamic annotation options based on selected language -->
+            <div
+              v-for="annotation in availableAnnotations"
+              :key="annotation.id"
             >
-              <template #help>
-                <i18n-t
-                  tag="div"
-                  keypath="annotations.saldo.help"
-                  scope="global"
-                  class="formkit-help"
-                >
-                  <template #saldo>
-                    <a :href="$t('annotations.saldo.saldo_url')" target="_blank"
-                      >SALDO</a
-                    >
-                  </template>
-                </i18n-t>
-              </template>
-            </FormKit>
+              <FormKit
+                :name="annotation.id"
+                :label="$t(annotation.labelKey)"
+                :value="(configOptions?.annotations as any)?.[annotation.id]"
+                type="checkbox"
+                :disabled="!isAnnotationSupported(annotation)"
+                :help="$t(annotation.helpKey)"
+              >
+                <!-- Special template for SALDO with link -->
+                <template v-if="annotation.id === 'saldo'" #help>
+                  <i18n-t
+                    tag="div"
+                    keypath="annotations.saldo.help"
+                    scope="global"
+                    class="formkit-help"
+                  >
+                    <template #saldo>
+                      <a :href="$t('annotations.saldo.saldo_url')" target="_blank"
+                        >SALDO</a
+                      >
+                    </template>
+                  </i18n-t>
+                </template>
+              </FormKit>
 
-            <FormKit
-              name="msd"
-              :label="$t('annotations.msd')"
-              :value="configOptions?.annotations.msd"
-              type="checkbox"
-              :help="$t('annotations.msd.help')"
-            />
-
-            <FormKit
-              name="syntax"
-              :label="$t('annotations.syntax')"
-              :value="configOptions?.annotations.syntax"
-              type="checkbox"
-              :help="$t('annotations.syntax.help')"
-            />
-
-            <FormKit
-              name="readability"
-              :label="$t('annotations.readability')"
-              :value="configOptions?.annotations.readability"
-              type="checkbox"
-              :help="$t('annotations.readability.help')"
-            />
-
-            <FormKit
-              name="wsd"
-              :label="$t('annotations.wsd')"
-              :value="configOptions?.annotations.wsd"
-              type="checkbox"
-              :help="$t('annotations.wsd.help')"
-            />
-
-            <FormKit
-              name="sensaldo"
-              :label="$t('annotations.sensaldo')"
-              :value="configOptions?.annotations.sensaldo"
-              type="checkbox"
-              :help="$t('annotations.sensaldo.help')"
-            />
-
-            <FormKit
-              name="lexicalClasses"
-              :label="$t('annotations.lexical_classes')"
-              :value="configOptions?.annotations.lexicalClasses"
-              type="checkbox"
-              :help="$t('annotations.lexical_classes.help')"
-            />
-
-            <FormKit
-              name="swener"
-              :label="$t('annotations.swener')"
-              :value="configOptions?.annotations.swener"
-              type="checkbox"
-              :help="$t('annotations.swener.help')"
-            />
+              <!-- Show warning if annotation not supported for current language -->
+              <div
+                v-if="!isAnnotationSupported(annotation)"
+                class="text-amber-600 text-sm ml-6 -mt-2 mb-2"
+              >
+                {{ $t("corpus.annotation_not_available", { language: $t(`languages.${selectedLanguage}`) }) }}
+              </div>
+            </div>
           </LayoutSection>
         </LayoutSection>
       </FormKit>
