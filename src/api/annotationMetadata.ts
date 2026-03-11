@@ -60,32 +60,64 @@ export type AnnotationMetadata = {
  * /sparv-languages?annotators=true endpoint.
  */
 export const ANNOTATION_REGISTRY: AnnotationMetadata[] = [
+  // --- Trankit (multilingual: swe, fin, eng) ---
   {
     id: "msd",
     labelKey: "annotations.msd",
     helpKey: "annotations.msd.help",
-    sparvAnnotatorModule: "stanza",
+    sparvAnnotatorModule: "trankit",
     supportedLanguages: ["swe", "fin", "eng"],
     defaultEnabled: true,
     sparvModules: [
-      "<token>:stanza.msd",
-      "<token>:stanza.pos",
-      "<token>:stanza.ufeats",
+      "<token>:trankit.upos",
+      "<token>:trankit.pos",
+      "<token>:trankit.baseform",
+      "<token>:trankit.ufeats",
     ],
   },
   {
     id: "syntax",
     labelKey: "annotations.syntax",
     helpKey: "annotations.syntax.help",
-    sparvAnnotatorModule: "stanza",
+    sparvAnnotatorModule: "trankit",
     supportedLanguages: ["swe", "fin", "eng"],
     defaultEnabled: true,
     sparvModules: [
-      "<token>:stanza.dephead_ref as dephead",
-      "<token>:stanza.deprel",
-      "<token>:stanza.ref",
+      "<token>:trankit.dephead_ref",
+      "<token>:trankit.dephead",
+      "<token>:trankit.deprel",
     ],
   },
+  {
+    id: "ner",
+    labelKey: "annotations.ner",
+    helpKey: "annotations.ner.help",
+    sparvAnnotatorModule: "trankit",
+    supportedLanguages: ["swe", "fin", "eng"],
+    defaultEnabled: false,
+    sparvModules: [
+      "trankit.ne",
+      "trankit.ne:trankit.ne_type",
+    ],
+  },
+  // --- TreeTagger (many languages, POS + lemma only) ---
+  {
+    id: "treetagger",
+    labelKey: "annotations.treetagger",
+    helpKey: "annotations.treetagger.help",
+    sparvAnnotatorModule: "treetagger",
+    supportedLanguages: [
+      "bul", "nld", "eng", "est", "fin", "fra", "deu",
+      "ita", "lat", "pol", "rus", "spa",
+    ],
+    defaultEnabled: true,
+    sparvModules: [
+      "<token>:treetagger.upos",
+      "<token>:treetagger.pos",
+      "<token>:treetagger.baseform",
+    ],
+  },
+  // --- Swedish-specific modules (shown when server enables them) ---
   {
     id: "saldo",
     labelKey: "annotations.saldo",

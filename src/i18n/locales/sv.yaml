@@ -245,7 +245,11 @@ annotations.sensaldo.help: Taggar token som positiv/neutral/negativ.
 annotations.swener: Namngivna entiteter och geotaggning
 annotations.swener.help: Namngivna entitetsigenkänning (named entity recognition, NER) hittar personer, platser, datum och liknande i dina texter genom att använda SweNER. Däremot tar analysen ganska lång tid. När NER är aktiverat görs även geotaggning, vilket aktiverar kartfunktionen i Korp.
 annotations.syntax: Dependenser
-annotations.syntax.help: Syntaxanalys med Stanza.
+annotations.syntax.help: Syntaxanalys (dependensparsning) med Trankit.
+annotations.ner: Namngivna entiteter
+annotations.ner.help: Namngivna entitetsigenkänning (NER) — hittar personer, platser, datum och liknande. Saktar ner bearbetningen.
+annotations.treetagger: Ordklasstaggning (TreeTagger)
+annotations.treetagger.help: Ordklasstaggning och lemmatisering med TreeTagger.
 annotations.wsd: Betydelser
 annotations.wsd.help: Ordbetydelsedisambiguering med SALDO.
 admin.page.subtitle: Administration
