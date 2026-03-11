@@ -89,6 +89,7 @@ export default function useCreateCorpus() {
     language: string,
     format: FileFormat,
     textAnnotation?: string,
+    availableModules?: string[],
   ): Promise<string | undefined> {
     const config = {
       ...emptyConfig(),
@@ -99,7 +100,7 @@ export default function useCreateCorpus() {
       textAnnotation,
       annotations: {
         ...emptyConfig().annotations,
-        ...getDefaultAnnotations(language),
+        ...getDefaultAnnotations(language, availableModules),
       },
     };
 

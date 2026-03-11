@@ -278,11 +278,17 @@ class MinkApi {
     return response.data;
   }
 
-  /** Get available Sparv languages */
+  /** Get available Sparv languages with per-language annotator module info */
   async getSparvLanguages() {
     const response = await this.axios.get<
-      MinkResponse<{ languages: Array<{ name: string; code: string }> }>
-    >("sparv-languages");
+      MinkResponse<{
+        languages: Array<{
+          name: string;
+          code: string;
+          annotators: Record<string, string>;
+        }>;
+      }>
+    >("sparv-languages", { params: { annotators: "true" } });
     return response.data.languages || [];
   }
 
