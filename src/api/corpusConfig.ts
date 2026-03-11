@@ -136,7 +136,7 @@ export function emptyConfig(): ConfigOptions {
     name: { swe: "", eng: "" },
     description: { swe: "", eng: "" },
     format: "txt",
-    language: "swe", // Default to Swedish for backward compatibility
+    language: "fin",
     annotations: {
       datetime: undefined,
       lexicalClasses: true,
