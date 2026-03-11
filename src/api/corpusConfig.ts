@@ -27,11 +27,13 @@ export type AnnotationOptions = {
   };
   lexicalClasses?: boolean;
   msd?: boolean;
+  ner?: boolean;
   readability?: boolean;
   saldo?: boolean;
   sensaldo?: boolean;
   swener?: boolean;
   syntax?: boolean;
+  treetagger?: boolean;
   wsd?: boolean;
 };
 
