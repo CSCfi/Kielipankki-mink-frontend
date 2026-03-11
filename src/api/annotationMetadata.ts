@@ -1,5 +1,24 @@
 import type { AnnotationOptions } from "./corpusConfig";
 
+/** A single annotation output as returned by the backend */
+export type SparvAnnotationInfo = {
+  description: string;
+  class?: string;
+};
+
+/** A single annotator module as returned by the backend */
+export type SparvAnnotatorInfo = {
+  description: string;
+  annotations: Record<string, SparvAnnotationInfo>;
+};
+
+/** A language entry from GET /sparv-languages?annotators=true */
+export type SparvLanguage = {
+  name: string;
+  code: string;
+  annotators: Record<string, SparvAnnotatorInfo>;
+};
+
 /**
  * Metadata for a single annotation type
  */

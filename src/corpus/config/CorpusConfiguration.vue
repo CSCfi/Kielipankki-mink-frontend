@@ -19,6 +19,7 @@ import {
   ANNOTATION_REGISTRY,
   getAvailableAnnotations,
   type AnnotationMetadata,
+  type SparvLanguage,
 } from "@/api/annotationMetadata";
 import type { ConfigSentenceSegmenter } from "@/api/sparvConfig.types";
 import HelpBox from "@/components/HelpBox.vue";
@@ -59,10 +60,10 @@ type Form = {
 const configOptions = computed(getParsedConfig);
 
 // Language selection
-const availableLanguages = ref<
-  Array<{ name: string; code: string; annotators: Record<string, string> }>
->([{ name: "Swedish", code: "swe", annotators: {} }]); // Default fallback
-const selectedLanguage = ref<string>("swe");
+const availableLanguages = ref<SparvLanguage[]>([
+  { name: "Finnish", code: "fin", annotators: {} },
+]); // Default fallback
+const selectedLanguage = ref<string>("fin");
 
 const languageOptions = computed<FormKitOptionsList>(() =>
   availableLanguages.value.map((lang) => ({

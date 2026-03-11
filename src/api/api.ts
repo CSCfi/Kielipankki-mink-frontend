@@ -1,5 +1,6 @@
 import Axios, { type AxiosInstance } from "axios";
 import { ensureTrailingSlash } from "@/util";
+import type { SparvLanguage } from "@/api/annotationMetadata";
 import type {
   MinkResponse,
   InfoData,
@@ -278,15 +279,11 @@ class MinkApi {
     return response.data;
   }
 
-  /** Get available Sparv languages with per-language annotator module info */
+  /** Get available Sparv languages with per-language annotator and annotation info */
   async getSparvLanguages() {
     const response = await this.axios.get<
       MinkResponse<{
-        languages: Array<{
-          name: string;
-          code: string;
-          annotators: Record<string, string>;
-        }>;
+        languages: Array<SparvLanguage>;
       }>
     >("sparv-languages", { params: { annotators: "true" } });
     return response.data.languages || [];

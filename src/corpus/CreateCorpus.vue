@@ -8,6 +8,7 @@ import LayoutSection from "@/components/LayoutSection.vue";
 import useSpin from "@/spin/spin.composable";
 import PendingContent from "@/spin/PendingContent.vue";
 import { FORMATS_EXT, type FileFormat } from "@/api/corpusConfig";
+import type { SparvLanguage } from "@/api/annotationMetadata";
 import { useAuth } from "@/auth/auth.composable";
 import useCreateCorpus from "@/corpus/createCorpus.composable";
 import useMinkBackend from "@/api/backend.composable";
@@ -39,9 +40,9 @@ const formatOptions = computed(() =>
 );
 
 // Language selection
-const availableLanguages = ref<
-  Array<{ name: string; code: string; annotators: Record<string, string> }>
->([{ name: "Swedish", code: "swe", annotators: {} }]); // Default fallback
+const availableLanguages = ref<SparvLanguage[]>([
+  { name: "Finnish", code: "fin", annotators: {} },
+]); // Default fallback
 
 const languageOptions = computed(() =>
   availableLanguages.value.reduce(
@@ -129,7 +130,7 @@ async function submit(fields: Form) {
             input-class="w-72"
             :help="$t('corpus.language.help')"
             :options="languageOptions"
-            value="swe"
+            value="fin"
             validate="required"
           />
 
