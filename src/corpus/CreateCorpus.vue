@@ -39,9 +39,9 @@ const formatOptions = computed(() =>
 );
 
 // Language selection
-const availableLanguages = ref<Array<{ name: string; code: string }>>([
-  { name: "Swedish", code: "swe" }
-]); // Default fallback
+const availableLanguages = ref<
+  Array<{ name: string; code: string; annotators: Record<string, string> }>
+>([{ name: "Swedish", code: "swe", annotators: {} }]); // Default fallback
 
 const languageOptions = computed(() =>
   availableLanguages.value.reduce(
@@ -55,7 +55,7 @@ const languageOptions = computed(() =>
 
 requireAuthentication();
 
-// Load available languages on mount
+// Load available languages (with annotator info) on mount
 onMounted(async () => {
   try {
     const languages = await loadLanguages();
@@ -69,12 +69,20 @@ onMounted(async () => {
 });
 
 async function submit(fields: Form) {
+  const selectedLang = availableLanguages.value.find(
+    (l) => l.code === fields.language,
+  );
+  const availableModules = selectedLang?.annotators
+    ? Object.keys(selectedLang.annotators)
+    : undefined;
+
   const createPromise = createFromConfig(
     fields.name,
     fields.description,
     fields.language,
     fields.format,
     fields.textAnnotation,
+    availableModules,
   );
   await spin(createPromise, "create");
 }

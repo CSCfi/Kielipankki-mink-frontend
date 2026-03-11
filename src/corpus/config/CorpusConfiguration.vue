@@ -59,9 +59,9 @@ type Form = {
 const configOptions = computed(getParsedConfig);
 
 // Language selection
-const availableLanguages = ref<Array<{ name: string; code: string }>>([
-  { name: "Swedish", code: "swe" }
-]); // Default fallback
+const availableLanguages = ref<
+  Array<{ name: string; code: string; annotators: Record<string, string> }>
+>([{ name: "Swedish", code: "swe", annotators: {} }]); // Default fallback
 const selectedLanguage = ref<string>("swe");
 
 const languageOptions = computed<FormKitOptionsList>(() =>
@@ -71,7 +71,7 @@ const languageOptions = computed<FormKitOptionsList>(() =>
   })),
 );
 
-// Load available languages on mount
+// Load available languages (with annotator info) on mount
 onMounted(async () => {
   try {
     const languages = await loadLanguages();
@@ -83,19 +83,37 @@ onMounted(async () => {
   }
 });
 
+// Annotator modules available for the currently selected language
+const availableModulesForLanguage = computed((): string[] => {
+  const lang = availableLanguages.value.find(
+    (l) => l.code === selectedLanguage.value,
+  );
+  return lang?.annotators ? Object.keys(lang.annotators) : [];
+});
+
 // Get annotations available for currently selected language
 const availableAnnotations = computed((): AnnotationMetadata[] => {
-  return getAvailableAnnotations(selectedLanguage.value);
+  const modules = availableModulesForLanguage.value;
+  // Use dynamic module list when available, otherwise fall back to static supportedLanguages
+  return modules.length > 0
+    ? getAvailableAnnotations(selectedLanguage.value, modules)
+    : getAvailableAnnotations(selectedLanguage.value);
 });
 
 // Check if annotation is supported for current language
 function isAnnotationSupported(annotation: AnnotationMetadata): boolean {
+  const modules = availableModulesForLanguage.value;
+  if (modules.length > 0) {
+    return modules.includes(annotation.sparvAnnotatorModule);
+  }
   return annotation.supportedLanguages.includes(selectedLanguage.value);
 }
 
 // Get the display name for the currently selected language
 const selectedLanguageName = computed(() => {
-  const lang = availableLanguages.value.find(l => l.code === selectedLanguage.value);
+  const lang = availableLanguages.value.find(
+    (l) => l.code === selectedLanguage.value,
+  );
   return lang ? lang.name : selectedLanguage.value.toUpperCase();
 });
 
