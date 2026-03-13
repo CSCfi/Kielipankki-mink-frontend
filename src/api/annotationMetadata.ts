@@ -83,8 +83,8 @@ export const ANNOTATION_REGISTRY: AnnotationMetadata[] = [
     supportedLanguages: ["swe", "fin", "eng"],
     defaultEnabled: true,
     sparvModules: [
-      "<token>:trankit.dephead_ref",
-      "<token>:trankit.dephead",
+      "<token>:trankit.ref",
+      "<token>:trankit.dephead_ref as dephead",
       "<token>:trankit.deprel",
     ],
   },
