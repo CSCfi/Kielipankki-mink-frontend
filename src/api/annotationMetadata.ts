@@ -93,7 +93,7 @@ export const ANNOTATION_REGISTRY: AnnotationMetadata[] = [
     labelKey: "annotations.ner",
     helpKey: "annotations.ner.help",
     sparvAnnotatorModule: "trankit",
-    supportedLanguages: ["swe", "fin", "eng"],
+    supportedLanguages: ["eng"],
     defaultEnabled: false,
     sparvModules: [
       "trankit.ne",

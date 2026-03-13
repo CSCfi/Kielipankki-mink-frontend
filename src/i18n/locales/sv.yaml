@@ -234,7 +234,7 @@ annotations.info: Här listas tillval för några av de tillgängliga analyserna
 annotations.lexical_classes: Lexikala klasser
 annotations.lexical_classes.help: Mappar till Blingbring och Svenskt frasnät (SweFN).
 annotations.msd: Morfologi
-annotations.msd.help: Ordklass och morfosyntaktiska egenskaper.
+annotations.msd.help: Ordklasstaggning, lemmatisering och morfosyntaktiska egenskaper med Trankit.
 annotations.readability: Läsbarhet
 annotations.readability.help: Räknar ut läsbarhetsvärdena LIX, OVIX och NK.
 annotations.saldo: Lemmatisering
@@ -247,7 +247,7 @@ annotations.swener.help: Namngivna entitetsigenkänning (named entity recognitio
 annotations.syntax: Dependenser
 annotations.syntax.help: Syntaxanalys (dependensparsning) med Trankit.
 annotations.ner: Namngivna entiteter
-annotations.ner.help: Namngivna entitetsigenkänning (NER) — hittar personer, platser, datum och liknande. Saktar ner bearbetningen.
+annotations.ner.help: Namngivna entitetsigenkänning (NER) med Trankit — hittar personer, platser, datum och liknande.
 annotations.treetagger: Ordklasstaggning (TreeTagger)
 annotations.treetagger.help: Ordklasstaggning och lemmatisering med TreeTagger.
 annotations.wsd: Betydelser
