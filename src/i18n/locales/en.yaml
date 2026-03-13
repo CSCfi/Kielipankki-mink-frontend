@@ -233,7 +233,7 @@ annotations.info: Listed for selection here are some of the available analyses. 
 annotations.lexical_classes: Lexical classes
 annotations.lexical_classes.help: Maps units to Blingbring and the Swedish FrameNet (SweFN).
 annotations.msd: Morphology
-annotations.msd.help: Parts-of-speech and morphosyntactic features.
+annotations.msd.help: Part-of-speech tagging, lemmatization and morphosyntactic features using Trankit.
 annotations.readability: Readability
 annotations.readability.help: Computes the readability measures LIX, OVIX and NK.
 annotations.saldo: Lemmatization
@@ -246,7 +246,7 @@ annotations.swener.help: Named entity recognition (NER) finds individuals, place
 annotations.syntax: Dependencies
 annotations.syntax.help: Syntactic analysis (dependency parsing) using Trankit.
 annotations.ner: Named entities
-annotations.ner.help: Named entity recognition (NER) — finds persons, places, dates and more. Slows down processing.
+annotations.ner.help: Named entity recognition (NER) using Trankit — finds persons, places, dates and more.
 annotations.treetagger: POS tagging (TreeTagger)
 annotations.treetagger.help: Part-of-speech tagging and lemmatization using TreeTagger.
 annotations.wsd: Word sense disambiguation
