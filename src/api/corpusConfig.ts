@@ -186,7 +186,7 @@ export function parseConfig(configYaml: string): ConfigOptions {
   const options = {
     ...emptyConfig(),
     format,
-    language: config.metadata?.language || "swe", // Default to Swedish if not specified
+    language: config.metadata?.language || "fin", // Default to Finnish if not specified
     name,
     description: config.metadata?.description,
     textAnnotation: config.import.text_annotation,

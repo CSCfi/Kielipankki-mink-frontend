@@ -65,7 +65,7 @@ onMounted(async () => {
     }
   } catch (error) {
     console.error("Failed to load available languages:", error);
-    // Keep default Swedish
+    // Keep default
   }
 });
 
