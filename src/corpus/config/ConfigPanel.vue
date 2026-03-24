@@ -1,3 +1,8 @@
+<!-- Read-only summary panel displaying a corpus's current configuration. Shows
+     metadata (name, description, corpus ID) and analysis settings (language,
+     file format, text annotation, sentence segmenter, timespan, annotations)
+     in a table. Used to give the user an overview of their configuration
+     without editing it. -->
 <script setup lang="ts">
 import { computed, ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
