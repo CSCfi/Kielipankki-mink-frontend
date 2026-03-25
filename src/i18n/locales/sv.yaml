@@ -39,6 +39,7 @@ library.help.metadata: Ett metadataobjekt har information som beskriver en godty
 corpus.create.help: Korpusen kommer bara att vara synlig för dig. Du kan alltid uppdatera de här uppgifterna senare.
 corpus.language: Språk
 corpus.language.help: Välj språk för din textkorpus. Detta avgör vilka analysalternativ som är tillgängliga.
+corpus.language.loading: Hämtar tillgängliga språk…
 corpus.annotation_not_available: Inte tillgänglig för {language}
 corpus.delete: Radera korpus
 corpus.state.unknown: Okänt

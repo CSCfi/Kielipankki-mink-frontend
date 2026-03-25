@@ -38,6 +38,7 @@ library.help.metadata: A metadata record holds information describing an arbitra
 corpus.create.help: The corpus will be accessible by you only. You can always change these values later.
 corpus.language: Language
 corpus.language.help: Select the language of your text corpus. This determines which analysis options are available.
+corpus.language.loading: Loading available languages…
 corpus.annotation_not_available: Not available for {language}
 corpus.delete: Delete corpus
 corpus.state.unknown: Unknown
