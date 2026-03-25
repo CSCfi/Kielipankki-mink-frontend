@@ -43,6 +43,7 @@ const formatOptions = computed(() =>
 const availableLanguages = ref<SparvLanguage[]>([
   { name: "Finnish", code: "fin", annotators: {} },
 ]); // Default fallback
+const languagesLoading = ref(true);
 
 const languageOptions = computed(() =>
   availableLanguages.value.reduce(
@@ -66,6 +67,8 @@ onMounted(async () => {
   } catch (error) {
     console.error("Failed to load available languages:", error);
     // Keep default
+  } finally {
+    languagesLoading.value = false;
   }
 });
 
@@ -128,8 +131,9 @@ async function submit(fields: Form) {
             :label="$t('corpus.language')"
             type="select"
             input-class="w-72"
-            :help="$t('corpus.language.help')"
+            :help="languagesLoading ? $t('corpus.language.loading') : $t('corpus.language.help')"
             :options="languageOptions"
+            :disabled="languagesLoading"
             value="fin"
             validate="required"
           />
