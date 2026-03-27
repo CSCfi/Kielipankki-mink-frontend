@@ -69,10 +69,10 @@ export const ANNOTATION_REGISTRY: AnnotationMetadata[] = [
     supportedLanguages: ["swe", "fin", "eng"],
     defaultEnabled: true,
     sparvModules: [
-      "<token>:trankit.upos",
-      "<token>:trankit.pos",
-      "<token>:trankit.baseform",
-      "<token>:trankit.ufeats",
+      "<token>:trankit.upos as upos",
+      "<token>:trankit.pos as pos",
+      "<token>:trankit.baseform as baseform",
+      "<token>:trankit.ufeats as ufeats",
     ],
   },
   {
@@ -83,9 +83,9 @@ export const ANNOTATION_REGISTRY: AnnotationMetadata[] = [
     supportedLanguages: ["swe", "fin", "eng"],
     defaultEnabled: true,
     sparvModules: [
-      "<token>:trankit.ref",
+      "<token>:trankit.ref as ref",
       "<token>:trankit.dephead_ref as dephead",
-      "<token>:trankit.deprel",
+      "<token>:trankit.deprel as deprel_trankit",
     ],
   },
   {
