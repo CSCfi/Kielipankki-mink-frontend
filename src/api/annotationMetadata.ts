@@ -85,7 +85,7 @@ export const ANNOTATION_REGISTRY: AnnotationMetadata[] = [
     sparvModules: [
       "<token>:trankit.ref as ref",
       "<token>:trankit.dephead_ref as dephead",
-      "<token>:trankit.deprel as deprel_trankit",
+      "<token>:trankit.deprel as deprel",
     ],
   },
   {
