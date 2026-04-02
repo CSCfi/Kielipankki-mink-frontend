@@ -1923,20 +1923,6 @@
                 "type": "boolean",
                 "description": "Include all annotations in config, even those without an annotation definition/preset.",
                 "default": false
-              },
-              "deptree": {
-                "type": "object",
-                "description": "Configuration for dependency tree visualization in Korp.",
-                "properties": {
-                  "head_attr": {
-                    "type": "string",
-                    "description": "CWB attribute name for the dependency head"
-                  },
-                  "rel_attr": {
-                    "type": "string",
-                    "description": "CWB attribute name for the dependency relation"
-                  }
-                }
               }
             }
           },
@@ -2188,20 +2174,6 @@
                 "type": "boolean",
                 "description": "Set to 'true' to skip generating sentences table.",
                 "default": false
-              },
-              "deptree": {
-                "type": "object",
-                "description": "Configuration for dependency tree visualization in Korp.",
-                "properties": {
-                  "head_attr": {
-                    "type": "string",
-                    "description": "CWB attribute name for the dependency head"
-                  },
-                  "rel_attr": {
-                    "type": "string",
-                    "description": "CWB attribute name for the dependency relation"
-                  }
-                }
               }
             }
           },
