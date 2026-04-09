@@ -60,7 +60,7 @@ export function useCorpusState(corpusId: string) {
   );
 
   const hasMetadata = computed(
-    () => configOptions.value?.name?.swe || configOptions.value?.name?.eng,
+    () => configOptions.value?.name && Object.values(configOptions.value.name).some(Boolean),
   );
 
   const isEmpty = computed(() => corpusState.value == CorpusState.EMPTY);
