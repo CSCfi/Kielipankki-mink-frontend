@@ -25,9 +25,9 @@ home.features.share.body: Bjud in andra forskare att ta del av dina data i våra
 home.features.share.upcoming: De här funktionerna planeras till kommande Mink-versioner.
 home.features.share.alt: Skärmbild från ett behörighetshanteringssystem
 home.otherdata.title: Mink eller icke Mink?
-home.otherdata.body: Tänk på att först undersöka andra språkdatamängder som eventuellt uppfyller dina behov! Språkbankens växande samling av forskningsdata kan du se på sidan {0} på vår webbplats. I ett större perspektiv bildar Språkbanken en del av CLARIN ERIC, vars samlade data kan utforskas i {1}.
+home.otherdata.body: Tänk på att först undersöka andra språkdatamängder som eventuellt uppfyller dina behov! Språkbanken i Finlands växande samling av forskningsdata kan du se på sidan {0} på vår webbplats. I ett större perspektiv bildar Språkbanken i Finland en del av CLARIN ERIC, vars samlade data kan utforskas i {1}.
 home.otherdata.sbdata.url: "https://spraakbanken.gu.se/resurser"
-home.otherdata.sbdata.title: "Språkbanken Text: Datamängder"
+home.otherdata.sbdata.title: "Språkbanken i Finland: Datamängder"
 welcome: Välkommen, {name}!
 mydata: Mina data
 news: Nyheter
@@ -103,7 +103,7 @@ upload.dnd.single: Dra och släpp en fil hit, eller klicka här för att välja
 upload.dnd.multiple: Dra och släpp filer hit, eller klicka här för att välja
 upload.drop.empty: Ingen fil släpptes. Dra-och-släpp kanske inte stöds på ditt system.
 tools: Utforska
-exports.tools.help: Använd den här datan i Språkbankens korpusverktyg. Din data visas bara för dig, i ett särskilt Mink-läge.
+exports.tools.help: Använd den här datan i Språkbanken i Finlands korpusverktyg. Din data visas bara för dig, i ett särskilt Mink-läge.
 exports.tools.help.korp: I Korp finns konkordanssökning, detaljerade sökfrågor, frekvensstatistik med mera.
 exports.tools.help.korp.manual.url: https://spraakbanken.gu.se/verktyg/korp/anvandarhandledning
 exports.tools.help.korp.manual.text: Användarhandledning
