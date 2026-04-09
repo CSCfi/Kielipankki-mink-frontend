@@ -1,0 +1,362 @@
+logo.alt: Mink-logo
+home: Etusivu
+home.hero.alt: Kuvakaappaus Minkin käyttöliittymästä
+home.hero.sb: "{0} on kieliaineistojen tutkimusinfrastruktuuri. Luomme ja ylläpidämme kieliaineistoja uusimmilla kieliteknologisilla menetelmillä tutkijoiden käyttöön, ja tarjoamme avointa pääsyä aina kun mahdollista."
+home.hero.mink: "{0} tuo Språkbanken Textin tutkimusinfrastruktuurin tutkijoiden käyttöön. Minkissä voit soveltaa kieliteknologisia menetelmiämme itse keräämääsi tekstiaineistoon. Tulokset voi ladata tai tuoda tutkimustyökaluihimme, kuten Korpiin ja Strixiin, kirjautumisen taakse."
+home.hero.privacy: Lähdeaineistosi ja tulokset ovat yksityisiä (katso {0}). Tulevissa versioissa voit jakaa aineistoja tiimien kanssa ja julkaista niitä avoimesti.
+home.hero.privacy.link.url: https://spraakbanken.gu.se/en/tools/mink/data-policy
+home.hero.privacy.link.label: tietosuoja- ja datakäytäntö
+home.hero.readmore: Lue lisää {0}.
+home.hero.readmore.link.label: Minkin dokumentaatiosta
+home.features.sparv.title: Mukautettavat kieliteknologiset analyysit
+home.features.sparv.body: Tekstiaineistosi analysoidaan kieliteknologia-alustamme {sparv} avulla valitsemillasi asetuksilla.
+home.features.sparv.alt: Kuvakaappaus asetuslomakkeesta
+home.features.upload.title: Lataa tekstisi
+home.features.upload.body: Lataa tekstinkäsittelyasiakirjoja, PDF-tiedostoja, tekstitiedostoja tai XML-aineistoa.
+home.features.upload.xml: "XML-muodossa analyysien tulokset lisätään alkuperäisen rakenteen säilyttäen: {link}"
+home.features.upload.xml.link.url: https://spraakbanken.gu.se/en/blog/20240820-anvand-mink-med-egen-berikning-i-kalldata
+home.features.upload.xml.link.label: Minkin käyttö omilla annotaatioilla lähdeaineistossa (blogikirjoitus ruotsiksi)
+home.features.upload.alt: Kuvakaappaus tiedostolistasta ja latausalueesta
+home.features.explore.title: Tutki Korpissa ja Strixissä
+home.features.explore.body: Vie valmis aineisto hakua ja tilastollista analyysia varten {korp}iin ja {strix}iin.
+home.features.explore.alt: Kuvakaappaus Korp-hakutyökalusta
+home.features.share.title: Jaa ja tee yhteistyötä
+home.features.share.body: Kutsu muita tutkijoita tarkastelemaan aineistoasi tutkimustyökaluissamme kirjautumisen taakse. Jos haluat jakaa aineistosi tutkimusyhteisön kanssa, ota meihin yhteyttä julkaisusta.
+home.features.share.upcoming: Nämä ominaisuudet ovat tulossa Minkin tuleviin versioihin.
+home.features.share.alt: Kuvakaappaus käyttöoikeuksien hallintajärjestelmästä
+home.otherdata.title: Mink vai ei?
+home.otherdata.body: Tutustu ensin olemassa oleviin kieliaineistoihin! Språkbankenin kasvavaa tutkimusaineistovalikoimaa voi selata {0}-sivulla. Laajemmassa mittakaavassa Språkbanken on osa CLARIN ERIC -yhteisöä, jonka kootut aineistot löytyvät {1}sta.
+home.otherdata.sbdata.url: "https://spraakbanken.gu.se/en/resources"
+home.otherdata.sbdata.title: "Språkbanken Text: Kieliresurssit"
+welcome: Tervetuloa, {name}!
+mydata: Omat aineistot
+news: Uutiset
+library: Kirjasto
+library.help.corpora: Tässä ovat luomasi korpukset. Vain sinä näet ne. Napsauta niitä nähdäksesi lisätietoja.
+library.help.corpora.none: Mink tarjoaa automaattisen kielitieteellisen analyysin aineistollesi. Aloita luomalla korpus painamalla "@:{'new_corpus'}" tai pudottamalla tekstitiedostoja latauskenttään.
+library.help.metadata: Metatietotietue sisältää tietoa mielivaltaisesta resurssista. Mink ei käsittele tämän resurssin aineistoa, mutta metatiedot voidaan viedä tietovarastoon.
+corpus.create.help: Korpus on vain sinun nähtävilläsi. Voit muuttaa näitä tietoja myöhemmin.
+corpus.language: Kieli
+corpus.language.help: Valitse tekstikorpuksesi kieli. Tämä määrittää käytettävissä olevat analyysivaihtoehdot.
+corpus.language.loading: Ladataan käytettävissä olevia kieliä…
+corpus.annotation_not_available: Ei saatavilla kielelle {language}
+corpus.delete: Poista korpus
+corpus.state.unknown: Tuntematon
+corpus.state.empty: Ei tiedostoja
+corpus.state.needing_config: Asetukset tarvitaan
+corpus.state.needing_meta: Metatiedot tarvitaan
+corpus.state.ready: Valmis ajettavaksi
+corpus.state.running: Annotoidaan
+corpus.state.done: Annotointi valmis
+corpus.state.running_install: Asennetaan
+corpus.state.done_install: Asennus valmis
+corpus.state.failed: Virhe
+corpus.state.failed_install: Virhe
+corpus.state.help.unknown: Tämän korpuksen tila on tuntematon. Jos tarvitset apua, ota yhteyttä osoitteeseen sb-info{'@'}svenska.gu.se
+corpus.state.help.empty: Tässä korpuksessa ei ole lähdetekstejä. Lataa tekstitiedostoja alle.
+corpus.state.help.needing_config: Tämä korpus vaatii asetusten muuttamista ennen käsittelyä.
+corpus.state.help.needing_meta: Korpus tarvitsee nimen ennen käsittelyä.
+corpus.state.help.ready: Valmis annotointiin. Voit myös lisätä lähdetekstejä tai muokata asetuksia.
+corpus.state.help.running: Annotointi on käynnissä taustalla. Voit sulkea sivuston, juoda kahvia ja tarkistaa tilanteen myöhemmin!
+corpus.state.help.done: Annotointi valmis! Voit ladata tulokset tai asentaa aineiston Korpiin tai Strixiin.
+corpus.state.help.running_install: Asennus on käynnissä taustalla. Voit sulkea sivuston, juoda kahvia ja tarkistaa tilanteen myöhemmin!
+corpus.state.help.done_install: Asennus onnistui!
+corpus.state.help.failed: Aineiston käsittelyssä tapahtui virhe. Jos tarvitset apua, ota yhteyttä osoitteeseen sb-info{'@'}svenska.gu.se
+corpus.state.help.failed_install: Korpuksen asennuksessa tapahtui virhe. Jos tarvitset apua, ota yhteyttä osoitteeseen sb-info{'@'}svenska.gu.se
+metadata.new: Uusi metatietotietue
+metadata.public_id.help: Minkissä jokaisella resurssilla on kiinteä tunniste. Julkinen tunniste on se, jonka tämä resurssi saa kun se viedään tietovarastoon. Pyri tekemään siitä tunnistettava ja kuvaava, muttei liian pitkä. Se saa sisältää vain pieniä kirjaimia, numeroita ja tavuviivoja, ja sen on alettava organisaatiosi etuliitteellä.
+metadata.public_id.error.format: Julkinen tunniste saa sisältää vain pieniä kirjaimia (a-z), numeroita (0-9) ja tavuviivoja (-). Se ei saa alkaa tai päättyä tavuviivalla.
+metadata.delete: Poista metatietotietue
+resource.delete.ask: Haluatko varmasti poistaa tämän resurssin?
+config.metadata.help: Metatiedot ovat tietoa aineistosta, tarkoitettu kiinnostuneiden käyttäjien arvioitavaksi (jos julkaiset aineiston) sekä luokitteluun tietovarastoissa.
+config.configuration.help: Nämä asetukset ohjaavat automaattista analyysia; ne vaikuttavat jäsentämiseen tai annotointiin.
+corpus.config.parse.error: Tämän korpuksen asetuksia ei voitu jäsentää. Yritä muokata asetuksia tai metatietoja uudelleen. Jos tarvitset apua, ota yhteyttä osoitteeseen sb-info{'@'}svenska.gu.se
+config.saving: Tallennetaan metatietoja
+analysis.help: Suorita automaattisia kieliteknologisia analyyseja tekstiaineistollesi asetustesi mukaisesti. Mink käyttää taustalla {sparv}ia.
+analysis.sparv.url: https://spraakbanken.gu.se/en/tools/sparv
+job.run: Käynnistä annotointi
+job.rerun: Käynnistä annotointi uudelleen
+job.rerun.overwrite: Aiemmat tulokset ylikirjoitetaan.
+job.rerun.tools_outdated: Vanhat tulokset säilyvät työkaluissa. Muista asentaa uudelleen tarvittaessa.
+job.abort: Keskeytä
+job.status: Tila
+job.priority: Paikka jonossa
+job.last_run_started: Viimeisin ajo aloitettu
+job.last_run_ended: Viimeisin ajo päättynyt
+job.time_taken: Kesto
+job.process.sparv: Analyysi
+job.process.korp: Asennus Korpiin
+job.process.strix: Asennus Strixiin
+source.limit.file.recommended: Suositeltu enimmäistiedostokoko
+source.limit.file.max: Suurin sallittu tiedostokoko
+source.limit.upload.max: Suurin sallittu latauskoko
+source.limit.corpus.recommended: Suositeltu enimmäiskorpuskoko
+source.limit.corpus.max: Suurin sallittu korpuskoko
+source.notfound: Tätä lähdetiedostoa ei löytynyt
+source.list.loading: Ladataan tekstilistaa
+source.content: Sisältö
+source.upload.config_format.trigger_change: "Korpuksen asetukset päivitetään vastaamaan tiedostomuotoa: {format}"
+upload.label.single: Lisää tiedosto
+upload.label.multiple: Lisää tiedostoja
+upload.dnd.single: Vedä ja pudota tiedosto tähän, tai napsauta valitaksesi
+upload.dnd.multiple: Vedä ja pudota tiedostoja tähän, tai napsauta valitaksesi
+upload.drop.empty: Tiedostoa ei pudotettu. Vedä ja pudota -toiminto ei ehkä ole tuettu järjestelmässäsi.
+tools: Tutki
+exports.tools.help: Käytä tätä aineistoa Språkbankenin korpustyökaluissa. Aineistosi näkyy vain sinulle erillisessä Mink-tilassa.
+exports.tools.help.korp: Korp tarjoaa konkordanssihakua, yksityiskohtaisia hakuja, frekvenssitilatoja ja paljon muuta.
+exports.tools.help.korp.manual.url: https://spraakbanken.gu.se/en/tools/korp/user-manual
+exports.tools.help.korp.manual.text: Käyttöopas
+exports.tools.help.strix: Strixissä rikastettuja tekstejä voi tarkastella kokonaisuudessaan.
+exports.tools.install: Asenna
+exports.tools.reinstall: Asenna uudelleen
+exports.tools.view: Avaa
+exports.download.help: Tulokset voi ladata koneluettavina tiedostoina käsiteltäväksi skripteissä tai muissa erikoisohjelmissa.
+exports.download.placeholder: Lataukset ovat saatavilla tässä onnistuneen analyysin jälkeen.
+exports.help: Annotointiprosessi tuottaa vientitiedoston jokaiselle lähdetiedostolle. Voit ladata yksittäisiä tiedostoja tai kaikki kerralla pakattuna. Tiedostojen rakenne riippuu sekä lähdetiedostoista että asetuksista. Ne säilytetään palvelimella toistaiseksi, mutta annotoinnin uudelleenajo korvaa ne uusilla.
+exports.help.more.label: Lue lisää vientitiedostoista käyttöoppaassa
+user.settings: Asetukset
+user.settings.admin_mode: Ota ylläpitotila käyttöön
+user.admin_mode.warning: Ylläpitotila on käytössä. Ole varovainen!
+errors: Virheet
+warnings: Varoitukset
+error.message: Tapahtui virhe
+expand.open: Näytä kaikki
+expand.close: Piilota osa
+show: Näytä
+select: Valitse...
+docs.label: Ohje
+docs.url: https://spraakbanken.gu.se/en/tools/mink
+locale.switcher.label: Käyttöliittymän kieli
+en: Englanti
+fi: Suomi
+sv: Ruotsi
+metadata: Metatiedot
+texts: Lähdetekstit
+configuration: Asetukset
+settings: Asetukset
+analysis: Analyysi
+result: Tulos
+resources: Resurssit
+corpus: Korpus
+corpuses: Korpukset
+files: Ei tiedostoja | 1 tiedosto | {count} tiedostoa
+none: Ei mitään
+new_corpus: Uusi korpus
+fileName: Nimi
+type: Tyyppi
+upload: Lataa
+uploaded: Ladattu
+lastModify: Viimeksi muokattu
+fileSize: Koko
+file.operations: Toiminnot
+delete: Poista
+original: Alkuperäinen
+public_id: Julkinen tunniste
+source_text_help: Pelkkä teksti poimitaan annotoinnin aikana, ja se voidaan sen jälkeen näyttää tässä.
+contact: Yhteystiedot
+save: Tallenna
+create: Luo
+cancel: Peruuta
+message: Viesti
+sparv.url: https://spraakbanken.gu.se/en/tools/sparv
+sparvOutput: Sparv-tuloste
+download: Lataa
+download_export: Lataa kaikki tulokset
+job.status.done: Valmis
+job.status.none: Ei aloitettu
+job.status.aborted: Keskeytetty
+job.status.error: Virhe
+job.status.waiting: Odottaa
+job.status.running: Käsitellään
+login: Kirjaudu sisään
+login.required: Tämä sivu vaatii kirjautumisen.
+login.help: Useimmat yliopistokäyttäjät voivat kirjautua suoraan.
+login.fail: Tunnistautuminen epäonnistui
+logout: Kirjaudu ulos
+signup: Luo tili
+signup.help: Useimmat muut käyttäjät tarvitsevat ensin tilin.
+signup.existing.title: Sinulla saattaa jo olla tili
+signup.existing.login: "Jos yliopistotilisi on yhdistetty eduGAINiin, voit käyttää Minkiä suoraan kirjautumalla:"
+signup.existing.tip: (Jos et ole varma, napsauta painiketta ja etsi yliopistoasi tai organisaatiotasi.)
+signup.new: Ei tiliä
+signup.new.create: "Jos et kuulu mihinkään liitetyistä identiteetintarjoajista, voit:"
+signup.new.register.url: https://eduid.se/en/
+signup.new.eduid: eduID Sweden
+signup.new.steps.create_eduid: Luo eduID-tili
+signup.new.steps.skip_verification: sinun {em} tarvitse vahvistaa henkilöllisyyttäsi käyttääksesi Minkiä
+signup.new.steps.skip_verification.em: ei
+signup.new.steps.login: Palaa tälle sivulle ja napsauta {login}
+signup.new.steps.idp: Valitse {eduid} identiteetintarjoajaksi
+account: Tili
+enable: Ota käyttöön
+enabled: Käytössä
+disable: Poista käytöstä
+disabled: Pois käytöstä
+xml: XML
+txt: Pelkkä teksti
+docx: Microsoft Word
+odt: OpenDocument Text
+pdf: PDF
+load: Lataa
+not_loaded: Ei ladattu
+file.archive: Arkisto
+file.singles: Yksittäiset tiedostot
+save.no_changes: Ei tallennettavia muutoksia
+name: Nimi
+metadata.name.help: Voit käyttää välilyöntejä ja erikoismerkkejä.
+identifier: Tunniste
+metadata.identifier.help: Automaattisesti luotu konetunniste, jota käytetään tämän korpuksen tunnistamiseen palvelimella.
+description: Kuvaus
+metadata.description.help: |
+  Tämä voi olla yhteenveto tekstiaineistosta omaksi hyödyksesi.
+  Jos aiot jakaa tai julkaista tulokset, suosittelemme yhtä tai kahta lausetta,
+  jotka tiivistävät sisällön tai tarkoituksen mahdolliselle käyttäjälle.
+fileFormat: Lähdemuoto
+config.custom: Oma asetustiedosto
+config.custom.help: Mink käyttää {sparv}ia, modulaarista ja mukautettavaa tekstianalyysityökalua, korpuksesi käsittelyyn. Tavallinen asetuslomake näyttää vain osan kaikista asetuksista. Tällä sivulla voit tarkastella varsinaista asetustiedostoa ja ladata oman YAML-muotoisen tiedoston. Lisätietoja löydät Sparv-dokumentaation osiosta {topic}.
+config.custom.upload.caution: Huomaathan, että virheellinen asetustiedosto voi aiheuttaa odottamatonta toimintaa.
+config.custom.upload.overwrite: Tavallisen asetuslomakkeen tallentaminen voi ylikirjoittaa oman asetustiedostosi.
+config.datetime.validate_both: Molemmat tai ei kumpaakaan päivämäärää on annettava.
+config.format.help: Valitse lähdetekstien tiedostomuoto. Kaikkien tiedostojen on oltava valitussa muodossa.
+config.format.note.pdf: PDF-muoto on suunniteltu ensisijaisesti näyttöä varten. Tekstin poiminta PDF-tiedostoista voi joskus tuottaa epätyydyttäviä tuloksia. Skannattujen asiakirjojen OCR-käsittely ei (tällä hetkellä) kuulu Minkin toimintoihin.
+config.text_annotation: Tekstielementti
+config.text_annotation.help: Mikä XML-elementti lähdetiedostoissasi edustaa parhaiten yksittäistä tekstiä? Tekstintason annotaatiot liitetään tähän elementtiin.
+segmenter_sentence: Olemassa oleva lausesegmentointi
+segmenter_sentence_help: Ovatko lähdetekstit jo muotoiltu niin, että lauseet erotetaan rivinvaihdoilla?
+segmenter_linebreaks: Yksi per rivi
+timespan: Ajanjakso
+timespan_help: Korpuksen vanhimman ja uusimman sisällön päivämäärät.
+timespan_from: Alku
+timespan_to: Loppu
+edit: Muokkaa
+annotations: Annotaatiot
+annotations.info: Tässä on valittavissa joitakin käytettävissä olevista analyyseista. Tarkemmat asetukset löytyvät {custom_config}-sivulta.
+annotations.lexical_classes: Leksikaaliset luokat
+annotations.lexical_classes.help: Yhdistää yksiköt Blingbringiin ja ruotsalaiseen FrameNetiin (SweFN).
+annotations.msd: Morfologia
+annotations.msd.help: Sanaluokkamerkintä, lemmatisointi ja morfosyntaktiset piirteet Trankitilla.
+annotations.readability: Luettavuus
+annotations.readability.help: Laskee luettavuusmitat LIX, OVIX ja NK.
+annotations.saldo: Lemmatisointi
+annotations.saldo.help: Käyttää {saldo}-resurssia perusmuotojen, taivutuskaavojen ja yhdyssanojen löytämiseen.
+annotations.saldo.saldo_url: https://spraakbanken.gu.se/en/resources/saldo
+annotations.sensaldo: Sentimentti
+annotations.sensaldo.help: Merkitsee sanat positiivisiksi/neutraaleiksi/negatiivisiksi.
+annotations.swener: Nimetyt entiteetit ja geotaggaus
+annotations.swener.help: Nimettyjen entiteettien tunnistus (NER) löytää henkilöitä, paikkoja, päivämääriä ja muuta teksteistäsi SweNER:n avulla. Se kuitenkin hidastaa käsittelyä merkittävästi. NER:n käyttöönotto aktivoi myös geotaggauksen ja siten Korpin karttaominaisuuden.
+annotations.syntax: Dependenssit
+annotations.syntax.help: Syntaktinen analyysi (dependenssijäsennys) Trankitilla.
+annotations.ner: Nimetyt entiteetit
+annotations.ner.help: Nimettyjen entiteettien tunnistus (NER) Trankitilla — löytää henkilöitä, paikkoja, päivämääriä ja muuta.
+annotations.treetagger: Sanaluokkamerkintä (TreeTagger)
+annotations.treetagger.help: Sanaluokkamerkintä ja lemmatisointi TreeTaggerilla.
+annotations.wsd: Sanamerkityksen erottelu
+annotations.wsd.help: SALDOn avulla.
+admin.page.subtitle: Ylläpito
+admin.goto: Pikavalinnat
+admin.resources.help: Tässä ylläpitonäkymässä yksityiskohtaiset tiedot on ladattava erikseen, koska kaiken lataaminen kestää kauan.
+accessdenied: Pääsy estetty
+accessdenied.contact: Jos sinulla on kysyttävää tai haluat ilmoittaa virheestä, ota yhteyttä osoitteeseen kielipankki{'@'}csc.fi. Kiitos!
+notfound: Sivua ei löytynyt
+notfound.description: Jokin meni pieleen, eikä tässä osoitteessa ole mitään näytettävää.
+notfound.contact: Jos sinulla on kysyttävää tai haluat ilmoittaa virheestä, ota yhteyttä osoitteeseen kielipankki{'@'}csc.fi. Kiitos!
+config.invalid.yaml: Syntaksivirhe
+config.invalid.schema: Skeemavirhe
+
+# These correspond to the `return_code` param of backend responses
+api.code.missing_auth_token: Valtuutustunnus puuttuu
+api.code.failed_authenticating: Tunnistautuminen epäonnistui
+api.code.missing_login_credentials: Kirjautumistietoja ei annettu
+api.code.not_admin: Ylläpitäjästatusta ei voitu vahvistaa
+api.code.missing_corpus_id: Korpustunniste puuttuu
+api.code.jwt_expired: Annettu JWT on vanhentunut
+api.code.something_went_wrong: Jokin meni pieleen. Jos ongelma jatkuu, ota yhteyttä osoitteeseen kielipankki{'@'}csc.fi ja ilmoita ongelmasta.
+api.code.admin_on: Ylläpitotila käytössä. Ole varovainen!
+api.code.admin_off: Ylläpitotila pois käytöstä
+api.code.failed_listing_sources: Korpuksen "{corpus_id}" lähdetiedostojen listaus epäonnistui
+api.code.no_sources_found: Korpuksessa "{corpus_id}" ei ole lähdetiedostoja
+api.code.failed_getting_config: Korpuksen "{corpus_id}" asetustiedostoa ei löytynyt
+api.code.failed_removing_exports: Tulostiedostojen poisto Sparv-palvelimelta epäonnistui. Sparvia ei voida ajaa.
+api.code.failed_queuing: Ajon lisääminen jonoon epäonnistui
+api.code.failed_starting_job: Ajon käynnistys epäonnistui
+api.code.no_active_job: Korpuksella "{corpus_id}" ei ole aktiivista ajoa
+api.code.corpus_not_found: Korpusta "{corpus_id}" ei ole olemassa, tai sinulla ei ole pääsyä siihen
+api.code.failed_getting_job_status: Korpuksen "{corpus_id}" ajon tilan tarkistus epäonnistui
+api.code.failed_getting_job_statuses: Ajojen tilojen tarkistus epäonnistui
+api.code.listing_jobs: Listataan ajoja
+api.code.failed_aborting_job_syncing: Ajoa ei voi keskeyttää tiedostojen synkronoinnin aikana
+api.code.aborted_job: Ajo keskeytetty
+api.code.no_running_job: Korpuksella "{corpus_id}" ei ole käynnissä olevaa ajoa
+api.code.failed_unqueuing_job: Ajon poisto jonosta epäonnistui
+api.code.failed_aborting_job: Ajon keskeytys epäonnistui
+api.code.removed_annotations: Annotaatiot poistettu
+api.code.failed_clearing_annotations_job_running: Annotaatioita ei voi poistaa ajon ollessa käynnissä
+api.code.failed_clearing_annotations: Annotaatioiden poisto epäonnistui
+api.code.syncing_files: Tiedostoja synkronoidaan
+api.code.job_queued: Ajo on lisätty jonoon
+api.code.job_aborted_by_user: Käyttäjä keskeytti ajon
+api.code.job_running: Ajo on käynnissä
+api.code.sparv_success_export_upload_fail: Sparv suoritettiin onnistuneesti, mutta tuloksia ei voitu ladata tallennuspalvelimelle
+api.code.sparv_success_start_sync: Sparv suoritettiin onnistuneesti. Synkronointi aloitettu.
+api.code.job_completed: Ajo suoritettiin onnistuneesti
+api.code.processing_error: Käsittelyssä tapahtui virhe
+api.code.cannot_handle_status: Ajon tilaa ei voida käsitellä
+api.code.failed_listing_languages: Kielten listaus epäonnistui
+api.code.listing_languages: Listataan Sparvissa käytettävissä olevat kielet
+api.code.failed_listing_sparv_exports: Vientimuotojen listaus epäonnistui
+api.code.listing_sparv_exports: Listataan Sparvissa käytettävissä olevat vientimuodot
+api.code.failed_creating_corpus: Korpuksen luonti epäonnistui
+api.code.created_corpus: Uusi korpus luotiin onnistuneesti
+api.code.failed_creating_corpus_dir: Uuden hakemiston luonti korpukselle epäonnistui
+api.code.listing_corpora: Listataan käytettävissä olevat korpukset
+api.code.failed_listing_korp_corpora: Korpiin asennettujen korpusten listaus epäonnistui
+api.code.listing_korp_corpora: Listataan Korpiin asennetut korpukset
+api.code.failed_removing_korp: Korpuksen poisto Korpista epäonnistui
+api.code.failed_removing_strix: Korpuksen poisto Strixistä epäonnistui
+api.code.failed_removing_storage: Korpuksen poisto tallennuspaikasta epäonnistui
+api.code.failed_removing_job: Ajon poisto epäonnistui
+api.code.failed_removing_auth: Korpuksen poisto tunnistautumisjärjestelmästä epäonnistui
+api.code.removed_corpus: Korpus poistettiin onnistuneesti
+api.code.missing_sources_upload: Ladattavia tiedostoja ei annettu
+api.code.failed_uploading_sources_corpus_size: Lähdetiedostojen lataus epäonnistui, koska kokonaiskoko ylittäisi enimmäisrajan {max_corpus_size} Mt
+api.code.failed_uploading_sources: Lähdetiedostojen lataus epäonnistui
+api.code.failed_uploading_sources_file_size: Joidenkin tiedostojen lataus epäonnistui, koska ne ylittävät suurimman sallitun tiedostokoon {max_file_size} Mt
+api.code.failed_uploading_sources_invalid_file_extension: 'Tiedostoa "{file}" ei voitu ladata, koska sen tiedostopääte on virheellinen. Käytä jotakin tuetuista tiedostomuodoista: xml, txt, odt, docx, pdf.'
+api.code.failed_uploading_sources_invalid_xml: Tiedostoa "{file}" ei voitu ladata, koska se sisältää virheellistä XML:ää
+api.code.failed_uploading_sources_incompatible_file_extension: Tiedostoa "{file}" ei voitu ladata, koska sen tiedostopääte poikkeaa. Korpus voi käsitellä vain samantyyppisiä lähdetiedostoja.
+api.code.uploaded_sources: Lähdetiedostot lisättiin onnistuneesti
+api.code.data_too_large: Pyyntö on liian suuri (enintään {max_content_length} Mt per lataus)
+api.code.listing_sources: Listataan korpuksen "{corpus_id}" lähdetiedostoja
+api.code.missing_sources_remove: Poistettavia tiedostoja ei annettu
+api.code.failed_removing_some_sources: Joidenkin lähdetiedostojen poisto epäonnistui
+api.code.failed_removing_sources: Lähdetiedostojen poisto epäonnistui
+api.code.removed_sources: Lähdetiedostot poistettiin onnistuneesti
+api.code.missing_sources_download: Ladattavia lähdetiedostoja ei ole
+api.code.failed_downloading_sources: Lähdetiedostojen lataus epäonnistui
+api.code.source_not_found: Lähdetiedostoa ei ole olemassa
+api.code.failed_downloading_file: Tiedoston lataus epäonnistui
+api.code.wrong_config_format: Asetustiedoston on oltava YAML-muodossa
+api.code.uploaded_config: Asetustiedosto ladattiin onnistuneesti
+api.code.incompatible_config_importer: Korpuksen asetustiedostossa määritetty tuoja ei ole yhteensopiva lähdetiedostojen kanssa
+api.code.failed_uploading_config: Asetustiedoston lataus epäonnistui
+api.code.missing_config_upload: Ladattavaa asetustiedostoa ei annettu
+api.code.config_not_found: Korpukselle "{corpus_id}" ei löytynyt asetustiedostoa
+api.code.failed_downloading_config: Korpuksen "{corpus_id}" asetustiedoston lataus epäonnistui
+api.code.listing_exports: Listataan korpuksen "{corpus_id}" tulostiedostoja
+api.code.failed_listing_exports: Korpuksen "{corpus_id}" tulostiedostojen listaus epäonnistui
+api.code.no_exports_available: Korpukselle "{corpus_id}" ei ole tulostiedostoja
+api.code.failed_downloading_exports: Tulosten lataus epäonnistui
+api.code.export_folder_not_found: Ladattavaa kansiota ei ole olemassa
+api.code.failed_downloading_export_folder: Tuloskansion lataus epäonnistui
+api.code.export_not_found: Ladattavaa tiedostoa ei ole olemassa
+api.code.failed_removing_exports_storage: Tulostiedostojen poisto tallennuspaikasta epäonnistui
+api.code.failed_removing_exports_sparv: Tulostiedostojen poisto Sparv-palvelimelta epäonnistui
+api.code.removed_exports: Korpuksen "{corpus_id}" tulostiedostot poistettiin onnistuneesti
+api.code.no_source_texts_run_sparv: Korpuksella "{corpus_id}" ei ole lähdetekstejä. Sparv on ajettava ensin.
+api.code.source_text_not_found: Tämän tiedoston lähdetekstiä ei ole olemassa
+api.code.failed_downloading_source_text: Lähdetekstin lataus epäonnistui
+api.code.failed_getting_job: Korpuksen "{corpus_id}" ajon tarkistus epäonnistui
+api.code.input_changed: Korpukseen "{corpus_id}" on tehty muutoksia viimeisimmän ajon jälkeen
+api.code.input_not_changed: Korpukseen "{corpus_id}" ei ole tehty muutoksia viimeisimmän ajon jälkeen
+api.code.corpus_not_run: Korpuksen "{corpus_id}" muutoksia ei voitu tarkistaa, koska ajoa ei ole vielä tehty
+api.code.failed_checking_changes: Korpuksen "{corpus_id}" muutosten tarkistus epäonnistui

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PhGlobe } from "@phosphor-icons/vue";
-import { languageNames, type LocaleId } from "./i18n";
+import { languageNames } from "./i18n";
 </script>
 
 <template>
@@ -19,7 +19,7 @@ import { languageNames, type LocaleId } from "./i18n";
         :key="locale"
         :value="locale"
       >
-        {{ languageNames[locale as LocaleId] }}
+        {{ languageNames[locale] }}
       </option>
     </select>
   </div>
