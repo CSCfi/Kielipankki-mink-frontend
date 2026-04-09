@@ -2,7 +2,7 @@ logo.alt: Mink-logo
 home: Etusivu
 home.hero.alt: Kuvakaappaus Minkin käyttöliittymästä
 home.hero.sb: "{0} on kieliaineistojen tutkimusinfrastruktuuri. Luomme ja ylläpidämme kieliaineistoja uusimmilla kieliteknologisilla menetelmillä tutkijoiden käyttöön, ja tarjoamme avointa pääsyä aina kun mahdollista."
-home.hero.mink: "{0} tuo Språkbanken Textin tutkimusinfrastruktuurin tutkijoiden käyttöön. Minkissä voit soveltaa kieliteknologisia menetelmiämme itse keräämääsi tekstiaineistoon. Tulokset voi ladata tai tuoda tutkimustyökaluihimme, kuten Korpiin ja Strixiin, kirjautumisen taakse."
+home.hero.mink: "{0} tuo Kielipankin tutkimusinfrastruktuurin tutkijoiden käyttöön. Minkissä voit soveltaa kieliteknologisia menetelmiämme itse keräämääsi tekstiaineistoon. Tulokset voi ladata tai tuoda tutkimustyökaluihimme, kuten Korpiin ja Strixiin, kirjautumisen taakse."
 home.hero.privacy: Lähdeaineistosi ja tulokset ovat yksityisiä (katso {0}). Tulevissa versioissa voit jakaa aineistoja tiimien kanssa ja julkaista niitä avoimesti.
 home.hero.privacy.link.url: https://spraakbanken.gu.se/en/tools/mink/data-policy
 home.hero.privacy.link.label: tietosuoja- ja datakäytäntö
@@ -25,9 +25,9 @@ home.features.share.body: Kutsu muita tutkijoita tarkastelemaan aineistoasi tutk
 home.features.share.upcoming: Nämä ominaisuudet ovat tulossa Minkin tuleviin versioihin.
 home.features.share.alt: Kuvakaappaus käyttöoikeuksien hallintajärjestelmästä
 home.otherdata.title: Mink vai ei?
-home.otherdata.body: Tutustu ensin olemassa oleviin kieliaineistoihin! Språkbankenin kasvavaa tutkimusaineistovalikoimaa voi selata {0}-sivulla. Laajemmassa mittakaavassa Språkbanken on osa CLARIN ERIC -yhteisöä, jonka kootut aineistot löytyvät {1}sta.
+home.otherdata.body: Tutustu ensin olemassa oleviin kieliaineistoihin! Kielipankin kasvavaa tutkimusaineistovalikoimaa voi selata {0}-sivulla. Laajemmassa mittakaavassa Kielipankki on osa CLARIN ERIC -yhteisöä, jonka kootut aineistot löytyvät {1}sta.
 home.otherdata.sbdata.url: "https://spraakbanken.gu.se/en/resources"
-home.otherdata.sbdata.title: "Språkbanken Text: Kieliresurssit"
+home.otherdata.sbdata.title: "Kielipankki: Kieliresurssit"
 welcome: Tervetuloa, {name}!
 mydata: Omat aineistot
 news: Uutiset
@@ -102,7 +102,7 @@ upload.dnd.single: Vedä ja pudota tiedosto tähän, tai napsauta valitaksesi
 upload.dnd.multiple: Vedä ja pudota tiedostoja tähän, tai napsauta valitaksesi
 upload.drop.empty: Tiedostoa ei pudotettu. Vedä ja pudota -toiminto ei ehkä ole tuettu järjestelmässäsi.
 tools: Tutki
-exports.tools.help: Käytä tätä aineistoa Språkbankenin korpustyökaluissa. Aineistosi näkyy vain sinulle erillisessä Mink-tilassa.
+exports.tools.help: Käytä tätä aineistoa Kielipankin korpustyökaluissa. Aineistosi näkyy vain sinulle erillisessä Mink-tilassa.
 exports.tools.help.korp: Korp tarjoaa konkordanssihakua, yksityiskohtaisia hakuja, frekvenssitilatoja ja paljon muuta.
 exports.tools.help.korp.manual.url: https://spraakbanken.gu.se/en/tools/korp/user-manual
 exports.tools.help.korp.manual.text: Käyttöopas
