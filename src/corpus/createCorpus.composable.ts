@@ -14,6 +14,7 @@ import {
 import { getDefaultAnnotations } from "@/api/annotationMetadata";
 import type { MinkResponse, ProgressHandler } from "@/api/api.types";
 import useCreateResource from "@/resource/createResource.composable";
+import useLocale from "@/i18n/locale.composable";
 
 export default function useCreateCorpus() {
   const resourceStore = useResourceStore();
@@ -22,6 +23,7 @@ export default function useCreateCorpus() {
   const { alert, alertError } = useMessenger();
   const mink = useMinkBackend();
   const { addNewResource } = useCreateResource();
+  const { locale3 } = useLocale();
 
   async function createCorpus() {
     const corpusId = await mink.createCorpus().catch(alertError);
@@ -41,7 +43,7 @@ export default function useCreateCorpus() {
     // Create a minimal config.
     const config = {
       ...emptyConfig(),
-      name: { swe: corpusId, eng: corpusId },
+      name: { [locale3.value]: corpusId },
       format,
     };
 
@@ -93,8 +95,8 @@ export default function useCreateCorpus() {
   ): Promise<string | undefined> {
     const config = {
       ...emptyConfig(),
-      name: { swe: name, eng: name },
-      description: { swe: description, eng: description },
+      name: { [locale3.value]: name },
+      description: { [locale3.value]: description },
       language,
       format,
       textAnnotation,

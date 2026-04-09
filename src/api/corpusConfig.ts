@@ -135,8 +135,8 @@ export function makeConfig(id: string, options: ConfigOptions): string {
 /** Default values */
 export function emptyConfig(): ConfigOptions {
   return {
-    name: { swe: "", eng: "" },
-    description: { swe: "", eng: "" },
+    name: {},
+    description: {},
     format: "txt",
     language: "fin",
     annotations: {
@@ -179,8 +179,8 @@ export function parseConfig(configYaml: string): ConfigOptions {
   const name = config.metadata?.name;
   if (!name)
     throw new TypeError(`Name missing in metadata: ${config.metadata}`);
-  if (!name.swe || !name.eng)
-    throw new TypeError(`Name must contain swe and eng: ${name}`);
+  if (!Object.values(name).some(Boolean))
+    throw new TypeError(`Name must contain at least one language: ${JSON.stringify(name)}`);
 
   // Build options object
   const options = {

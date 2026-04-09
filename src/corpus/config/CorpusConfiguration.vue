@@ -32,8 +32,7 @@ import PendingContent from "@/spin/PendingContent.vue";
 import useSources from "@/corpus/sources/sources.composable";
 import useConfig from "@/corpus/config/config.composable";
 import useMinkBackend from "@/api/backend.composable";
-import type { ByLang } from "@/util.types";
-import LayoutBox from "@/components/LayoutBox.vue";
+import useLocale from "@/i18n/locale.composable";
 import TerminalOutput from "@/components/TerminalOutput.vue";
 
 const router = useRouter();
@@ -43,10 +42,11 @@ const { alert, alertError } = useMessenger();
 const { extensions } = useSources(corpusId);
 const { loadLanguages } = useMinkBackend();
 const { t } = useI18n();
+const { locale3, th } = useLocale();
 
 type Form = {
-  name: ByLang;
-  description: ByLang;
+  name: string;
+  description: string;
   language: string;
   format: FileFormat;
   textAnnotation: string;
@@ -189,8 +189,8 @@ async function submit(fields: Form) {
   // Merge new form values with existing config.
   const configNew: ConfigOptions = {
     ...configOld,
-    name: fields.name,
-    description: fields.description,
+    name: { ...configOld.name, [locale3.value]: fields.name },
+    description: { ...configOld.description, [locale3.value]: fields.description },
     language: fields.language,
     format: fields.format,
     textAnnotation: fields.textAnnotation,
@@ -229,36 +229,24 @@ async function submit(fields: Form) {
             <p>{{ $t("config.metadata.help") }}</p>
           </HelpBox>
 
-          <div class="grid md:grid-cols-2 gap-4">
-            <LayoutBox
-              v-for="(lang2, lang3) of { swe: 'sv', eng: 'en' }"
-              :key="lang3"
-              :title="$t(lang2)"
-            >
-              <FormKit type="group" name="name">
-                <FormKit
-                  :name="lang3"
-                  :label="$t('name')"
-                  :value="configOptions?.name?.[lang3]"
-                  :help="$t('metadata.name.help')"
-                  type="text"
-                  input-class="w-72"
-                  validation="required:trim"
-                />
-              </FormKit>
+          <FormKit
+            name="name"
+            :label="$t('name')"
+            :value="th(configOptions?.name)"
+            :help="$t('metadata.name.help')"
+            type="text"
+            input-class="w-72"
+            validation="required:trim"
+          />
 
-              <FormKit type="group" name="description">
-                <FormKit
-                  :name="lang3"
-                  :label="$t('description')"
-                  :value="configOptions?.description?.[lang3]"
-                  :help="$t('metadata.description.help')"
-                  type="textarea"
-                  input-class="w-full h-20"
-                />
-              </FormKit>
-            </LayoutBox>
-          </div>
+          <FormKit
+            name="description"
+            :label="$t('description')"
+            :value="th(configOptions?.description)"
+            :help="$t('metadata.description.help')"
+            type="textarea"
+            input-class="w-full h-20"
+          />
 
           <FormKit
             :label="$t('identifier')"

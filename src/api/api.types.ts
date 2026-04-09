@@ -1,5 +1,5 @@
 import type { AxiosProgressEvent } from "axios";
-import type { ByLang, SweEng } from "@/util.types";
+import type { ByLang } from "@/util.types";
 
 /** Properties common to most backend responses */
 export type MinkResponse<
@@ -73,7 +73,7 @@ export type UserData = {
   id: string;
   name: string;
   email: string;
-  ui_language: SweEng;
+  ui_language: string;
 };
 
 /** Basic data about a resource */

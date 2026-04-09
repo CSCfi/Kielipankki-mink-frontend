@@ -4,9 +4,16 @@ import { filesize } from "filesize";
 import { useStorage } from "@vueuse/core";
 import { once } from "es-toolkit";
 import type { Ref } from "vue";
-import type { ByLang, SvEn, SweEng } from "@/util.types";
+import type { ByLang } from "@/util.types";
 
-const storedLocale = useStorage<SvEn | "">("locale", "");
+/** Map ISO 639-1 locale codes to ISO 639-3 codes. */
+const LOCALE_TO_ISO3: Record<string, string> = {
+  sv: "swe",
+  en: "eng",
+  fi: "fin",
+};
+
+const storedLocale = useStorage<string>("locale", "");
 
 /** Set up locale sync */
 const setupLocale = once((locale: Ref<string>) => {
@@ -18,7 +25,7 @@ const setupLocale = once((locale: Ref<string>) => {
 
   // Then sync from switcher continually
   watch(locale, () => {
-    storedLocale.value = (locale.value as SvEn) || "";
+    storedLocale.value = locale.value || "";
     exportLocale(locale.value);
   });
 });
@@ -33,15 +40,16 @@ export default function useLocale() {
   setupLocale(locale);
 
   // The ISO 639-3 code is used in many parts of the Språkbanken infrastructure.
-  const locale3 = computed<SweEng>(() =>
-    locale.value == "en" ? "eng" : "swe",
+  const locale3 = computed<string>(() =>
+    LOCALE_TO_ISO3[locale.value] || locale.value,
   );
 
-  /** Translate here - picks the current language out of a strings-by-language object. */
+  /** Translate here - picks the best available language from a strings-by-language object. */
   function th(map?: ByLang | string): string | undefined {
     if (!map) return undefined;
     if (typeof map == "string") return map;
-    return map[locale3.value];
+    // Prefer the current UI language, fall back to first available value.
+    return map[locale3.value] ?? Object.values(map)[0];
   }
 
   /** Wrap the filesize lib with some sane defaults and avoiding exponential notation. */
