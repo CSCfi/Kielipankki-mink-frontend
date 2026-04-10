@@ -69,8 +69,7 @@ export const ANNOTATION_REGISTRY: AnnotationMetadata[] = [
     supportedLanguages: ["swe", "fin", "eng"],
     defaultEnabled: true,
     sparvModules: [
-      "<token>:trankit.upos as upos",
-      "<token>:trankit.pos as pos",
+      "<token>:trankit.upos as pos",
       "<token>:trankit.baseform as baseform",
       "<token>:trankit.ufeats as ufeats",
     ],
@@ -112,8 +111,7 @@ export const ANNOTATION_REGISTRY: AnnotationMetadata[] = [
     ],
     defaultEnabled: true,
     sparvModules: [
-      "<token>:treetagger.upos",
-      "<token>:treetagger.pos",
+      "<token>:treetagger.upos as pos",
       "<token>:treetagger.baseform",
     ],
   },
