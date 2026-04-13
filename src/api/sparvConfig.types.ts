@@ -8,8 +8,6 @@ export type SparvConfig = {
   export: ConfigExport;
   dateformat?: ConfigDateformat;
   custom_annotations?: ConfigCustomAnnotation[];
-  korp?: ConfigKorp;
-  sbx_strix?: ConfigStrix;
 };
 
 type ConfigMetadata = {
@@ -46,10 +44,3 @@ type ConfigCustomAnnotation = {
   params?: Record<string, unknown>;
 };
 
-type ConfigKorp = {
-  protected?: boolean;
-};
-
-type ConfigStrix = {
-  modes?: Array<{ name: string }>;
-};
