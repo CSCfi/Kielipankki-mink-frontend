@@ -52,7 +52,7 @@ corpus.state.running_install: Asennetaan
 corpus.state.done_install: Asennus valmis
 corpus.state.failed: Virhe
 corpus.state.failed_install: Virhe
-corpus.state.help.unknown: Tämän korpuksen tila on tuntematon. Jos tarvitset apua, ota yhteyttä osoitteeseen sb-info{'@'}svenska.gu.se
+corpus.state.help.unknown: Tämän korpuksen tila on tuntematon. Jos tarvitset apua, ota yhteyttä osoitteeseen kielipankki{'@'}csc.fi
 corpus.state.help.empty: Tässä korpuksessa ei ole lähdetekstejä. Lataa tekstitiedostoja alle.
 corpus.state.help.needing_config: Tämä korpus vaatii asetusten muuttamista ennen käsittelyä.
 corpus.state.help.needing_meta: Korpus tarvitsee nimen ennen käsittelyä.
@@ -61,8 +61,8 @@ corpus.state.help.running: Annotointi on käynnissä taustalla. Voit sulkea sivu
 corpus.state.help.done: Annotointi valmis! Voit ladata tulokset tai asentaa aineiston Korpiin tai Strixiin.
 corpus.state.help.running_install: Asennus on käynnissä taustalla. Voit sulkea sivuston, juoda kahvia ja tarkistaa tilanteen myöhemmin!
 corpus.state.help.done_install: Asennus onnistui!
-corpus.state.help.failed: Aineiston käsittelyssä tapahtui virhe. Jos tarvitset apua, ota yhteyttä osoitteeseen sb-info{'@'}svenska.gu.se
-corpus.state.help.failed_install: Korpuksen asennuksessa tapahtui virhe. Jos tarvitset apua, ota yhteyttä osoitteeseen sb-info{'@'}svenska.gu.se
+corpus.state.help.failed: Aineiston käsittelyssä tapahtui virhe. Jos tarvitset apua, ota yhteyttä osoitteeseen kielipankki{'@'}csc.fi
+corpus.state.help.failed_install: Korpuksen asennuksessa tapahtui virhe. Jos tarvitset apua, ota yhteyttä osoitteeseen kielipankki{'@'}csc.fi
 metadata.new: Uusi metatietotietue
 metadata.public_id.help: Minkissä jokaisella resurssilla on kiinteä tunniste. Julkinen tunniste on se, jonka tämä resurssi saa kun se viedään tietovarastoon. Pyri tekemään siitä tunnistettava ja kuvaava, muttei liian pitkä. Se saa sisältää vain pieniä kirjaimia, numeroita ja tavuviivoja, ja sen on alettava organisaatiosi etuliitteellä.
 metadata.public_id.error.format: Julkinen tunniste saa sisältää vain pieniä kirjaimia (a-z), numeroita (0-9) ja tavuviivoja (-). Se ei saa alkaa tai päättyä tavuviivalla.
@@ -70,7 +70,7 @@ metadata.delete: Poista metatietotietue
 resource.delete.ask: Haluatko varmasti poistaa tämän resurssin?
 config.metadata.help: Metatiedot ovat tietoa aineistosta, tarkoitettu kiinnostuneiden käyttäjien arvioitavaksi (jos julkaiset aineiston) sekä luokitteluun tietovarastoissa.
 config.configuration.help: Nämä asetukset ohjaavat automaattista analyysia; ne vaikuttavat jäsentämiseen tai annotointiin.
-corpus.config.parse.error: Tämän korpuksen asetuksia ei voitu jäsentää. Yritä muokata asetuksia tai metatietoja uudelleen. Jos tarvitset apua, ota yhteyttä osoitteeseen sb-info{'@'}svenska.gu.se
+corpus.config.parse.error: Tämän korpuksen asetuksia ei voitu jäsentää. Yritä muokata asetuksia tai metatietoja uudelleen. Jos tarvitset apua, ota yhteyttä osoitteeseen kielipankki{'@'}csc.fi
 config.saving: Tallennetaan metatietoja
 analysis.help: Suorita automaattisia kieliteknologisia analyyseja tekstiaineistollesi asetustesi mukaisesti. Mink käyttää taustalla {sparv}ia.
 analysis.sparv.url: https://spraakbanken.gu.se/en/tools/sparv
