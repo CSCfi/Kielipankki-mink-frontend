@@ -22,7 +22,7 @@ const logoutUrl = getLogoutUrl();
     <div class="flex flex-col gap-10 my-10">
       <div class="w-full flex flex-row-reverse flex-wrap items-center gap-20">
         <div class="w-full lg:flex-1 text-lg">
-          <i18n-t keypath="home.hero.sb" scope="global" tag="p" class="my-2">
+          <i18n-t keypath="home.hero.org" scope="global" tag="p" class="my-2">
             <strong>Kielipankki</strong>
           </i18n-t>
           <i18n-t keypath="home.hero.mink" scope="global" tag="p" class="my-2">

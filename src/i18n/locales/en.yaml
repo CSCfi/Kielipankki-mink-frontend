@@ -1,7 +1,7 @@
 logo.alt: Mink logo
 home: Home
 home.hero.alt: Screenshot of Mink's user interface
-home.hero.sb: "{0} is a research infrastructure for language data. We create and maintain language data analysed with state-of-the-art language technology methods for researchers everywhere, and take pride in providing free and open access where possible."
+home.hero.org: "{0} is a research infrastructure for language data. We create and maintain language data analysed with state-of-the-art language technology methods for researchers everywhere, and take pride in providing free and open access where possible."
 home.hero.mink: "{0} is our effort to put The Language Bank of Finland’s research infrastructure into the hands of the researchers. You can use Mink to apply our language technology methods on texts that you have collected yourself. The resulting data can be downloaded or made available through our research tools, such as Korp and Strix, behind login."
 home.hero.privacy: Your source data and the results are private (see {0}). Forthcoming versions will include features for sharing datasets with teams and publishing them publicly.
 home.hero.privacy.link.url: https://spraakbanken.gu.se/en/tools/mink/data-policy
