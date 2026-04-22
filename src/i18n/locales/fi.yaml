@@ -1,8 +1,8 @@
 logo.alt: Mink-logo
 home: Etusivu
 home.hero.alt: Kuvakaappaus Minkin käyttöliittymästä
-home.hero.sb: "{0} on kieliaineistojen tutkimusinfrastruktuuri. Luomme ja ylläpidämme kieliaineistoja uusimmilla kieliteknologisilla menetelmillä tutkijoiden käyttöön, ja tarjoamme avointa pääsyä aina kun mahdollista."
-home.hero.mink: "{0} tuo Kielipankin tutkimusinfrastruktuurin tutkijoiden käyttöön. Minkissä voit soveltaa kieliteknologisia menetelmiämme itse keräämääsi tekstiaineistoon. Tulokset voi ladata tai tuoda tutkimustyökaluihimme, kuten Korpiin ja Strixiin, kirjautumisen taakse."
+home.hero.org: "{0} on kieliaineistoja käyttävien tutkijoiden palvelukokonaisuus. Kielipankissa on laaja valikoima teksti- ja puheaineistoja, joista voi tehdä monipuolisia hakuja."
+home.hero.mink: "Minkissä voit soveltaa kieliteknologisia analyysityökaluja itse keräämääsi tekstiaineistoon. Tulokset voi tallentaa paikallisesti omalle koneellesi, tai viedä selattaviksi Korpiin (ja tulevaisuudessa Strixiin), kirjautumisen taakse."
 home.hero.privacy: Lähdeaineistosi ja tulokset ovat yksityisiä (katso {0}). Tulevissa versioissa voit jakaa aineistoja tiimien kanssa ja julkaista niitä avoimesti.
 home.hero.privacy.link.url: https://spraakbanken.gu.se/en/tools/mink/data-policy
 home.hero.privacy.link.label: tietosuoja- ja datakäytäntö
