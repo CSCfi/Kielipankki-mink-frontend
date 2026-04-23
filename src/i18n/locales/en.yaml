@@ -26,7 +26,7 @@ home.features.share.upcoming: These features are scheduled for upcoming versions
 home.features.share.alt: Screenshot from an access management system
 home.otherdata.title: Mink or no Mink?
 home.otherdata.body: Make sure to first get acquainted with any existing language data sets related to your interests! The Language Bank of Finland's growing collection of research data can be browsed on the {0} section of our website. At a larger scale, Kielipankki forms a part of the CLARIN ERIC, whose collected assortment of data can be browsed in the {1}.
-home.otherdata.sbdata.url: "https://spraakbanken.gu.se/en/resources"
+home.otherdata.sbdata.url: "https://kielipankki.fi/corpora"
 home.otherdata.sbdata.title: "The Language Bank of Finland: Language resources"
 welcome: Welcome, {name}!
 mydata: My data
