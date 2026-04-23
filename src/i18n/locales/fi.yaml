@@ -4,7 +4,7 @@ home.hero.alt: Kuvakaappaus Minkin käyttöliittymästä
 home.hero.org: "{0} on kieliaineistoja käyttävien tutkijoiden palvelukokonaisuus. Kielipankissa on laaja valikoima teksti- ja puheaineistoja, joista voi tehdä monipuolisia hakuja."
 home.hero.mink: "Minkissä voit soveltaa kieliteknologisia analyysityökaluja itse keräämääsi tekstiaineistoon. Tulokset voi tallentaa paikallisesti omalle koneellesi, tai viedä selattaviksi Korpiin (ja tulevaisuudessa Strixiin), kirjautumisen taakse."
 home.hero.privacy: Lähdeaineistosi ja tulokset ovat yksityisiä (katso {0}). Tulevissa versioissa voit jakaa aineistoja tiimien kanssa ja julkaista niitä avoimesti.
-home.hero.privacy.link.url: https://spraakbanken.gu.se/en/tools/mink/data-policy
+home.hero.privacy.link.url: https://www.kielipankki.fi/tietosuojaseloste/mink-kayttaja/
 home.hero.privacy.link.label: tietosuoja- ja datakäytäntö
 home.hero.readmore: Lue lisää {0}.
 home.hero.readmore.link.label: Minkin dokumentaatiosta
@@ -12,10 +12,7 @@ home.features.sparv.title: Mukautettavat kieliteknologiset analyysit
 home.features.sparv.body: Tekstiaineistosi analysoidaan kieliteknologia-alustamme {sparv} avulla valitsemillasi asetuksilla.
 home.features.sparv.alt: Kuvakaappaus asetuslomakkeesta
 home.features.upload.title: Lataa tekstisi
-home.features.upload.body: Lataa tekstinkäsittelyasiakirjoja, PDF-tiedostoja, tekstitiedostoja tai XML-aineistoa.
-home.features.upload.xml: "XML-muodossa analyysien tulokset lisätään alkuperäisen rakenteen säilyttäen: {link}"
-home.features.upload.xml.link.url: https://spraakbanken.gu.se/en/blog/20240820-anvand-mink-med-egen-berikning-i-kalldata
-home.features.upload.xml.link.label: Minkin käyttö omilla annotaatioilla lähdeaineistossa (blogikirjoitus ruotsiksi)
+home.features.upload.body: Lataa tekstinkäsittelyasiakirjoja, PDF-tiedostoja, tekstitiedostoja tai XML-aineistoa. XML-muodossa analyysien tulokset lisätään alkuperäisen rakenteen säilyttäen.
 home.features.upload.alt: Kuvakaappaus tiedostolistasta ja latausalueesta
 home.features.explore.title: Tutki Korpissa ja Strixissä
 home.features.explore.body: Vie valmis aineisto hakua ja tilastollista analyysia varten {korp}iin ja {strix}iin.
@@ -26,7 +23,7 @@ home.features.share.upcoming: Nämä ominaisuudet ovat tulossa Minkin tuleviin v
 home.features.share.alt: Kuvakaappaus käyttöoikeuksien hallintajärjestelmästä
 home.otherdata.title: Mink vai ei?
 home.otherdata.body: Tutustu ensin olemassa oleviin kieliaineistoihin! Kielipankin kasvavaa tutkimusaineistovalikoimaa voi selata {0}-sivulla. Laajemmassa mittakaavassa Kielipankki on osa CLARIN ERIC -yhteisöä, jonka kootut aineistot löytyvät {1}sta.
-home.otherdata.sbdata.url: "https://spraakbanken.gu.se/en/resources"
+home.otherdata.sbdata.url: "https://kielipankki.fi/aineistot"
 home.otherdata.sbdata.title: "Kielipankki: Kieliresurssit"
 welcome: Tervetuloa, {name}!
 mydata: Omat aineistot
@@ -58,7 +55,7 @@ corpus.state.help.needing_config: Tämä korpus vaatii asetusten muuttamista enn
 corpus.state.help.needing_meta: Korpus tarvitsee nimen ennen käsittelyä.
 corpus.state.help.ready: Valmis annotointiin. Voit myös lisätä lähdetekstejä tai muokata asetuksia.
 corpus.state.help.running: Annotointi on käynnissä taustalla. Voit sulkea sivuston, juoda kahvia ja tarkistaa tilanteen myöhemmin!
-corpus.state.help.done: Annotointi valmis! Voit ladata tulokset tai asentaa aineiston Korpiin tai Strixiin.
+corpus.state.help.done: Annotointi valmis! Voit ladata tulokset tai asentaa aineiston Korpiin.
 corpus.state.help.running_install: Asennus on käynnissä taustalla. Voit sulkea sivuston, juoda kahvia ja tarkistaa tilanteen myöhemmin!
 corpus.state.help.done_install: Asennus onnistui!
 corpus.state.help.failed: Aineiston käsittelyssä tapahtui virhe. Jos tarvitset apua, ota yhteyttä osoitteeseen kielipankki{'@'}csc.fi
@@ -73,7 +70,7 @@ config.configuration.help: Nämä asetukset ohjaavat automaattista analyysia; ne
 corpus.config.parse.error: Tämän korpuksen asetuksia ei voitu jäsentää. Yritä muokata asetuksia tai metatietoja uudelleen. Jos tarvitset apua, ota yhteyttä osoitteeseen kielipankki{'@'}csc.fi
 config.saving: Tallennetaan metatietoja
 analysis.help: Suorita automaattisia kieliteknologisia analyyseja tekstiaineistollesi asetustesi mukaisesti. Mink käyttää taustalla {sparv}ia.
-analysis.sparv.url: https://spraakbanken.gu.se/en/tools/sparv
+analysis.sparv.url: https://www.kielipankki.fi/tuki/sparv
 job.run: Käynnistä annotointi
 job.rerun: Käynnistä annotointi uudelleen
 job.rerun.overwrite: Aiemmat tulokset ylikirjoitetaan.
@@ -104,7 +101,7 @@ upload.drop.empty: Tiedostoa ei pudotettu. Vedä ja pudota -toiminto ei ehkä ol
 tools: Tutki
 exports.tools.help: Käytä tätä aineistoa Kielipankin korpustyökaluissa. Aineistosi näkyy vain sinulle erillisessä Mink-tilassa.
 exports.tools.help.korp: Korp tarjoaa konkordanssihakua, yksityiskohtaisia hakuja, frekvenssitilatoja ja paljon muuta.
-exports.tools.help.korp.manual.url: https://spraakbanken.gu.se/en/tools/korp/user-manual
+exports.tools.help.korp.manual.url: https://www.kielipankki.fi/tuki/korp
 exports.tools.help.korp.manual.text: Käyttöopas
 exports.tools.help.strix: Strixissä rikastettuja tekstejä voi tarkastella kokonaisuudessaan.
 exports.tools.install: Asenna
@@ -125,7 +122,7 @@ expand.close: Piilota osa
 show: Näytä
 select: Valitse...
 docs.label: Ohje
-docs.url: https://spraakbanken.gu.se/en/tools/mink
+docs.url: https://www.kielipankki.fi/tuki/mink
 locale.switcher.label: Käyttöliittymän kieli
 en: Englanti
 fi: Suomi
@@ -158,7 +155,7 @@ save: Tallenna
 create: Luo
 cancel: Peruuta
 message: Viesti
-sparv.url: https://spraakbanken.gu.se/en/tools/sparv
+sparv.url: https://www.kielipankki.fi/tuki/sparv
 sparvOutput: Sparv-tuloste
 download: Lataa
 download_export: Lataa kaikki tulokset
@@ -176,17 +173,8 @@ logout: Kirjaudu ulos
 signup: Luo tili
 signup.help: Useimmat muut käyttäjät tarvitsevat ensin tilin.
 signup.existing.title: Sinulla saattaa jo olla tili
-signup.existing.login: "Jos yliopistotilisi on yhdistetty eduGAINiin, voit käyttää Minkiä suoraan kirjautumalla:"
+signup.existing.login: "Jos sinulla on Haka-tunnus tai yliopistotilisi on yhdistetty eduGAINiin, voit käyttää Minkiä suoraan kirjautumalla:"
 signup.existing.tip: (Jos et ole varma, napsauta painiketta ja etsi yliopistoasi tai organisaatiotasi.)
-signup.new: Ei tiliä
-signup.new.create: "Jos et kuulu mihinkään liitetyistä identiteetintarjoajista, voit:"
-signup.new.register.url: https://eduid.se/en/
-signup.new.eduid: eduID Sweden
-signup.new.steps.create_eduid: Luo eduID-tili
-signup.new.steps.skip_verification: sinun {em} tarvitse vahvistaa henkilöllisyyttäsi käyttääksesi Minkiä
-signup.new.steps.skip_verification.em: ei
-signup.new.steps.login: Palaa tälle sivulle ja napsauta {login}
-signup.new.steps.idp: Valitse {eduid} identiteetintarjoajaksi
 account: Tili
 enable: Ota käyttöön
 enabled: Käytössä
