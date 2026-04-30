@@ -12,11 +12,10 @@ import useSpin from "@/spin/spin.composable";
 const corpusId = useCorpusIdParam();
 const { isPending } = useSpin();
 const { exports } = useExports(corpusId);
-const { installKorp, installStrix, isJobRunning, jobState } = useJob(corpusId);
+const { installKorp, isJobRunning, jobState } = useJob(corpusId);
 const { locale3 } = useLocale();
 
 const korpUrl = ensureTrailingSlash(import.meta.env.VITE_KORP_URL);
-const strixUrl = ensureTrailingSlash(import.meta.env.VITE_STRIX_URL);
 
 const canInstall = computed(
   () =>
@@ -28,15 +27,11 @@ const canInstall = computed(
 async function korpInstall() {
   await installKorp();
 }
-
-async function strixInstall() {
-  await installStrix();
-}
 </script>
 
 <template>
   <p>{{ $t("exports.tools.help") }}</p>
-  <div class="grid xl:grid-cols-2 gap-4 mt-4">
+  <div class="mt-4">
     <PendingContent :on="`corpus/${corpusId}/job/install/korp`">
       <ToolPanel
         name="Korp"
@@ -47,17 +42,6 @@ async function strixInstall() {
         :is-installed="jobState?.korp == 'done'"
         :show-url="`${korpUrl}?mode=mink#?corpus=${corpusId}&lang=${locale3}`"
         @install="korpInstall()"
-      />
-    </PendingContent>
-
-    <PendingContent :on="`corpus/${corpusId}/job/install/strix`">
-      <ToolPanel
-        name="Strix"
-        :info="$t('exports.tools.help.strix')"
-        :can-install="canInstall"
-        :is-installed="jobState?.strix == 'done'"
-        :show-url="`${strixUrl}?modeSelected=mink&filters=corpus_id:${corpusId}&lang=${locale3}`"
-        @install="strixInstall()"
       />
     </PendingContent>
   </div>
