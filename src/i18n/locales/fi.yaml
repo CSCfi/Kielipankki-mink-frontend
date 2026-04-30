@@ -1,6 +1,7 @@
 logo.alt: Mink-logo
 home: Etusivu
 home.hero.alt: Kuvakaappaus Minkin käyttöliittymästä
+org.name: Kielipankki
 home.hero.org: "{0} on kieliaineistoja käyttävien tutkijoiden palvelukokonaisuus. Kielipankissa on laaja valikoima teksti- ja puheaineistoja, joista voi tehdä monipuolisia hakuja."
 home.hero.mink: "Minkissä voit soveltaa kieliteknologisia analyysityökaluja itse keräämääsi tekstiaineistoon. Tulokset voi tallentaa paikallisesti omalle koneellesi, tai viedä selattaviksi Korpiin (ja tulevaisuudessa Strixiin), kirjautumisen taakse."
 home.hero.privacy: Lähdeaineistosi ja tulokset ovat yksityisiä (katso {0}). Tulevissa versioissa voit jakaa aineistoja tiimien kanssa ja julkaista niitä avoimesti.
@@ -15,7 +16,7 @@ home.features.upload.title: Lataa tekstisi
 home.features.upload.body: Lataa tekstinkäsittelyasiakirjoja, PDF-tiedostoja, tekstitiedostoja tai XML-aineistoa. XML-muodossa analyysien tulokset lisätään alkuperäisen rakenteen säilyttäen.
 home.features.upload.alt: Kuvakaappaus tiedostolistasta ja latausalueesta
 home.features.explore.title: Tutki Korpissa ja Strixissä
-home.features.explore.body: Vie valmis aineisto hakua ja tilastollista analyysia varten {korp}iin ja {strix}iin.
+home.features.explore.body: Vie valmis aineisto hakua ja tilastollista analyysia varten {korp}iin, ja tulevaisuudessa {strix}iin.
 home.features.explore.alt: Kuvakaappaus Korp-hakutyökalusta
 home.features.share.title: Jaa ja tee yhteistyötä
 home.features.share.body: Kutsu muita tutkijoita tarkastelemaan aineistoasi tutkimustyökaluissamme kirjautumisen taakse. Jos haluat jakaa aineistosi tutkimusyhteisön kanssa, ota meihin yhteyttä julkaisusta.
@@ -70,7 +71,7 @@ config.configuration.help: Nämä asetukset ohjaavat automaattista analyysia; ne
 corpus.config.parse.error: Tämän korpuksen asetuksia ei voitu jäsentää. Yritä muokata asetuksia tai metatietoja uudelleen. Jos tarvitset apua, ota yhteyttä osoitteeseen kielipankki{'@'}csc.fi
 config.saving: Tallennetaan metatietoja
 analysis.help: Suorita automaattisia kieliteknologisia analyyseja tekstiaineistollesi asetustesi mukaisesti. Mink käyttää taustalla {sparv}ia.
-analysis.sparv.url: https://www.kielipankki.fi/tuki/sparv
+analysis.sparv.url: https://spraakbanken.gu.se/en/tools/sparv
 job.run: Käynnistä annotointi
 job.rerun: Käynnistä annotointi uudelleen
 job.rerun.overwrite: Aiemmat tulokset ylikirjoitetaan.
@@ -155,7 +156,7 @@ save: Tallenna
 create: Luo
 cancel: Peruuta
 message: Viesti
-sparv.url: https://www.kielipankki.fi/tuki/sparv
+sparv.url: https://spraakbanken.gu.se/en/tools/sparv
 sparvOutput: Sparv-tuloste
 download: Lataa
 download_export: Lataa kaikki tulokset
