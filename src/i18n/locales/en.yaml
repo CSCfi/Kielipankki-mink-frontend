@@ -1,10 +1,11 @@
 logo.alt: Mink logo
 home: Home
 home.hero.alt: Screenshot of Mink's user interface
-home.hero.org: "{0} is a research infrastructure for language data. We create and maintain language data analysed with state-of-the-art language technology methods for researchers everywhere, and take pride in providing free and open access where possible."
-home.hero.mink: "{0} is our effort to put The Language Bank of Finland’s research infrastructure into the hands of the researchers. You can use Mink to apply our language technology methods on texts that you have collected yourself. The resulting data can be downloaded or made available through our research tools, such as Korp and Strix, behind login."
+org.name: The Language Bank of Finland
+home.hero.org: "{0} is a service ecosystem for researchers working with language data. The Language Bank offers a broad selection of text and speech corpora that support versatile searches."
+home.hero.mink: "With {0}, you can apply language technology analysis tools to text data that you have collected yourself. The results can be saved locally on your own computer, or exported for browsing in Korp (and, in the future, Strix), behind login."
 home.hero.privacy: Your source data and the results are private (see {0}). Forthcoming versions will include features for sharing datasets with teams and publishing them publicly.
-home.hero.privacy.link.url: https://spraakbanken.gu.se/en/tools/mink/data-policy
+home.hero.privacy.link.url: https://www.kielipankki.fi/data-protection-statement/user-of-the-mink-service
 home.hero.privacy.link.label: Privacy and data policy
 home.hero.readmore: Read more in the {0}.
 home.hero.readmore.link.label: Mink documentation
@@ -12,20 +13,17 @@ home.features.sparv.title: Configurable language technology analysis
 home.features.sparv.body: Your language data are analyzed by our language technology platform {sparv} according to your settings.
 home.features.sparv.alt: Screenshot of a configuration form with labels and buttons
 home.features.upload.title: Deposit your text
-home.features.upload.body: Upload your word-processor documents, PDFs, plain text files or XML data.
-home.features.upload.xml: "When using XML, the output of the analyses is added while keeping the input structure intact: {link}"
-home.features.upload.xml.link.url: https://spraakbanken.gu.se/en/blog/20240820-anvand-mink-med-egen-berikning-i-kalldata
-home.features.upload.xml.link.label: Using Mink with custom annotations in source (blog entry in Swedish)
+home.features.upload.body: Upload your word-processor documents, PDFs, plain text files or XML data. When using XML, the analysis output is added while keeping the input structure intact.
 home.features.upload.alt: Screenshot of a list of filenames and an upload area
 home.features.explore.title: Explore in Korp and Strix
-home.features.explore.body: Export the resulting data, for search and statistical analysis, to {korp} and {strix}.
+home.features.explore.body: Export the resulting data, for search and statistical analysis, to {korp}, and in the future, {strix}.
 home.features.explore.alt: Screenshot of the Korp search tool
 home.features.share.title: Share and collaborate
 home.features.share.body: Invite fellow researchers to view your data in our research tools, protected by login. If you want to share your data with the research community, contact us to discuss publication.
 home.features.share.upcoming: These features are scheduled for upcoming versions of Mink.
 home.features.share.alt: Screenshot from an access management system
 home.otherdata.title: Mink or no Mink?
-home.otherdata.body: Make sure to first get acquainted with any existing language data sets related to your interests! The Language Bank of Finland's growing collection of research data can be browsed on the {0} section of our website. At a larger scale, Kielipankki forms a part of the CLARIN ERIC, whose collected assortment of data can be browsed in the {1}.
+home.otherdata.body: Make sure to first get acquainted with any existing language data sets related to your interests! The Language Bank of Finland's growing collection of research data can be browsed on the {0} section of our website. At a larger scale, The Language Bank of Finland forms a part of the CLARIN ERIC, whose collected assortment of data can be browsed in the {1}.
 home.otherdata.sbdata.url: "https://kielipankki.fi/corpora"
 home.otherdata.sbdata.title: "The Language Bank of Finland: Language resources"
 welcome: Welcome, {name}!
@@ -52,17 +50,17 @@ corpus.state.running_install: Installing
 corpus.state.done_install: Done installing
 corpus.state.failed: Failed
 corpus.state.failed_install: Failed
-corpus.state.help.unknown: The state of this corpus is unknown. If you need help, please contact sb-info{'@'}svenska.gu.se
+corpus.state.help.unknown: The state of this corpus is unknown. If you need help, please contact kielipankki{'@'}csc.fi
 corpus.state.help.empty: There are no source texts in this corpus. Upload some text files below.
 corpus.state.help.needing_config: This corpus needs you to change some settings before it can be processed.
 corpus.state.help.needing_meta: The corpus needs a name before it can be processed.
 corpus.state.help.ready: Ready for annotation. You can also supply more source texts or edit the configuration.
 corpus.state.help.running: Annotation is running in the background. Feel free to close the website, have some coffee and check back later!
-corpus.state.help.done: Annotation done! You can download the results or install it to Korp or Strix.
+corpus.state.help.done: Annotation done! You can download the results or install it to Korp.
 corpus.state.help.running_install: Installation is running in the background. Feel free to close the website, have some coffee and check back later!
 corpus.state.help.done_install: Successfully installed!
-corpus.state.help.failed: An error occurred while processing your data. If you need help, please contact sb-info{'@'}svenska.gu.se
-corpus.state.help.failed_install: An error occurred while installing your corpus. If you need help, please contact sb-info{'@'}svenska.gu.se
+corpus.state.help.failed: An error occurred while processing your data. If you need help, please contact kielipankki{'@'}csc.fi
+corpus.state.help.failed_install: An error occurred while installing your corpus. If you need help, please contact kielipankki{'@'}csc.fi
 metadata.new: New metadata
 metadata.public_id.help: In Mink, all resources have fixed, unmodifiable identifiers. The public identifier is what this resource will get once it is exported to a repository. Try to make it recognizable and descriptive, but not too long. It must only contain lowercase letters, numbers and dashes, and start with your assigned organization prefix.
 metadata.public_id.error.format: The public identifier must only contain lowercase letters (a-z), numbers (0-9) and dashes (-). It must not start or end with a dash.
@@ -70,7 +68,7 @@ metadata.delete: Delete metadata
 resource.delete.ask: Are you sure you want to delete this resource?
 config.metadata.help: Metadata is information about the data, meant for assessment by interested users (if you release the data), and for categorization in data repositories.
 config.configuration.help: These settings are information for the automatic analysis; they will affect the parsing or annotation.
-corpus.config.parse.error: The config of this corpus could not be parsed. Try editing the settings or metadata again. If you need help, please contact sb-info{'@'}svenska.gu.se
+corpus.config.parse.error: The config of this corpus could not be parsed. Try editing the settings or metadata again. If you need help, please contact kielipankki{'@'}csc.fi
 config.saving: Saving metadata
 analysis.help: Run automated language technology methods on your text data according to your settings. Mink uses {sparv} under the hood.
 analysis.sparv.url: https://spraakbanken.gu.se/en/tools/sparv
@@ -102,9 +100,9 @@ upload.dnd.single: Drag and drop file here, or click here to choose
 upload.dnd.multiple: Drag and drop files here, or click here to choose
 upload.drop.empty: No file was dropped. Drag-and-drop may not be supported on your system.
 tools: Explore
-exports.tools.help: Use this data in Kielipankki's corpus tools. Your data will be available to you only, in a special Mink mode.
+exports.tools.help: Use this data in The Language Bank's corpus tools. Your data will be available to you only, in a special Mink mode.
 exports.tools.help.korp: Korp offers concordance search, detailed queries, frequency statistics and more.
-exports.tools.help.korp.manual.url: https://spraakbanken.gu.se/en/tools/korp/user-manual
+exports.tools.help.korp.manual.url: https://www.kielipankki.fi/support/korp/
 exports.tools.help.korp.manual.text: User manual
 exports.tools.help.strix: In Strix, the enriched texts can be examined in full.
 exports.tools.install: Install
@@ -125,7 +123,7 @@ expand.close: Hide some
 show: Show
 select: Select...
 docs.label: Help
-docs.url: https://spraakbanken.gu.se/en/tools/mink
+docs.url: https://www.kielipankki.fi/support/mink
 locale.switcher.label: Interface language
 en: English
 fi: Finnish
@@ -176,18 +174,8 @@ logout: Logout
 signup: Create account
 signup.help: Most non-university users need to set up an account first.
 signup.existing.title: You may already have an account
-signup.existing.login: "If your university account is connected to eduGAIN, you can directly use Mink by simply signing in:"
+signup.existing.login: "If you have a Haka account or your university account is connected to eduGAIN, you can directly use Mink by simply signing in:"
 signup.existing.tip: (If you are not sure, click the button and search for your university or organization.)
-signup.new: No account
-signup.new.create: "If you are not affiliated with any of the available identity providers, you can:"
-# " {register} and then sign in here, selecting {eduid} as identity provider.
-signup.new.register.url: https://eduid.se/en/
-signup.new.eduid: eduID Sweden
-signup.new.steps.create_eduid: Create an eduID account
-signup.new.steps.skip_verification: you do {em} need to verify your identity to use Mink
-signup.new.steps.skip_verification.em: not
-signup.new.steps.login: Go back to this page and click {login}
-signup.new.steps.idp: Choose {eduid} as identity provider
 account: Account
 enable: Enable
 enabled: Enabled

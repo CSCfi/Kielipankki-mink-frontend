@@ -1,10 +1,11 @@
 logo.alt: Mink-logotyp
 home: Hem
 home.hero.alt: Skärmbild av Minks användargränssnitt
-home.hero.org: "{0} är en forskningsinfrastruktur för språkdata. Med språkteknologiska metoder i framkant skapar vi och underhåller språkresurser för forskare världen över, och vi använder fri och öppen access såvitt det går."
-home.hero.mink: "{0} är vår insats för att lägga infrastrukturen i forskarnas händer. Här kan du applicera våra språkteknologiska metoder på texter som du själv har samlat in. Resultaten kan du ladda ner eller föra in i våra forskningsverktyg såsom Korp och Strix bakom inloggning."
+org.name: Språkbanken i Finland
+home.hero.org: "{0} är en helhetstjänst för forskare som arbetar med språkdata. Språkbanken erbjuder ett brett urval av text- och talkorpusar som möjliggör mångsidiga sökningar."
+home.hero.mink: "I {0} kan du tillämpa språkteknologiska analysverktyg på textdata som du själv har samlat in. Resultaten kan du spara lokalt på din egen dator, eller exportera för utforskning i Korp (och i framtiden Strix) bakom inloggning."
 home.hero.privacy: Dina källdata och resultaten är privata (se {0}). I kommande versioner kommer du att kunna dela datamängder med kollegor och publicera dem för allmän åtkomst.
-home.hero.privacy.link.url: https://spraakbanken.gu.se/verktyg/mink/data-policy
+home.hero.privacy.link.url: https://www.kielipankki.fi/data-protection-statement/user-of-the-mink-service
 home.hero.privacy.link.label: integritets- och datapolicyn
 home.hero.readmore: Läs mer i {0}.
 home.hero.readmore.link.label: Minks dokumentation
@@ -12,13 +13,10 @@ home.features.sparv.title: Anpassningsbara analyser
 home.features.sparv.body: Dina texter analyseras av vår språkteknologiska plattform {sparv} med de inställningar du väljer.
 home.features.sparv.alt: Skärmbild av en konfigurationssida många knappar
 home.features.upload.title: Ladda upp din text
-home.features.upload.body: Ladda upp ordbehandlingsdokument, pdf:er, ren text eller XML.
-home.features.upload.xml: "Om du använder XML läggs analyserna in utan att påverka strukturen från originalfilerna: {link}"
-home.features.upload.xml.link.url: https://spraakbanken.gu.se/blogg/20240820-anvand-mink-med-egen-berikning-i-kalldata
-home.features.upload.xml.link.label: Använd Mink med egen berikning i källdata
+home.features.upload.body: Ladda upp ordbehandlingsdokument, pdf:er, ren text eller XML. När du använder XML läggs analysens resultat in utan att påverka originalstrukturen.
 home.features.upload.alt: Skärmbild av en lista med filnamn och en uppladdningsruta
 home.features.explore.title: Utforska i Korp och Strix
-home.features.explore.body: Exportera den färdiga datan för sökning och statistiska undersökningar i {korp} och {strix}.
+home.features.explore.body: Exportera den färdiga datan för sökning och statistiska undersökningar i {korp}, och i framtiden {strix}.
 home.features.explore.alt: Skärmbild från sökverktyget Korp
 home.features.share.title: Dela och samarbeta
 home.features.share.body: Bjud in andra forskare att ta del av dina data i våra forskningsverktyg, skyddat bakom inloggning. Om du vill göra dina data tillgängliga för alla kan du kontakta oss för att diskutera publicering.
@@ -53,17 +51,17 @@ corpus.state.running_install: Installerar
 corpus.state.done_install: Installation färdig
 corpus.state.failed: Fel
 corpus.state.failed_install: Fel
-corpus.state.help.unknown: Den här korpusen är i ett okänt tillstånd. Om du behöver hjälp kan du kontakta sb-info{'@'}svenska.gu.se
+corpus.state.help.unknown: Den här korpusen är i ett okänt tillstånd. Om du behöver hjälp kan du kontakta kielipankki{'@'}csc.fi
 corpus.state.help.empty: Den här korpusen har inga källtexter. Ladda upp textfiler nedan.
 corpus.state.help.needing_config: Den här korpusen behöver några inställningar innan annoteringen kan startas.
 corpus.state.help.needing_meta: Korpusen behöver ha ett namn innan annoteringen kan startas.
 corpus.state.help.ready: Redo för annotering. Du kan också lägga till fler källtexter eller redigera konfigurationen.
 corpus.state.help.running: Annoteringen körs i bakgrunden. Det går bra att stänga webbsidan, ta en kaffe och kolla läget igen senare!
-corpus.state.help.done: Annotering klar! Du kan ladda ner resultaten eller installera datan i Korp eller Strix.
+corpus.state.help.done: Annotering klar! Du kan ladda ner resultaten eller installera datan i Korp.
 corpus.state.help.running_install: Installationen körs i bakgrunden. Det går bra att stänga webbsidan, ta en kaffe och kolla läget igen senare!
 corpus.state.help.done_install: Nu är datan installerad!
-corpus.state.help.failed: Ett fel uppstod under annotering. Om du behöver hjälp kan du kontakta sb-info{'@'}svenska.gu.se
-corpus.state.help.failed_install: Ett fel uppstod under installation. Om du behöver hjälp kan du kontakta sb-info{'@'}svenska.gu.se
+corpus.state.help.failed: Ett fel uppstod under annotering. Om du behöver hjälp kan du kontakta kielipankki{'@'}csc.fi
+corpus.state.help.failed_install: Ett fel uppstod under installation. Om du behöver hjälp kan du kontakta kielipankki{'@'}csc.fi
 metadata.new: Ny metadata
 metadata.public_id.help: Varje resurs i Mink har en förutbestämd identifierare. Den publika identifieraren är vad denna resurs kommer at få när den exporteras till en datakatalog. Välj gärna något unikt och beskrivande, men inte för långt. Den får endast innehålla små bokstäver, siffror och bindestreck, och måste börja med ditt tilldelade organisationsprefix.
 metadata.public_id.error.format: Den publika identifieraren får endast innehålla små bokstäver (a-z), siffror (0-9) och bindestreck (-). Den får inte börja eller sluta med bindestreck.
@@ -71,7 +69,7 @@ metadata.delete: Radera metadata
 resource.delete.ask: Är du säker på att du vill ta bort den här resursen?
 config.metadata.help: Metadata är information om datan, och fungerar som underlag för potentiellt intresserade användare (om du publicerar datan) samt underlättar katalogiseringen i datarepositorier.
 config.configuration.help: Dessa inställningar blir instruktioner till den automatiska analysen.
-corpus.config.parse.error: Korpusens config kunde inte läsas. Prova att redigera inställningarna eller metadatan igen. Om du behöver hjälp kan du kontakta sb-info{'@'}svenska.gu.se
+corpus.config.parse.error: Korpusens config kunde inte läsas. Prova att redigera inställningarna eller metadatan igen. Om du behöver hjälp kan du kontakta kielipankki{'@'}csc.fi
 config.saving: Sparar metadata
 analysis.help: Kör automatiska språkteknologiska analyser på din textdata enligt inställningarna. Mink använder {sparv} i bakgrunden.
 analysis.sparv.url: https://spraakbanken.gu.se/verktyg/sparv
@@ -105,7 +103,7 @@ upload.drop.empty: Ingen fil släpptes. Dra-och-släpp kanske inte stöds på di
 tools: Utforska
 exports.tools.help: Använd den här datan i Språkbanken i Finlands korpusverktyg. Din data visas bara för dig, i ett särskilt Mink-läge.
 exports.tools.help.korp: I Korp finns konkordanssökning, detaljerade sökfrågor, frekvensstatistik med mera.
-exports.tools.help.korp.manual.url: https://spraakbanken.gu.se/verktyg/korp/anvandarhandledning
+exports.tools.help.korp.manual.url: https://www.kielipankki.fi/support/korp/
 exports.tools.help.korp.manual.text: Användarhandledning
 exports.tools.help.strix: I Strix kan de berikade texterna undersökas i sin helhet.
 exports.tools.install: Installera
@@ -126,7 +124,7 @@ expand.close: Göm en del
 show: Visa
 select: Välj...
 docs.label: Hjälp
-docs.url: https://spraakbanken.gu.se/verktyg/mink
+docs.url: https://www.kielipankki.fi/support/mink
 locale.switcher.label: Gränssnittsspråk
 en: Engelska
 fi: Finska
@@ -177,17 +175,8 @@ logout: Logga ut
 signup: Skapa konto
 signup.help: Andra användare behöver i regel registrera ett konto.
 signup.existing.title: Du kanske redan har ett konto
-signup.existing.login: "Om ditt universitetskonto är kopplat till Edugain kan du redan nu använda Mink genom att logga in:"
+signup.existing.login: "Om du har ett Haka-konto eller om ditt universitetskonto är kopplat till eduGAIN kan du redan nu använda Mink genom att logga in:"
 signup.existing.tip: (Om du inte är säker kan du alltid klicka på knappen och söka efter ditt universitet eller organisation i listan över identitetsintygare.)
-signup.new: Inget konto
-signup.new.create: "Om du inte tillhör någon av de kopplade identitetsintygarna kan du:"
-signup.new.register.url: https://eduid.se/
-signup.new.eduid: eduID Sweden
-signup.new.steps.create_eduid: Skapa ett EduID-konto
-signup.new.steps.skip_verification: du behöver {em} verifiera din identitet för att använda Mink
-signup.new.steps.skip_verification.em: inte
-signup.new.steps.login: Gå tillbaka till den här sidan och klicka på {login}
-signup.new.steps.idp: Välj {eduid} som identitetsintygare
 account: Konto
 advanced: Avancerat
 enable: Aktivera
@@ -258,10 +247,10 @@ admin.page.subtitle: Administration
 admin.goto: Genvägar
 admin.resources.help: I denna administrativa resurslista behöver du ladda in detaljerad resursinformation manuellt, eftersom det tar lång tid att ladda allt.
 accessdenied: Åtkomst nekad
-accessdenied.contact: Om du har frågor eller vill rapportera en bugg, kontakta gärna sb-info{'@'}svenska.gu.se. Tack!
+accessdenied.contact: Om du har frågor eller vill rapportera en bugg, kontakta gärna kielipankki{'@'}csc.fi. Tack!
 notfound: Sidan kan inte hittas
 notfound.description: Något har gått fel, och det finns ingenting att visa på den här adressen.
-notfound.contact: Om du har frågor eller vill rapportera en bugg, kontakta gärna sb-info{'@'}svenska.gu.se. Tack!
+notfound.contact: Om du har frågor eller vill rapportera en bugg, kontakta gärna kielipankki{'@'}csc.fi. Tack!
 config.invalid.yaml: Syntaxfel
 config.invalid.schema: Schemafel
 
@@ -272,7 +261,7 @@ api.code.missing_login_credentials: Autentiseringsinformation saknas
 api.code.not_admin: Det gick inte att bekräfta administratörsstatus
 api.code.missing_corpus_id: Korpus-id saknas
 api.code.jwt_expired: Den angivna JWT:en har slutat gälla
-api.code.something_went_wrong: Något gick fel. Om du får besvär kan du kontakta sb-info{'@'}svenska.gu.se och rapportera problemet.
+api.code.something_went_wrong: Något gick fel. Om du får besvär kan du kontakta kielipankki{'@'}csc.fi och rapportera problemet.
 api.code.admin_on: Administratörsläget är aktiverat. Var försiktig!
 api.code.admin_off: Administratörsläget är avstängt
 api.code.failed_listing_sources: Det gick inte att lista källfiler för korpusen "{corpus_id}"
