@@ -112,7 +112,7 @@ export const ANNOTATION_REGISTRY: AnnotationMetadata[] = [
     defaultEnabled: true,
     sparvModules: [
       "<token>:treetagger.upos as upos",
-      "<token>:treetagger.pos as tt_pos",
+      "<token>:treetagger.pos as tt_morph",
       "<token>:treetagger.baseform",
     ],
   },
@@ -271,7 +271,12 @@ export function getDefaultAnnotations(
 }
 
 /**
- * Get Sparv modules for enabled annotations
+ * Get Sparv modules for enabled annotations.
+ *
+ * Trankit's `msd` and TreeTagger both export a UD POS tag and would otherwise
+ * collide on the canonical `upos` export name (cwb-encode then rejects the
+ * duplicate column). When both are enabled, Trankit keeps `upos` and
+ * TreeTagger's UD POS is renamed to `tt_pos`.
  */
 export function getSparvModules(annotations: AnnotationOptions): string[] {
   const modules: string[] = [...CORE_ANNOTATIONS];
@@ -279,12 +284,52 @@ export function getSparvModules(annotations: AnnotationOptions): string[] {
   for (const annotation of ANNOTATION_REGISTRY) {
     const value = (annotations as any)[annotation.id];
     if (value === true) {
-      // Enabled
       modules.push(...annotation.sparvModules);
     }
   }
 
+  if (hasUposCollision(annotations)) {
+    const idx = modules.indexOf("<token>:treetagger.upos as upos");
+    if (idx !== -1) {
+      modules[idx] = "<token>:treetagger.upos as tt_pos";
+    }
+  }
+
   return modules;
+}
+
+/** True when both Trankit msd and TreeTagger are enabled and would collide on `upos`. */
+function hasUposCollision(annotations: AnnotationOptions): boolean {
+  return annotations.msd === true && annotations.treetagger === true;
+}
+
+/**
+ * Korp `annotation_definitions` entries to emit alongside the export list.
+ * Keyed by Sparv internal annotation name. Used so that columns without a
+ * matching Korp preset get a proper, translated label instead of the
+ * underscore-replacement fallback (e.g. "tt morph").
+ */
+export function getKorpAnnotationDefinitions(
+  annotations: AnnotationOptions,
+): Record<string, { label: Record<string, string> }> {
+  const defs: Record<string, { label: Record<string, string> }> = {};
+
+  if (annotations.treetagger === true) {
+    defs["<token>:treetagger.pos"] = {
+      label: { eng: "Morphology", swe: "Morfologi", fin: "morfologia" },
+    };
+    if (hasUposCollision(annotations)) {
+      defs["<token>:treetagger.upos"] = {
+        label: {
+          eng: "part of speech (TreeTagger)",
+          swe: "ordklass (TreeTagger)",
+          fin: "sanaluokka (TreeTagger)",
+        },
+      };
+    }
+  }
+
+  return defs;
 }
 
 /**
