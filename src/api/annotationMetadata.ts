@@ -211,28 +211,27 @@ export const CORE_ANNOTATIONS = [
 /**
  * Get annotations available for a specific language.
  *
- * When `availableModules` is provided (from /sparv-languages?annotators=true),
- * it is used as the source of truth. Otherwise falls back to the static
- * `supportedLanguages` field in each registry entry.
+ * Both gates apply: `supportedLanguages` is a hard cap (the languages we know
+ * have working models), and when `availableModules` is provided (from
+ * /sparv-languages?annotators=true) it additionally requires the Sparv
+ * annotator module to actually be installed on the backend. This prevents
+ * features like Trankit NER — which only has a model for English — from
+ * appearing under Swedish/Finnish just because the Trankit module itself
+ * supports those languages.
  */
 export function getAvailableAnnotations(
   language: string,
   availableModules?: string[],
 ): AnnotationMetadata[] {
-  if (availableModules !== undefined) {
-    return ANNOTATION_REGISTRY.filter((a) =>
-      availableModules.includes(a.sparvAnnotatorModule),
-    );
-  }
   return ANNOTATION_REGISTRY.filter((a) =>
-    a.supportedLanguages.includes(language),
+    isAnnotationAvailableFor(a, language, availableModules),
   );
 }
 
 /**
  * Check if an annotation is available for a language.
  *
- * When `availableModules` is provided it takes precedence over `supportedLanguages`.
+ * Both gates apply — see {@link getAvailableAnnotations}.
  */
 export function isAnnotationAvailable(
   annotationId: string,
@@ -241,10 +240,22 @@ export function isAnnotationAvailable(
 ): boolean {
   const annotation = ANNOTATION_REGISTRY.find((a) => a.id === annotationId);
   if (!annotation) return false;
-  if (availableModules !== undefined) {
-    return availableModules.includes(annotation.sparvAnnotatorModule);
+  return isAnnotationAvailableFor(annotation, language, availableModules);
+}
+
+function isAnnotationAvailableFor(
+  annotation: AnnotationMetadata,
+  language: string,
+  availableModules?: string[],
+): boolean {
+  if (!annotation.supportedLanguages.includes(language)) return false;
+  if (
+    availableModules !== undefined &&
+    !availableModules.includes(annotation.sparvAnnotatorModule)
+  ) {
+    return false;
   }
-  return annotation.supportedLanguages.includes(language);
+  return true;
 }
 
 /**
