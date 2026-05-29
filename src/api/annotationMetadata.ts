@@ -316,14 +316,25 @@ export function getKorpAnnotationDefinitions(
 
   if (annotations.treetagger === true) {
     defs["<token>:treetagger.pos"] = {
-      label: { eng: "Morphology", swe: "Morfologi", fin: "morfologia" },
+      label: {
+        eng: "TreeTagger morph",
+        swe: "TreeTagger morfologi",
+        fin: "TreeTagger morfologia",
+      },
+    };
+    defs["<token>:treetagger.baseform"] = {
+      label: {
+        eng: "TreeTagger baseform",
+        swe: "TreeTagger grundform",
+        fin: "TreeTagger perusmuoto",
+      },
     };
     if (hasUposCollision(annotations)) {
       defs["<token>:treetagger.upos"] = {
         label: {
-          eng: "part of speech (TreeTagger)",
-          swe: "ordklass (TreeTagger)",
-          fin: "sanaluokka (TreeTagger)",
+          eng: "TreeTagger pos",
+          swe: "TreeTagger ordklass",
+          fin: "TreeTagger sanaluokka",
         },
       };
     }
