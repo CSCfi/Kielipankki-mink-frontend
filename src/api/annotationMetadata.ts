@@ -305,9 +305,12 @@ function hasUposCollision(annotations: AnnotationOptions): boolean {
 
 /**
  * Korp `annotation_definitions` entries to emit alongside the export list.
- * Keyed by Sparv internal annotation name. Used so that columns without a
- * matching Korp preset get a proper, translated label instead of the
- * underscore-replacement fallback (e.g. "tt morph").
+ * Keyed by the resolved Sparv annotation name — class shorthand like
+ * `<token>:` is explicitly unsupported here (see the `korp.annotation_definitions`
+ * Config description in sparv/modules/korp/config.py), so the token class
+ * must be spelled out as `segment.token` (Sparv's default token annotation).
+ * Used so that columns without a matching Korp preset get a proper,
+ * translated label instead of the underscore-replacement fallback.
  */
 export function getKorpAnnotationDefinitions(
   annotations: AnnotationOptions,
@@ -315,14 +318,14 @@ export function getKorpAnnotationDefinitions(
   const defs: Record<string, { label: Record<string, string> }> = {};
 
   if (annotations.treetagger === true) {
-    defs["<token>:treetagger.pos"] = {
+    defs["segment.token:treetagger.pos"] = {
       label: {
         eng: "TreeTagger morph",
         swe: "TreeTagger morfologi",
         fin: "TreeTagger morfologia",
       },
     };
-    defs["<token>:treetagger.baseform"] = {
+    defs["segment.token:treetagger.baseform"] = {
       label: {
         eng: "TreeTagger baseform",
         swe: "TreeTagger grundform",
@@ -330,7 +333,7 @@ export function getKorpAnnotationDefinitions(
       },
     };
     if (hasUposCollision(annotations)) {
-      defs["<token>:treetagger.upos"] = {
+      defs["segment.token:treetagger.upos"] = {
         label: {
           eng: "TreeTagger pos",
           swe: "TreeTagger ordklass",
