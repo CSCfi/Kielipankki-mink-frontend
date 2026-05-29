@@ -5,7 +5,11 @@ import type {
   ConfigSentenceSegmenter,
   SparvConfig,
 } from "@/api/sparvConfig.types";
-import { getSparvModules, parseAnnotations } from "./annotationMetadata";
+import {
+  getKorpAnnotationDefinitions,
+  getSparvModules,
+  parseAnnotations,
+} from "./annotationMetadata";
 
 export type FileFormat = "txt" | "xml" | "odt" | "docx" | "pdf";
 
@@ -91,6 +95,13 @@ export function makeConfig(id: string, options: ConfigOptions): string {
 
   // Annotations - use registry to get Sparv modules
   config.export.annotations = getSparvModules(annotations);
+
+  // Korp display labels for columns without a matching attribute preset
+  // (and for collision-renamed columns).
+  const korpDefs = getKorpAnnotationDefinitions(annotations);
+  if (Object.keys(korpDefs).length > 0) {
+    config.korp = { annotation_definitions: korpDefs };
+  }
 
   if (annotations.datetime) {
     // Add annotations on the text level with custom values

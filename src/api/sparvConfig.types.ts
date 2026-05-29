@@ -8,6 +8,15 @@ export type SparvConfig = {
   export: ConfigExport;
   dateformat?: ConfigDateformat;
   custom_annotations?: ConfigCustomAnnotation[];
+  korp?: ConfigKorp;
+};
+
+type ConfigKorp = {
+  annotation_definitions?: Record<string, ConfigKorpAnnotationDefinition>;
+};
+
+type ConfigKorpAnnotationDefinition = {
+  label?: Record<string, string>;
 };
 
 type ConfigMetadata = {
