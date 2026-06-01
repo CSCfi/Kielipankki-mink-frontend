@@ -108,6 +108,7 @@ exports.tools.help.strix: Strixissä rikastettuja tekstejä voi tarkastella koko
 exports.tools.install: Asenna
 exports.tools.reinstall: Asenna uudelleen
 exports.tools.view: Avaa
+exports.tools.session_expired: Istuntosi on vanhentunut. Kirjaudu uudelleen avataksesi työkalun.
 exports.download.help: Tulokset voi ladata koneluettavina tiedostoina käsiteltäväksi skripteissä tai muissa erikoisohjelmissa.
 exports.download.placeholder: Lataukset ovat saatavilla tässä onnistuneen analyysin jälkeen.
 exports.help: Annotointiprosessi tuottaa vientitiedoston jokaiselle lähdetiedostolle. Voit ladata yksittäisiä tiedostoja tai kaikki kerralla pakattuna. Tiedostojen rakenne riippuu sekä lähdetiedostoista että asetuksista. Ne säilytetään palvelimella toistaiseksi, mutta annotoinnin uudelleenajo korvaa ne uusilla.

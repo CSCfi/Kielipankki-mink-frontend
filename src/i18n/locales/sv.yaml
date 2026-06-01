@@ -109,6 +109,7 @@ exports.tools.help.strix: I Strix kan de berikade texterna undersökas i sin hel
 exports.tools.install: Installera
 exports.tools.reinstall: Installera om
 exports.tools.view: Öppna
+exports.tools.session_expired: Din session har gått ut. Logga in igen för att öppna verktyget.
 exports.download.help: Resultatet kan laddas ner som maskinläsbara filer för bearbetning i script eller speciella program.
 exports.download.placeholder: Nedladdningar finns här efter slutförd annotering.
 exports.help: Annoteringsprocessen skapar exportfiler för varje källfil, och de kan laddas ner enskilt eller som arkiv. Filernas struktur beror både på källfilerna och konfigurationen. De lagras på servern tillsvidare, men ersätts med nya om du kör om annoteringen på nytt.

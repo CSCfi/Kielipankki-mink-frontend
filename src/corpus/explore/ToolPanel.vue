@@ -1,19 +1,18 @@
 <script setup lang="ts">
 import { PhArrowSquareOut, PhGearFine } from "@phosphor-icons/vue";
 import ActionButton from "@/components/ActionButton.vue";
-import UrlButton from "@/components/UrlButton.vue";
 
 defineProps<{
   name: string;
   info: string;
   canInstall?: boolean;
   isInstalled?: boolean;
-  showUrl: string;
   linkUrl?: string;
   linkText?: string;
 }>();
 defineEmits<{
   (e: "install"): void;
+  (e: "view"): void;
 }>();
 </script>
 
@@ -39,15 +38,14 @@ defineEmits<{
           }}
         </ActionButton>
 
-        <UrlButton
+        <ActionButton
           v-if="isInstalled"
-          :href="showUrl"
-          target="_blank"
           class="button-primary"
+          @click="$emit('view')"
         >
           <PhArrowSquareOut weight="bold" class="inline mb-1 mr-1" />
           {{ $t("exports.tools.view") }}
-        </UrlButton>
+        </ActionButton>
       </div>
     </div>
 
