@@ -15,6 +15,8 @@ export type JwtSbPayload = {
   email: string;
   /** Token expiration time as a UNIX timestamp */
   exp: number;
+  /** Token issuing time as a UNIX timestamp */
+  iat?: number;
   /** First level keys are resource types, second level keys are resource ids and values are permission levels */
   scope: Record<string, Record<string, number>>;
   /** Defines permission levels */
