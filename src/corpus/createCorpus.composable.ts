@@ -40,11 +40,15 @@ export default function useCreateCorpus() {
     // Get file extension of first file, assuming all are using the same extension.
     const format = getFilenameExtension(files[0]?.name) as FileFormat;
 
-    // Create a minimal config.
+    // Create a minimal config. No language is chosen in the upload flow, so use
+    // emptyConfig()'s default language and its language-appropriate annotation
+    // defaults rather than letting any hardcoded set through.
+    const base = emptyConfig();
     const config = {
-      ...emptyConfig(),
+      ...base,
       name: { [locale3.value]: corpusId },
       format,
+      annotations: getDefaultAnnotations(base.language),
     };
 
     const results = await Promise.allSettled([
@@ -100,10 +104,9 @@ export default function useCreateCorpus() {
       language,
       format,
       textAnnotation,
-      annotations: {
-        ...emptyConfig().annotations,
-        ...getDefaultAnnotations(language, availableModules),
-      },
+      // Language-aware defaults only — see emptyConfig() for why we don't merge
+      // any base annotation set underneath this.
+      annotations: getDefaultAnnotations(language, availableModules),
     };
 
     // Create an empty corpus. If it fails, abort.

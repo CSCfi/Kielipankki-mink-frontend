@@ -150,11 +150,13 @@ describe("parseConfig", () => {
         },
         lexicalClasses: false,
         msd: false,
+        ner: false,
         readability: true,
         saldo: false,
         sensaldo: false,
         swener: true,
         syntax: false,
+        treetagger: false,
         wsd: false,
       },
     };
