@@ -1,13 +1,11 @@
 import Yaml from "js-yaml";
 
 import type { ByLang } from "@/util.types";
-import type {
-  ConfigSentenceSegmenter,
-  SparvConfig,
-} from "@/api/sparvConfig.types";
+import type { SparvConfig } from "@/api/sparvConfig.types";
 import {
   getKorpAnnotationDefinitions,
   getSparvModules,
+  getTokenizerClasses,
   parseAnnotations,
 } from "./annotationMetadata";
 
@@ -20,7 +18,6 @@ export type ConfigOptions = {
   name: ByLang;
   description?: ByLang;
   textAnnotation?: string;
-  sentenceSegmenter?: ConfigSentenceSegmenter;
   annotations: AnnotationOptions;
 };
 
@@ -51,22 +48,22 @@ const FORMATS: Record<FileFormat, string> = {
 
 export const FORMATS_EXT = Object.keys(FORMATS);
 
-export const SEGMENTERS: ConfigSentenceSegmenter[] = ["linebreaks"];
-
 export function makeConfig(id: string, options: ConfigOptions): string {
-  const {
-    format,
-    language,
-    name,
-    description,
-    textAnnotation,
-    sentenceSegmenter,
-    annotations,
-  } = options;
+  const { format, language, name, description, textAnnotation, annotations } =
+    options;
 
   if (!format) {
     throw new TypeError("File format must be set.");
   }
+
+  // Bind the token and sentence classes to the language's tokenizer, so that
+  // every annotator reading or writing `<token>`/`<sentence>` works on the same
+  // segmentation. Without this, `<token>` resolves to Sparv's default
+  // `segment.token` (Swedish-only models), while the trankit annotators produce
+  // attributes aligned to their own tokenization — mismatching lengths that
+  // break the exports. Languages with no dedicated tokenizer keep the default
+  // (see getTokenizerClasses / TOKENIZER_PROVIDERS).
+  const classes = getTokenizerClasses(language);
 
   const config: SparvConfig = {
     metadata: {
@@ -75,10 +72,10 @@ export function makeConfig(id: string, options: ConfigOptions): string {
       name,
       description,
     },
+    ...(classes ? { classes } : {}),
     import: {
       importer: FORMATS[format],
     },
-    segment: sentenceSegmenter ? { sentence_segmenter: sentenceSegmenter } : {},
     export: {},
   };
 
@@ -98,7 +95,7 @@ export function makeConfig(id: string, options: ConfigOptions): string {
 
   // Korp display labels for columns without a matching attribute preset
   // (and for collision-renamed columns).
-  const korpDefs = getKorpAnnotationDefinitions(annotations);
+  const korpDefs = getKorpAnnotationDefinitions(annotations, language);
   if (Object.keys(korpDefs).length > 0) {
     config.korp = { annotation_definitions: korpDefs };
   }
@@ -197,7 +194,6 @@ export function parseConfig(configYaml: string): ConfigOptions {
     name,
     description: config.metadata?.description,
     textAnnotation: config.import.text_annotation,
-    sentenceSegmenter: config.segment?.sentence_segmenter,
   };
 
   // Parse annotations from export modules using registry

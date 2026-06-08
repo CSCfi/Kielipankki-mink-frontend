@@ -210,9 +210,6 @@ config.format.help: Select the file format of the source texts. All files must b
 config.format.note.pdf: The PDF file format is primarily designed for display. Please note that extracting text from them can sometimes give unsatisfactory results. Performing OCR on scanned documents is (currently) outside the scope of Mink.
 config.text_annotation: Text element
 config.text_annotation.help: In your source files, what XML element is most representative of a single text? Any text-level annotations will be attached to this element.
-segmenter_sentence: Existing sentence segmentation
-segmenter_sentence_help: Are the text files already formatted such that sentences are separated by linebreaks?
-segmenter_linebreaks: One per line
 timespan: Time span
 timespan_help: Dates of the oldest and newest content in the corpus.
 timespan_from: From

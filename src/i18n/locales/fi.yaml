@@ -210,9 +210,6 @@ config.format.help: Valitse lähdetekstien tiedostomuoto. Kaikkien tiedostojen o
 config.format.note.pdf: PDF-muoto on suunniteltu ensisijaisesti näyttöä varten. Tekstin poiminta PDF-tiedostoista voi joskus tuottaa epätyydyttäviä tuloksia. Skannattujen asiakirjojen OCR-käsittely ei (tällä hetkellä) kuulu Minkin toimintoihin.
 config.text_annotation: Tekstielementti
 config.text_annotation.help: Mikä XML-elementti lähdetiedostoissasi edustaa parhaiten yksittäistä tekstiä? Tekstintason annotaatiot liitetään tähän elementtiin.
-segmenter_sentence: Olemassa oleva lausesegmentointi
-segmenter_sentence_help: Ovatko lähdetekstit jo muotoiltu niin, että lauseet erotetaan rivinvaihdoilla?
-segmenter_linebreaks: Yksi per rivi
 timespan: Ajanjakso
 timespan_help: Korpuksen vanhimman ja uusimman sisällön päivämäärät.
 timespan_from: Alku
