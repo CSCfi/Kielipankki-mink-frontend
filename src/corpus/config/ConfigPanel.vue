@@ -1,6 +1,6 @@
 <!-- Read-only summary panel displaying a corpus's current configuration. Shows
      metadata (name, description, corpus ID) and analysis settings (language,
-     file format, text annotation, sentence segmenter, timespan, annotations)
+     file format, text annotation, timespan, annotations)
      in a table. Used to give the user an overview of their configuration
      without editing it. -->
 <script setup lang="ts">
@@ -110,17 +110,6 @@ const languageDisplay = computed(() => {
             >&lt;{{ configOptions.textAnnotation }}&gt;</TerminalOutput
           >
         </td>
-      </tr>
-      <tr v-if="configOptions?.format != 'xml'">
-        <th>{{ $t("segmenter_sentence") }}</th>
-        <td v-if="configOptions">
-          {{
-            configOptions.sentenceSegmenter
-              ? $t(`segmenter_${configOptions.sentenceSegmenter}`)
-              : $t("none")
-          }}
-        </td>
-        <td v-else>—</td>
       </tr>
       <tr>
         <th>{{ $t("timespan") }}</th>

@@ -11,7 +11,6 @@ import {
   type ConfigOptions,
   FORMATS_EXT,
   type FileFormat,
-  SEGMENTERS,
   emptyConfig,
   parseConfig,
 } from "@/api/corpusConfig";
@@ -21,7 +20,6 @@ import {
   type AnnotationMetadata,
   type SparvLanguage,
 } from "@/api/annotationMetadata";
-import type { ConfigSentenceSegmenter } from "@/api/sparvConfig.types";
 import HelpBox from "@/components/HelpBox.vue";
 import LayoutSection from "@/components/LayoutSection.vue";
 import FormKitWrapper from "@/components/FormKitWrapper.vue";
@@ -50,7 +48,6 @@ type Form = {
   language: string;
   format: FileFormat;
   textAnnotation: string;
-  sentenceSegmenter: ConfigSentenceSegmenter;
   datetimeFrom: string;
   datetimeTo: string;
   // Dynamic annotation fields based on ANNOTATION_REGISTRY
@@ -138,16 +135,6 @@ const selectedFormat = computed<FileFormat | undefined>(() =>
     : undefined,
 );
 
-type SegmenterOptions = Record<ConfigSentenceSegmenter | "", string>;
-
-const segmenterOptions = computed<SegmenterOptions>(() => {
-  const options: Partial<SegmenterOptions> = { "": t("none") };
-  for (const segmenter of SEGMENTERS) {
-    options[segmenter] = t(`segmenter_${segmenter}`);
-  }
-  return options as SegmenterOptions;
-});
-
 function getParsedConfig() {
   if (!config.value) return undefined;
   try {
@@ -194,7 +181,6 @@ async function submit(fields: Form) {
     language: fields.language,
     format: fields.format,
     textAnnotation: fields.textAnnotation,
-    sentenceSegmenter: fields.sentenceSegmenter,
     annotations,
   };
 
@@ -315,15 +301,6 @@ async function submit(fields: Form) {
             <template #prefix> &lt; </template>
             <template #suffix> &gt; </template>
           </FormKit>
-
-          <FormKit
-            name="sentenceSegmenter"
-            :label="$t('segmenter_sentence')"
-            :value="configOptions?.sentenceSegmenter || ''"
-            type="radio"
-            :options="segmenterOptions"
-            :help="$t('segmenter_sentence_help')"
-          />
 
           <FormKit
             name="datetimeFrom"

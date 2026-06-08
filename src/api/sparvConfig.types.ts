@@ -3,12 +3,24 @@ import type { ByLang } from "@/util.types";
 /** Models a Sparv config file */
 export type SparvConfig = {
   metadata: ConfigMetadata;
+  classes?: ConfigClasses;
   import: ConfigImport;
-  segment: ConfigSegment;
   export: ConfigExport;
   dateformat?: ConfigDateformat;
   custom_annotations?: ConfigCustomAnnotation[];
   korp?: ConfigKorp;
+};
+
+/**
+ * Sparv class bindings. When set, `token` and `sentence` are bound to a
+ * language-appropriate tokenizer (e.g. Trankit) so that annotators reading or
+ * writing `<token>`/`<sentence>` all agree on the same segmentation. Omitted
+ * for languages with no dedicated tokenizer, which then use Sparv's default
+ * `segment` module. See getTokenizerClasses in annotationMetadata.ts.
+ */
+type ConfigClasses = {
+  token: string;
+  sentence: string;
 };
 
 type ConfigKorp = {
@@ -30,12 +42,6 @@ type ConfigImport = {
   importer: string;
   text_annotation?: string;
 };
-
-type ConfigSegment = {
-  sentence_segmenter?: ConfigSentenceSegmenter;
-};
-
-export type ConfigSentenceSegmenter = "linebreaks";
 
 type ConfigExport = {
   annotations?: string[];

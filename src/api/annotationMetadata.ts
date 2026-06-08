@@ -315,28 +315,86 @@ function hasUposCollision(annotations: AnnotationOptions): boolean {
 }
 
 /**
+ * Tokenizers that own the `token`/`sentence` classes for the languages they
+ * support. When a corpus's language is covered by one of these, the generated
+ * config binds `<token>`/`<sentence>` to that tokenizer's segmentation so every
+ * annotator agrees on it (see `makeConfig`). The covered languages are read
+ * from the registry — a provider covers a language if any of its annotations
+ * lists that language in `supportedLanguages` — so there is a single source of
+ * truth: bringing a language online is a `supportedLanguages` edit here (plus
+ * the matching `language=[...]` on the Sparv annotator).
+ *
+ * Languages not covered fall back to Sparv's default `segment` tokenizer, which
+ * is fine for the TreeTagger-only languages: TreeTagger emits one tag per input
+ * token, so it stays aligned with whatever produced the tokens.
+ *
+ * To add a new tokenizer (e.g. a future UDPipe module), add a row with the
+ * annotation names it produces for the `token` and `sentence` classes.
+ */
+export const TOKENIZER_PROVIDERS: {
+  module: string;
+  classes: { token: string; sentence: string };
+}[] = [
+  {
+    module: "trankit",
+    classes: { token: "trankit.token", sentence: "trankit.sentence" },
+  },
+];
+
+/**
+ * Class bindings (`token`/`sentence`) for a language, or `undefined` to leave
+ * Sparv's defaults (`segment.*`) in place.
+ */
+export function getTokenizerClasses(
+  language: string,
+): { token: string; sentence: string } | undefined {
+  for (const provider of TOKENIZER_PROVIDERS) {
+    const covers = ANNOTATION_REGISTRY.some(
+      (a) =>
+        a.sparvAnnotatorModule === provider.module &&
+        a.supportedLanguages.includes(language),
+    );
+    if (covers) return provider.classes;
+  }
+  return undefined;
+}
+
+/**
+ * The Sparv annotation that `<token>` resolves to for a language. Used to spell
+ * out Korp `annotation_definitions` keys, which don't accept `<token>:`
+ * shorthand (see below).
+ */
+export function getTokenAnnotation(language: string): string {
+  return getTokenizerClasses(language)?.token ?? "segment.token";
+}
+
+/**
  * Korp `annotation_definitions` entries to emit alongside the export list.
  * Keyed by the resolved Sparv annotation name — class shorthand like
  * `<token>:` is explicitly unsupported here (see the `korp.annotation_definitions`
- * Config description in sparv/modules/korp/config.py), so the token class
- * must be spelled out as `segment.token` (Sparv's default token annotation).
+ * Config description in sparv/modules/korp/config.py), so the token class must
+ * be spelled out. It is whatever the config binds `<token>` to for this
+ * language (`trankit.token` for the trankit languages, `segment.token`
+ * otherwise) — see `getTokenAnnotation`.
  * Used so that columns without a matching Korp preset get a proper,
  * translated label instead of the underscore-replacement fallback.
  */
 export function getKorpAnnotationDefinitions(
   annotations: AnnotationOptions,
+  language: string,
 ): Record<string, { label: Record<string, string> }> {
   const defs: Record<string, { label: Record<string, string> }> = {};
+  const token = getTokenAnnotation(language);
 
   if (annotations.treetagger === true) {
-    defs["segment.token:treetagger.pos"] = {
+    defs[`${token}:treetagger.pos`] = {
       label: {
         eng: "TreeTagger morph",
         swe: "TreeTagger morfologi",
         fin: "TreeTagger morfologia",
       },
     };
-    defs["segment.token:treetagger.baseform"] = {
+    defs[`${token}:treetagger.baseform`] = {
       label: {
         eng: "TreeTagger baseform",
         swe: "TreeTagger grundform",
@@ -344,7 +402,7 @@ export function getKorpAnnotationDefinitions(
       },
     };
     if (hasUposCollision(annotations)) {
-      defs["segment.token:treetagger.upos"] = {
+      defs[`${token}:treetagger.upos`] = {
         label: {
           eng: "TreeTagger pos",
           swe: "TreeTagger ordklass",

@@ -23,15 +23,49 @@ describe("makeConfig", () => {
     expect(yaml).not.toContain("- <token>:saldo.baseform2 as lemma");
   });
 
-  test("sets segmenter", () => {
+  test("binds token/sentence classes to trankit for trankit languages", () => {
+    for (const language of ["swe", "fin", "eng"]) {
+      const yaml = makeConfig("mink-abc123", {
+        name: { eng: "News" },
+        language,
+        format: "txt",
+        annotations: {},
+      });
+      expect(yaml).toContain("token: trankit.token");
+      expect(yaml).toContain("sentence: trankit.sentence");
+    }
+  });
+
+  test("omits class bindings for languages without a dedicated tokenizer", () => {
+    // German has TreeTagger but no trankit tokenizer, so it should fall back to
+    // Sparv's default segment tokenizer (no `classes` block).
     const yaml = makeConfig("mink-abc123", {
-      name: { swe: "Nyheter", eng: "News" },
-      language: "swe",
+      name: { eng: "Nachrichten" },
+      language: "deu",
       format: "txt",
-      sentenceSegmenter: "linebreaks",
-      annotations: {},
+      annotations: { treetagger: true },
     });
-    expect(yaml).toContain("sentence_segmenter: linebreaks");
+    expect(yaml).not.toContain("classes:");
+    expect(yaml).not.toContain("trankit.token");
+  });
+
+  test("spells out Korp keys with the resolved token annotation", () => {
+    // trankit language -> trankit.token; non-trankit TreeTagger language -> segment.token.
+    const fin = makeConfig("mink-abc123", {
+      name: { eng: "News" },
+      language: "fin",
+      format: "txt",
+      annotations: { treetagger: true },
+    });
+    expect(fin).toContain("trankit.token:treetagger.pos");
+
+    const deu = makeConfig("mink-abc123", {
+      name: { eng: "Nachrichten" },
+      language: "deu",
+      format: "txt",
+      annotations: { treetagger: true },
+    });
+    expect(deu).toContain("segment.token:treetagger.pos");
   });
 
   test("sets text_annotation", () => {
@@ -126,7 +160,6 @@ describe("parseConfig", () => {
         importer: "xml_import:parse",
         text_annotation: "article",
       },
-      segment: { sentence_segmenter: "linebreaks" },
       custom_annotations: [
         { params: { out: "<text>:misc.datefrom", value: "2000-01-01" } },
         { params: { out: "<text>:misc.dateto", value: "2023-12-31" } },
@@ -142,7 +175,6 @@ describe("parseConfig", () => {
       name: { swe: "Nyheter", eng: "News" },
       description: { swe: "Senaste nytt", eng: "Latest news" },
       textAnnotation: "article",
-      sentenceSegmenter: "linebreaks",
       annotations: {
         datetime: {
           from: "2000-01-01",
