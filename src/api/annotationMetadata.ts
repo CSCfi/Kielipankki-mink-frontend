@@ -94,10 +94,12 @@ export const ANNOTATION_REGISTRY: AnnotationMetadata[] = [
     sparvAnnotatorModule: "trankit",
     supportedLanguages: ["eng"],
     defaultEnabled: false,
-    // Token-level NE type (positional), matching the Kielipankki Korp `ne_type`
-    // word-attribute convention — not a structural span. See annotate_ner.
+    // Token-level NER (positional), matching the Kielipankki Korp word-attribute
+    // convention — not a structural span. `ne_type` is the bare entity type and
+    // `ne_part` the BIOES position prefix (span boundaries). See annotate_ner.
     sparvModules: [
       "<token>:trankit.ne_type as ne_type",
+      "<token>:trankit.ne_part as ne_part",
     ],
   },
   // --- TreeTagger (many languages, POS + lemma only) ---
@@ -422,21 +424,16 @@ export function getKorpAnnotationDefinitions(
   }
 
   if (annotations.ner === true) {
-    // Trankit's English NER (OntoNotes-5 tagset) as a per-token attribute
-    // `<token>:trankit.ne_type`, resolved here to e.g.
-    // `trankit.token:trankit.ne_type`, which Korp's config exporter keys on.
-    //
-    // No `is_struct_attr`: leaving it off keeps this a positional *word*
-    // attribute in Korp (with it, Korp groups it under structural/text
-    // attributes — not where NER belongs here).
-    //
-    // No `translation`: Korp labels each datasetSelect value via
+    // Trankit's English NER as two per-token attributes, resolved here to e.g.
+    // `trankit.token:trankit.ne_type` / `:trankit.ne_part`, which Korp's config
+    // exporter keys on. No `is_struct_attr` → they stay positional *word*
+    // attributes (with it, Korp files them under structural/text). No
+    // `translation` → Korp labels each datasetSelect value via
     // `locAttribute(translation, value, lang)`, which returns `undefined` when
-    // `lang` isn't a key in the map and then crashes the value sort
-    // (`a[1].localeCompare`). The UI's exact lang code (2- vs 3-letter) isn't
-    // reliable from here, so we omit translation and show the raw OntoNotes
-    // codes (always defined). Re-add localized labels only with keys that cover
-    // whatever `getLang()` returns.
+    // `lang` isn't a key and crashes the value sort (`a[1].localeCompare`); the
+    // UI lang code isn't reliable from here, so we show raw codes (always
+    // defined). The deployed model is the CoNLL-2003 set (PER/ORG/LOC/MISC), not
+    // OntoNotes-18 — datasets reflect that.
     defs[`${token}:trankit.ne_type`] = {
       label: {
         eng: "Named entity type",
@@ -444,11 +441,16 @@ export function getKorpAnnotationDefinitions(
         fin: "Nimen tyyppi",
       },
       extended_component: "datasetSelect",
-      dataset: [
-        "PERSON", "NORP", "FAC", "ORG", "GPE", "LOC", "PRODUCT", "EVENT",
-        "WORK_OF_ART", "LAW", "LANGUAGE", "DATE", "TIME", "PERCENT", "MONEY",
-        "QUANTITY", "ORDINAL", "CARDINAL",
-      ],
+      dataset: ["PER", "ORG", "LOC", "MISC"],
+    };
+    defs[`${token}:trankit.ne_part`] = {
+      label: {
+        eng: "Named entity part",
+        swe: "Namndel",
+        fin: "Nimen osa",
+      },
+      extended_component: "datasetSelect",
+      dataset: ["B", "I", "E", "S"],
     };
   }
 

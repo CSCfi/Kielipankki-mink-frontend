@@ -75,13 +75,18 @@ describe("makeConfig", () => {
       format: "txt",
       annotations: { ner: true },
     });
-    // Token-level (positional) export, plus a Korp definition keyed on the
-    // resolved per-token name with the value dropdown dataset.
+    // Token-level (positional) exports for type + BIOES part, plus Korp
+    // definitions keyed on the resolved per-token names with value dropdowns.
     expect(yaml).toContain("<token>:trankit.ne_type as ne_type");
+    expect(yaml).toContain("<token>:trankit.ne_part as ne_part");
     expect(yaml).toContain("trankit.token:trankit.ne_type");
+    expect(yaml).toContain("trankit.token:trankit.ne_part");
     expect(yaml).toContain("Named entity type");
+    expect(yaml).toContain("Named entity part");
     expect(yaml).toContain("datasetSelect");
-    expect(yaml).toContain("WORK_OF_ART");
+    // CoNLL-2003 tagset (the deployed model), not OntoNotes-18.
+    expect(yaml).toContain("MISC");
+    expect(yaml).not.toContain("WORK_OF_ART");
     // The old structural span should no longer be emitted.
     expect(yaml).not.toContain("trankit.ne:trankit.ne_type");
   });
