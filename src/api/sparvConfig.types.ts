@@ -28,15 +28,10 @@ type ConfigKorp = {
 };
 
 type ConfigKorpAnnotationDefinition = {
+  // The frontend only emits inline label definitions (e.g. TreeTagger columns).
+  // Richer defs (dataset/translation) and preset references live server-side in
+  // config_default.yaml + the Kielipankki-korp-corpus-config attribute presets.
   label?: Record<string, string>;
-  // Extra fields for richer Korp rendering (e.g. named-entity type), mirroring
-  // the attribute presets in Kielipankki-korp-corpus-config. `dataset` + the
-  // datasetSelect component give the attribute a value dropdown in Korp;
-  // `translation` maps each value code to localized display names.
-  is_struct_attr?: boolean;
-  extended_component?: string;
-  dataset?: string[];
-  translation?: Record<string, Record<string, string>>;
 };
 
 type ConfigMetadata = {
