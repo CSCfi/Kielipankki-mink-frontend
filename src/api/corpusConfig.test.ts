@@ -68,19 +68,22 @@ describe("makeConfig", () => {
     expect(deu).toContain("segment.token:treetagger.pos");
   });
 
-  test("emits a Korp definition for trankit NER", () => {
+  test("emits token-level NER with a Korp definition", () => {
     const yaml = makeConfig("mink-abc123", {
       name: { eng: "News" },
       language: "eng",
       format: "txt",
       annotations: { ner: true },
     });
-    // Resolved annotation name (no class shorthand), a real label instead of
-    // the "ne ne type" fallback, and the value dropdown dataset.
-    expect(yaml).toContain("trankit.ne:trankit.ne_type");
+    // Token-level (positional) export, plus a Korp definition keyed on the
+    // resolved per-token name with the value dropdown dataset.
+    expect(yaml).toContain("<token>:trankit.ne_type as ne_type");
+    expect(yaml).toContain("trankit.token:trankit.ne_type");
     expect(yaml).toContain("Named entity type");
     expect(yaml).toContain("datasetSelect");
     expect(yaml).toContain("WORK_OF_ART");
+    // The old structural span should no longer be emitted.
+    expect(yaml).not.toContain("trankit.ne:trankit.ne_type");
   });
 
   test("sets text_annotation", () => {
