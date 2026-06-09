@@ -68,25 +68,18 @@ describe("makeConfig", () => {
     expect(deu).toContain("segment.token:treetagger.pos");
   });
 
-  test("emits token-level NER with a Korp definition", () => {
+  test("emits token-level NER exports (type + BIOES part)", () => {
     const yaml = makeConfig("mink-abc123", {
       name: { eng: "News" },
       language: "eng",
       format: "txt",
       annotations: { ner: true },
     });
-    // Token-level (positional) exports for type + BIOES part, plus Korp
-    // definitions keyed on the resolved per-token names with value dropdowns.
+    // Two positional (word) exports. Their Korp labels/datasets are NOT emitted
+    // here — they're preset references in the server-side config_default.yaml
+    // (ne_type_conll / ner_bioes), merged in at install time.
     expect(yaml).toContain("<token>:trankit.ne_type as ne_type");
     expect(yaml).toContain("<token>:trankit.ne_part as ne_part");
-    expect(yaml).toContain("trankit.token:trankit.ne_type");
-    expect(yaml).toContain("trankit.token:trankit.ne_part");
-    expect(yaml).toContain("Named entity type");
-    expect(yaml).toContain("Named entity part");
-    expect(yaml).toContain("datasetSelect");
-    // CoNLL-2003 tagset (the deployed model), not OntoNotes-18.
-    expect(yaml).toContain("MISC");
-    expect(yaml).not.toContain("WORK_OF_ART");
     // The old structural span should no longer be emitted.
     expect(yaml).not.toContain("trankit.ne:trankit.ne_type");
   });

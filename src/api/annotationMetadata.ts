@@ -384,10 +384,6 @@ export function getTokenAnnotation(language: string): string {
  */
 type KorpAnnotationDefinition = {
   label: Record<string, string>;
-  is_struct_attr?: boolean;
-  extended_component?: string;
-  dataset?: string[];
-  translation?: Record<string, Record<string, string>>;
 };
 
 export function getKorpAnnotationDefinitions(
@@ -423,36 +419,11 @@ export function getKorpAnnotationDefinitions(
     }
   }
 
-  if (annotations.ner === true) {
-    // Trankit's English NER as two per-token attributes, resolved here to e.g.
-    // `trankit.token:trankit.ne_type` / `:trankit.ne_part`, which Korp's config
-    // exporter keys on. No `is_struct_attr` → they stay positional *word*
-    // attributes (with it, Korp files them under structural/text). No
-    // `translation` → Korp labels each datasetSelect value via
-    // `locAttribute(translation, value, lang)`, which returns `undefined` when
-    // `lang` isn't a key and crashes the value sort (`a[1].localeCompare`); the
-    // UI lang code isn't reliable from here, so we show raw codes (always
-    // defined). The deployed model is the CoNLL-2003 set (PER/ORG/LOC/MISC), not
-    // OntoNotes-18 — datasets reflect that.
-    defs[`${token}:trankit.ne_type`] = {
-      label: {
-        eng: "Named entity type",
-        swe: "Namntyp",
-        fin: "Nimen tyyppi",
-      },
-      extended_component: "datasetSelect",
-      dataset: ["PER", "ORG", "LOC", "MISC"],
-    };
-    defs[`${token}:trankit.ne_part`] = {
-      label: {
-        eng: "Named entity part",
-        swe: "Namndel",
-        fin: "Nimen osa",
-      },
-      extended_component: "datasetSelect",
-      dataset: ["B", "I", "E", "S"],
-    };
-  }
+  // NER (trankit.ne_type / trankit.ne_part) Korp definitions are not emitted here:
+  // they live as preset references in the server-side config_default.yaml
+  // (trankit.token:trankit.ne_type → ne_type_conll, :trankit.ne_part → ner_bioes),
+  // alongside trankit.deprel, with the labels/datasets/translations in the
+  // Kielipankki-korp-corpus-config attribute presets.
 
   return defs;
 }
