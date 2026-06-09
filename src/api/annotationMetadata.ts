@@ -422,46 +422,33 @@ export function getKorpAnnotationDefinitions(
   }
 
   if (annotations.ner === true) {
-    // Trankit's English NER uses the OntoNotes-5 18-type tagset, written as a
-    // per-token attribute `<token>:trankit.ne_type` (resolved here to e.g.
-    // `trankit.token:trankit.ne_type`, which Korp's config exporter keys on
-    // directly). `is_struct_attr` + datasetSelect give it the value dropdown in
-    // Korp; `translation` localizes the type codes (keyed en/fi/sv, matching the
-    // corpus-config attribute presets like ne_type_fi). Verify the codes against
-    // the actual ne_type values; any unlisted code degrades to its raw form.
+    // Trankit's English NER (OntoNotes-5 tagset) as a per-token attribute
+    // `<token>:trankit.ne_type`, resolved here to e.g.
+    // `trankit.token:trankit.ne_type`, which Korp's config exporter keys on.
+    //
+    // No `is_struct_attr`: leaving it off keeps this a positional *word*
+    // attribute in Korp (with it, Korp groups it under structural/text
+    // attributes — not where NER belongs here).
+    //
+    // No `translation`: Korp labels each datasetSelect value via
+    // `locAttribute(translation, value, lang)`, which returns `undefined` when
+    // `lang` isn't a key in the map and then crashes the value sort
+    // (`a[1].localeCompare`). The UI's exact lang code (2- vs 3-letter) isn't
+    // reliable from here, so we omit translation and show the raw OntoNotes
+    // codes (always defined). Re-add localized labels only with keys that cover
+    // whatever `getLang()` returns.
     defs[`${token}:trankit.ne_type`] = {
       label: {
         eng: "Named entity type",
         swe: "Namntyp",
         fin: "Nimen tyyppi",
       },
-      is_struct_attr: true,
       extended_component: "datasetSelect",
       dataset: [
         "PERSON", "NORP", "FAC", "ORG", "GPE", "LOC", "PRODUCT", "EVENT",
         "WORK_OF_ART", "LAW", "LANGUAGE", "DATE", "TIME", "PERCENT", "MONEY",
         "QUANTITY", "ORDINAL", "CARDINAL",
       ],
-      translation: {
-        PERSON: { en: "person", fi: "henkilö", sv: "person" },
-        NORP: { en: "nationality or group", fi: "kansallisuus tai ryhmä", sv: "nationalitet eller grupp" },
-        FAC: { en: "facility", fi: "rakennelma", sv: "anläggning" },
-        ORG: { en: "organization", fi: "organisaatio", sv: "organisation" },
-        GPE: { en: "geopolitical entity", fi: "valtiollinen alue", sv: "geopolitisk enhet" },
-        LOC: { en: "location", fi: "paikka", sv: "plats" },
-        PRODUCT: { en: "product", fi: "tuote", sv: "produkt" },
-        EVENT: { en: "event", fi: "tapahtuma", sv: "händelse" },
-        WORK_OF_ART: { en: "work of art", fi: "teos", sv: "konstverk" },
-        LAW: { en: "law", fi: "laki", sv: "lag" },
-        LANGUAGE: { en: "language", fi: "kieli", sv: "språk" },
-        DATE: { en: "date", fi: "päivämäärä", sv: "datum" },
-        TIME: { en: "time", fi: "kellonaika", sv: "tid" },
-        PERCENT: { en: "percent", fi: "prosentti", sv: "procent" },
-        MONEY: { en: "money", fi: "rahamäärä", sv: "penningbelopp" },
-        QUANTITY: { en: "quantity", fi: "määrä", sv: "kvantitet" },
-        ORDINAL: { en: "ordinal", fi: "järjestysluku", sv: "ordningstal" },
-        CARDINAL: { en: "cardinal", fi: "lukumäärä", sv: "grundtal" },
-      },
     };
   }
 
