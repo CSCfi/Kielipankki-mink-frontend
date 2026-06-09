@@ -379,11 +379,19 @@ export function getTokenAnnotation(language: string): string {
  * Used so that columns without a matching Korp preset get a proper,
  * translated label instead of the underscore-replacement fallback.
  */
+type KorpAnnotationDefinition = {
+  label: Record<string, string>;
+  is_struct_attr?: boolean;
+  extended_component?: string;
+  dataset?: string[];
+  translation?: Record<string, Record<string, string>>;
+};
+
 export function getKorpAnnotationDefinitions(
   annotations: AnnotationOptions,
   language: string,
-): Record<string, { label: Record<string, string> }> {
-  const defs: Record<string, { label: Record<string, string> }> = {};
+): Record<string, KorpAnnotationDefinition> {
+  const defs: Record<string, KorpAnnotationDefinition> = {};
   const token = getTokenAnnotation(language);
 
   if (annotations.treetagger === true) {
@@ -410,6 +418,51 @@ export function getKorpAnnotationDefinitions(
         },
       };
     }
+  }
+
+  if (annotations.ner === true) {
+    // Trankit's English NER uses the OntoNotes-5 18-type tagset. The resolved
+    // annotation name is `trankit.ne:trankit.ne_type` (a struct attribute, no
+    // class shorthand), which Korp's config exporter keys on directly. Without
+    // this entry it falls back to the unlabeled "ne ne type" struct attribute.
+    // `dataset` + datasetSelect give the value dropdown in Korp; `translation`
+    // localizes the type codes (keyed en/fi/sv, matching the corpus-config
+    // attribute presets). Verify the codes against the exported <ne type="…">
+    // values; any unlisted code degrades gracefully to its raw form.
+    defs["trankit.ne:trankit.ne_type"] = {
+      label: {
+        eng: "Named entity type",
+        swe: "Namntyp",
+        fin: "Nimen tyyppi",
+      },
+      is_struct_attr: true,
+      extended_component: "datasetSelect",
+      dataset: [
+        "PERSON", "NORP", "FAC", "ORG", "GPE", "LOC", "PRODUCT", "EVENT",
+        "WORK_OF_ART", "LAW", "LANGUAGE", "DATE", "TIME", "PERCENT", "MONEY",
+        "QUANTITY", "ORDINAL", "CARDINAL",
+      ],
+      translation: {
+        PERSON: { en: "person", fi: "henkilö", sv: "person" },
+        NORP: { en: "nationality or group", fi: "kansallisuus tai ryhmä", sv: "nationalitet eller grupp" },
+        FAC: { en: "facility", fi: "rakennelma", sv: "anläggning" },
+        ORG: { en: "organization", fi: "organisaatio", sv: "organisation" },
+        GPE: { en: "geopolitical entity", fi: "valtiollinen alue", sv: "geopolitisk enhet" },
+        LOC: { en: "location", fi: "paikka", sv: "plats" },
+        PRODUCT: { en: "product", fi: "tuote", sv: "produkt" },
+        EVENT: { en: "event", fi: "tapahtuma", sv: "händelse" },
+        WORK_OF_ART: { en: "work of art", fi: "teos", sv: "konstverk" },
+        LAW: { en: "law", fi: "laki", sv: "lag" },
+        LANGUAGE: { en: "language", fi: "kieli", sv: "språk" },
+        DATE: { en: "date", fi: "päivämäärä", sv: "datum" },
+        TIME: { en: "time", fi: "kellonaika", sv: "tid" },
+        PERCENT: { en: "percent", fi: "prosentti", sv: "procent" },
+        MONEY: { en: "money", fi: "rahamäärä", sv: "penningbelopp" },
+        QUANTITY: { en: "quantity", fi: "määrä", sv: "kvantitet" },
+        ORDINAL: { en: "ordinal", fi: "järjestysluku", sv: "ordningstal" },
+        CARDINAL: { en: "cardinal", fi: "lukumäärä", sv: "grundtal" },
+      },
+    };
   }
 
   return defs;

@@ -29,6 +29,14 @@ type ConfigKorp = {
 
 type ConfigKorpAnnotationDefinition = {
   label?: Record<string, string>;
+  // Extra fields for richer Korp rendering (e.g. named-entity type), mirroring
+  // the attribute presets in Kielipankki-korp-corpus-config. `dataset` + the
+  // datasetSelect component give the attribute a value dropdown in Korp;
+  // `translation` maps each value code to localized display names.
+  is_struct_attr?: boolean;
+  extended_component?: string;
+  dataset?: string[];
+  translation?: Record<string, Record<string, string>>;
 };
 
 type ConfigMetadata = {
