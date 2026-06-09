@@ -94,9 +94,10 @@ export const ANNOTATION_REGISTRY: AnnotationMetadata[] = [
     sparvAnnotatorModule: "trankit",
     supportedLanguages: ["eng"],
     defaultEnabled: false,
+    // Token-level NE type (positional), matching the Kielipankki Korp `ne_type`
+    // word-attribute convention — not a structural span. See annotate_ner.
     sparvModules: [
-      "trankit.ne",
-      "trankit.ne:trankit.ne_type",
+      "<token>:trankit.ne_type as ne_type",
     ],
   },
   // --- TreeTagger (many languages, POS + lemma only) ---
@@ -421,15 +422,14 @@ export function getKorpAnnotationDefinitions(
   }
 
   if (annotations.ner === true) {
-    // Trankit's English NER uses the OntoNotes-5 18-type tagset. The resolved
-    // annotation name is `trankit.ne:trankit.ne_type` (a struct attribute, no
-    // class shorthand), which Korp's config exporter keys on directly. Without
-    // this entry it falls back to the unlabeled "ne ne type" struct attribute.
-    // `dataset` + datasetSelect give the value dropdown in Korp; `translation`
-    // localizes the type codes (keyed en/fi/sv, matching the corpus-config
-    // attribute presets). Verify the codes against the exported <ne type="…">
-    // values; any unlisted code degrades gracefully to its raw form.
-    defs["trankit.ne:trankit.ne_type"] = {
+    // Trankit's English NER uses the OntoNotes-5 18-type tagset, written as a
+    // per-token attribute `<token>:trankit.ne_type` (resolved here to e.g.
+    // `trankit.token:trankit.ne_type`, which Korp's config exporter keys on
+    // directly). `is_struct_attr` + datasetSelect give it the value dropdown in
+    // Korp; `translation` localizes the type codes (keyed en/fi/sv, matching the
+    // corpus-config attribute presets like ne_type_fi). Verify the codes against
+    // the actual ne_type values; any unlisted code degrades to its raw form.
+    defs[`${token}:trankit.ne_type`] = {
       label: {
         eng: "Named entity type",
         swe: "Namntyp",
