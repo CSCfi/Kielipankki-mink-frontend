@@ -168,7 +168,7 @@ job.status.waiting: Odottaa
 job.status.running: Käsitellään
 login: Kirjaudu sisään
 login.required: Tämä sivu vaatii kirjautumisen.
-login.help: Useimmat yliopistokäyttäjät voivat kirjautua suoraan.
+login.help: Federoitu kirjautuminen, toimii useimmilla akateemisilla tunnuksilla (Haka / eduGAIN) ja Eduunilla.
 login.fail: Tunnistautuminen epäonnistui
 logout: Kirjaudu ulos
 signup: Luo tili

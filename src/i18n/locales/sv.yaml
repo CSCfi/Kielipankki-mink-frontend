@@ -169,7 +169,7 @@ job.status.waiting: Väntar
 job.status.running: Arbetar
 login: Logga in
 login.required: Den här sidan kräver autentisering.
-login.help: De flesta med akademisk anknytning kan logga in direkt.
+login.help: Federerad inloggning, fungerar med de flesta akademiska konton (Haka / eduGAIN) och Eduuni.
 login.fail: Autentiseringsfrågan misslyckades
 logout: Logga ut
 signup: Skapa konto
