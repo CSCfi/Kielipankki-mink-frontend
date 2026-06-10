@@ -168,7 +168,7 @@ job.status.waiting: Waiting
 job.status.running: Working
 login: Sign in
 login.required: This page requires you to authenticate.
-login.help: Most university users can sign in directly.
+login.help: Federated login, works with most academic credentials (Haka / eduGAIN) and Eduuni.
 login.fail: Authentication check failed
 logout: Logout
 signup: Create account
