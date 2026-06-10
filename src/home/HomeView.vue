@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PhSignOut, PhUserPlus } from "@phosphor-icons/vue";
+import { PhSignOut } from "@phosphor-icons/vue";
 import HomeNews from "./HomeNews.vue";
 import HomeNewsFeatured from "@/home/HomeNewsFeatured.vue";
 import { useAuth } from "@/auth/auth.composable";
@@ -52,19 +52,6 @@ const logoutUrl = getLogoutUrl();
           <div class="flex justify-center gap-4 p-4 text-center text-xl">
             <div v-if="!isAuthenticated">
               <LoginButton />
-              <div class="my-1 text-sm opacity-70">
-                {{ $t("login.help") }}
-              </div>
-            </div>
-
-            <div v-if="!isAuthenticated">
-              <RouteButton to="/signup" class="button-success">
-                <PhUserPlus weight="fill" class="inline mb-0.5 mr-1" />
-                {{ $t("signup") }}
-              </RouteButton>
-              <div class="my-1 text-sm opacity-70">
-                {{ $t("signup.help") }}
-              </div>
             </div>
 
             <div
