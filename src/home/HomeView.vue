@@ -52,7 +52,7 @@ const logoutUrl = getLogoutUrl();
           <div class="flex justify-center gap-4 p-4 text-center text-xl">
             <div v-if="!isAuthenticated">
               <LoginButton />
-              <div class="my-1 text-sm opacity-70">
+              <div class="my-1 max-w-xs mx-auto text-sm opacity-70">
                 {{ $t("login.help") }}
               </div>
             </div>
