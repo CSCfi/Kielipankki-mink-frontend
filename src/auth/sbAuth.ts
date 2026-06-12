@@ -33,7 +33,7 @@ export function getLoginUrl(redirectLocation = "") {
     import.meta.env.BASE_URL,
     redirectLocation,
   );
-  return AUTH_URL + `login?redirect=${redirectLocation}`;
+  return AUTH_URL + `login?redirect=${encodeURIComponent(redirectLocation)}`;
 }
 
 /**
