@@ -147,10 +147,8 @@ export function emptyConfig(): ConfigOptions {
     description: {},
     format: "txt",
     language: "fin",
-    // No annotations are enabled here on purpose: which annotations are valid
-    // depends on the language, so language-specific defaults must come from
-    // getDefaultAnnotations(language). Hardcoding flags here (the former Swedish
-    // defaults) leaks incompatible annotations into non-Swedish corpora.
+    // No annotations enabled here on purpose: valid annotations are
+    // language-dependent, so defaults come from getDefaultAnnotations(language).
     annotations: {
       datetime: undefined,
     },

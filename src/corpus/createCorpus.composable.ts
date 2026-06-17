@@ -41,8 +41,7 @@ export default function useCreateCorpus() {
     const format = getFilenameExtension(files[0]?.name) as FileFormat;
 
     // Create a minimal config. No language is chosen in the upload flow, so use
-    // emptyConfig()'s default language and its language-appropriate annotation
-    // defaults rather than letting any hardcoded set through.
+    // emptyConfig()'s default language and its language-appropriate defaults.
     const base = emptyConfig();
     const config = {
       ...base,
@@ -104,8 +103,6 @@ export default function useCreateCorpus() {
       language,
       format,
       textAnnotation,
-      // Language-aware defaults only — see emptyConfig() for why we don't merge
-      // any base annotation set underneath this.
       annotations: getDefaultAnnotations(language, availableModules),
     };
 

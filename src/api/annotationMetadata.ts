@@ -419,11 +419,8 @@ export function getKorpAnnotationDefinitions(
     }
   }
 
-  // NER (trankit.ne_type / trankit.ne_part) Korp definitions are not emitted here:
-  // they live as preset references in the server-side config_default.yaml
-  // (trankit.token:trankit.ne_type → ne_type_conll, :trankit.ne_part → ner_bioes),
-  // alongside trankit.deprel, with the labels/datasets/translations in the
-  // Kielipankki-korp-corpus-config attribute presets.
+  // NER Korp definitions are intentionally not emitted here: they're preset
+  // references defined server-side in config_default.yaml.
 
   return defs;
 }
